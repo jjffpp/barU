@@ -2,7 +2,7 @@
 
   echo "<div class='container'>";
   echo "<article id='main-col'>";
-  echo "<h1 class='page-title'>Viajes Recomendados</h1>";
+  echo "<h1 id='titulovr' class='page-title'>Viajes Recomendados</h1>";
   echo "<ul id='services'>";
 
   for ($i=0; $i < 10; $i++) {
@@ -12,7 +12,7 @@
     echo "<h5 class='card-title'>Card title</h5>";
     echo "<h6 class='card-subtitle mb-2 text-muted'>Card subtitle</h6>";
     echo "<p class='card-text'>$i</p>";
-    echo "<button type='button' class='btn btn-success btn-md' name='button'>acceder</button>";
+    echo "<button id='$i' type='button' class='btn btn-success btn-md' name='button'>acceder</button>";
     echo "<button type='button' class='btn btn-warning btn-md' name='button'>cancelar</button>";
     echo "</div>";
     echo "</div>";
