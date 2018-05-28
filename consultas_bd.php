@@ -23,12 +23,25 @@
 
   function consulta_viaje_vehiculo($idviaje){
     $db = coneccion();
+    $sql_iduser = "SELECT vv.owner
+                   FROM viajes as v INNER JOIN vehiculo as vv ON v.idvehiculo=vv.idvehiculo
+                   WHERE v.idviajes=$idviaje";
+    $iduser = $db->query($sql_iduser);
+    $valor = $iduser->fetch_assoc();
+    $iduser = $valor['owner'];
+    $sql_user = "SELECT u.nombre, u.apellido
+                 FROM usuarios as u INNER JOIN vehiculo as vehi ON u.idUsuario=vehi.owner
+                 WHERE u.idUsuario=$iduser
+            ";
+    $datos_user = $db->query($sql_user);
+
     $sql = "SELECT *
             FROM viajes as v INNER JOIN vehiculo as vv ON v.idvehiculo=vv.idvehiculo
             WHERE v.idviajes=$idviaje
             ";
-    $busca = $db->query($sql);
-    return $busca;
+    $buscar = $db->query($sql);
+    $array = array('datosUser' => $datos_user, 'viaje' => $buscar);
+    return $array;
   }
 
   function numero_registrosViajesRecomendados(){
