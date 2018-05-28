@@ -2,7 +2,7 @@
 
 function impresion_detalle_viaje($idviaje,$fechaYHora,$tipo,$duracion,$costo
                           ,$origen,$destino,$idvehiculo,$capacidad,$modelo
-                          ,$descripcion_vehiculo, $dueño,$disponible){
+                          ,$descripcion_vehiculo, $dueño,$estado_viaje,$disponible){
   /*
   Funcion que imprime el detalle completo de cada viaje.
   */
@@ -13,7 +13,20 @@ function impresion_detalle_viaje($idviaje,$fechaYHora,$tipo,$duracion,$costo
   $asientosDisponibles = 1;
   $asientos_ocupados = $capacidad - $asientosDisponibles;
   $precio_persona = $costo / $asientos_ocupados;
-
+  switch ($estado_viaje) {
+    case 0:
+      $estado = "disponible";
+      break;
+    case 1:
+      $estado = "en curso";
+      break;
+    case 2:
+      $estado = "finalizado";
+      break;
+    case 3:
+      $estado = "lleno";
+      break;
+  }
   $salida = "
   <div class='container'>
     <article id='main-col'>
@@ -36,6 +49,8 @@ function impresion_detalle_viaje($idviaje,$fechaYHora,$tipo,$duracion,$costo
               <h6 class='card-subtitle mb-2 text-muted'>".$fechaFinalizacion->format('Y-m-d H:i:s')."</h6>
               <h5 class='card-title'>Duracion del Viaje</h5>
               <h6 class='card-subtitle mb-2 text-muted'>".$duracion." hrs</h6>
+              <h5 class='card-title'>Estado del viaje</h5>
+              <h6 class='card-subtitle mb-2 text-muted'>".$estado."</h6>
               <h5 class='card-title'>Tipo de Viaje</h5>
               <h6 class='card-subtitle mb-2 text-muted'>".$tipo."</h6>
               <h5 class='card-title'>Modelo del Vehiculo</h5>
