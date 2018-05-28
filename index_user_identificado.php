@@ -4,12 +4,13 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
+    <script src="client.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!--<script src="js/jquery-3.3.1.min.js"></script>-->
     <link rel="stylesheet" href="./css/styleexample.css">
-    <script type="text/javascript" src="f2.js"></script>
+    <!--<script type="text/javascript" src="f2.js"></script>-->
   </head>
   <body>
     <div class="example3">
@@ -27,7 +28,7 @@
           <div class="navbar-collapse collapse">
             <ul id="ulnav" class="nav navbar-nav navbar-right">
               <li><a href="index"><span class="glyphicon glyphicon-briefcase"></span> Mis Viajes</a></li>
-              <li><a href="#"><span class="glyphicon glyphicon-map-marker"></span> Crear Viaje</a></li>
+              <li><a  href="#" onclick="comprobarCondiciones()"><span class="glyphicon glyphicon-map-marker"></span> Crear Viaje</a></li>
               <li><a href="#"><span class="glyphicon glyphicon-search"></span> Buscar Viajes</a></li>
               <li><a href="#"><span class="glyphicon glyphicon-road"></span> Registrar Vehiculo</a></li>
               <li class="dropdown">
