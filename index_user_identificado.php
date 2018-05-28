@@ -27,7 +27,7 @@
           </div>
           <div class="navbar-collapse collapse">
             <ul id="ulnav" class="nav navbar-nav navbar-right">
-              <li><a href="index"><span class="glyphicon glyphicon-briefcase"></span> Mis Viajes</a></li>
+              <li><a href="index_mis_viajes.html"><span class="glyphicon glyphicon-briefcase"></span> Mis Viajes</a></li>
               <li><a  href="#" onclick="comprobarCondiciones()"><span class="glyphicon glyphicon-map-marker"></span> Crear Viaje</a></li>
               <li><a href="#"><span class="glyphicon glyphicon-search"></span> Buscar Viajes</a></li>
               <li><a href="#"><span class="glyphicon glyphicon-road"></span> Registrar Vehiculo</a></li>

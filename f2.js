@@ -1,7 +1,7 @@
 $(document).ready(function(e){
 
   //carga las tarjetas de viajes recomendados
-  $('#content').load('archivosphp/misviajes.php');
+  $('#content').load('misviajes.php');
 
   //dispara la tarjeta completa del viaje del cual se clickea
   $('body').on('click','ul#services button',function(e){
@@ -12,7 +12,7 @@ $(document).ready(function(e){
 
     }else{
     $.ajax({
-      url: 'archivosphp/mostrar_detalle_tarjeta.php',
+      url: 'mostrar_detalle_tarjeta.php',
       type: 'POST',
       data: { param1: page },
       success: function(html){
