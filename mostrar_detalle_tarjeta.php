@@ -10,8 +10,7 @@
   $resultado_consullta = consulta_viaje_vehiculo($idviaje);
 
   //fetch_assoc en una sola fila
-  $valor = $resultado_consullta['datosUser']->fetch_assoc() +
-           $resultado_consullta['viaje']->fetch_assoc();
+  $valor = $resultado_consullta->fetch_assoc();
 
   //en caso que el usuario esté loggeado se accede
   if(isset($_COOKIE['user'])){
@@ -21,10 +20,11 @@
     La disponibilidad es establece por una consulta a la BD
     */
     echo impresion_detalle_viaje($valor['idviajes'],$valor['fechaYHora'],$valor['tipo'],
-      $valor['duracion'],$valor['costo'],$valor['localidad_origen'],
-      $valor['localidad_destino'],$valor['idvehiculo'],
-      $valor['capacidad'],$valor['modelo'],$valor['descripcion'],$valor['nombre'],1);
+      $valor['duracion'],$valor['costo'],$valor['nombre_destino'],
+      $valor['nombre_origen'],$valor['nombre_user'],
+      $valor['capacidad'],$valor['modelo'],$valor['descripcion'],$valor['nombre_user'],1);
 
   }
-  
+  //print_r($valor);
+
 ?>
