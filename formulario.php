@@ -13,9 +13,9 @@
        <p>Por favor, complete todos los campos para crear un nuevo viaje</p>
        <hr>
        <label for:"costo" ><b>Costo<b><br></label>
-       <input type="text" id="costo" name="costo"/><br/>
+       <input type="float" id="costo" name="costo"/><br/>
        <label for:"duracion"><b>Duracion (en hs) <b><br></label>
-       <input type="text" id="duracion" name="duracion"/><br/>
+       <input type="float" id="duracion" name="duracion"/><br/>
        <label for:"tipo"><b>Tipo viaje<b><br></label>
        <select name="tipo" id="tipo">
          <option value="" selected="selected"></option>
@@ -55,7 +55,5 @@
         </div>
       </div>
     </form>
-    <script type="text/javascript" src="formularioCorrecto()">
-    </script>
   </body>
   </html>

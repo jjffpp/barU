@@ -7,10 +7,10 @@ function validarCampos(){
   fecha = document.getElementById("fecha").value;
   hora = document.getElementById("hora").value;
 
-  if (!/^([0-9])*[.]?[0-9]*$/.test(costo)){
+  if ( !/^([0-9])*[.]?[0-9]*$/.test(costo) | ! costo != "" ){
      alert("campos costo incorrecto");
   }else{
-      if (!/^([0-9])*[.]?[0-9]*$/.test(duracion)){
+      if ( !/^([0-9])*[.]?[0-9]*$/.test(duracion) | ! duracion != "" ){
         alert ("campo duracion incorrecto");
       }else{
         if (! tipo != ""){
