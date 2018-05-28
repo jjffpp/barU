@@ -12,7 +12,7 @@
 
   function consultaViajesRecomendados(){
     $db = coneccion();
-    $sql = "SELECT v.idviajes,l.nombre AS nombre_origen,ld.nombre AS nombre_destino,u.nombre AS nombre_user,v.fechaYHora,v.duracion,u.estado,v.tipo
+    $sql = "SELECT v.idviajes,l.nombre AS nombre_origen,ld.nombre AS nombre_destino,u.nombre AS nombre_user,v.fechaYHora,v.duracion,v.estado_viaje,v.tipo
             FROM viajes as v INNER JOIN localidades as l ON v.localidad_origen=l.idlocalidades
             INNER JOIN vehiculo as vv ON v.idvehiculo=vv.idvehiculo
             INNER JOIN usuarios as u ON u.idUsuario=vv.owner
@@ -30,7 +30,7 @@
   function consulta_viaje_vehiculo($idviaje){
     $db = coneccion();
 
-    $sql = "SELECT v.idviajes,l.nombre AS nombre_origen,ld.nombre AS nombre_destino,u.nombre AS nombre_user,v.fechaYHora,v.duracion,u.estado,v.tipo,
+    $sql = "SELECT v.idviajes,l.nombre AS nombre_origen,ld.nombre AS nombre_destino,u.nombre AS nombre_user,v.fechaYHora,v.duracion,v.estado_viaje,v.tipo,
                    vv.modelo,vv.descripcion,vv.capacidad,v.costo
             FROM viajes as v INNER JOIN localidades as l ON v.localidad_origen=l.idlocalidades
             INNER JOIN vehiculo as vv ON v.idvehiculo=vv.idvehiculo
@@ -39,7 +39,7 @@
             WHERE v.idviajes=$idviaje
             ";
     $buscar = $db->query($sql);
-    
+
     return $buscar;
   }
 
