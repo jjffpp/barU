@@ -16,6 +16,6 @@ $conn= new conexion();
 $consulta= "INSERT INTO `viajes`(`fechaYHora`, `tipo`, `duracion`, `costo`, `localidad_origen`, `localidad_destino`, `idvehiculo`) VALUES
 ('$combinedDT','$tipo','$duracion','$costo','$origen','$destino',4)";
 $conn->consultarABD($consulta);
-header("location: formulario.php");
+header("location: index_user_identificado.php");
 
 ?>

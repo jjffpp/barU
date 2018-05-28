@@ -1,3 +1,7 @@
+function volver(){
+  window.location.href = "index_user_identificado.php";
+}
+
 function validarCampos(){
   costo = document.getElementById("costo").value;
   duracion = document.getElementById("duracion").value;

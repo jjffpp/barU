@@ -51,7 +51,7 @@
         <div class="botones">
           <button type="button" onclick="validarCampos()" class="crearViaje">Crear Viaje</button>
           <button type="submit" id="send" style="display:none;"></button>
-          <button type="button" class="cancelar">Cancelar</button>
+          <button type="button" onclick="volver()" class="cancelar">Cancelar</button>
         </div>
       </div>
     </form>
