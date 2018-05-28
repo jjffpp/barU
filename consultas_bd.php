@@ -12,36 +12,35 @@
 
   function consultaViajesRecomendados(){
     $db = coneccion();
-    $sql = "SELECT *
+    $sql = "SELECT v.idviajes,l.nombre AS nombre_origen,ld.nombre AS nombre_destino,u.nombre AS nombre_user,v.fechaYHora,v.duracion,u.estado,v.tipo
             FROM viajes as v INNER JOIN localidades as l ON v.localidad_origen=l.idlocalidades
+            INNER JOIN vehiculo as vv ON v.idvehiculo=vv.idvehiculo
+            INNER JOIN usuarios as u ON u.idUsuario=vv.owner
+            INNER JOIN localidades as ld ON ld.idlocalidades=v.localidad_destino
             ";
     $busca = $db->query($sql);
     if($busca->num_rows > 0){
       return $busca;
     }
+    else{
+      echo "CERO filas";
+    }
   }
 
   function consulta_viaje_vehiculo($idviaje){
     $db = coneccion();
-    $sql_iduser = "SELECT vv.owner
-                   FROM viajes as v INNER JOIN vehiculo as vv ON v.idvehiculo=vv.idvehiculo
-                   WHERE v.idviajes=$idviaje";
-    $iduser = $db->query($sql_iduser);
-    $valor = $iduser->fetch_assoc();
-    $iduser = $valor['owner'];
-    $sql_user = "SELECT u.nombre, u.apellido
-                 FROM usuarios as u INNER JOIN vehiculo as vehi ON u.idUsuario=vehi.owner
-                 WHERE u.idUsuario=$iduser
-            ";
-    $datos_user = $db->query($sql_user);
 
-    $sql = "SELECT *
-            FROM viajes as v INNER JOIN vehiculo as vv ON v.idvehiculo=vv.idvehiculo
+    $sql = "SELECT v.idviajes,l.nombre AS nombre_origen,ld.nombre AS nombre_destino,u.nombre AS nombre_user,v.fechaYHora,v.duracion,u.estado,v.tipo,
+                   vv.modelo,vv.descripcion,vv.capacidad,v.costo
+            FROM viajes as v INNER JOIN localidades as l ON v.localidad_origen=l.idlocalidades
+            INNER JOIN vehiculo as vv ON v.idvehiculo=vv.idvehiculo
+            INNER JOIN usuarios as u ON u.idUsuario=vv.owner
+            INNER JOIN localidades as ld ON ld.idlocalidades=v.localidad_destino
             WHERE v.idviajes=$idviaje
             ";
     $buscar = $db->query($sql);
-    $array = array('datosUser' => $datos_user, 'viaje' => $buscar);
-    return $array;
+    
+    return $buscar;
   }
 
   function numero_registrosViajesRecomendados(){
