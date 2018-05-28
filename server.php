@@ -1,5 +1,5 @@
 <?php
-
+/*
 function consultarABD($aConsulta)
 {
   $servername = "localhost";
@@ -40,5 +40,6 @@ function idDeUsuarioConSesionIniciada()
     return -1;
   }
 }
-poseeVehiculo(3);
+poseeVehiculo(3);*/
+echo 'true';
 ?>
