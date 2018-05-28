@@ -1,9 +1,25 @@
 <?php
 
-  function tarjeta($idviaje,$origen,$destino,$chofer,$fechaInicio,$fechaFinalizacion,$estado,$tipo,$disponible){
+  function tarjeta($idviaje,$origen,$destino,$chofer,$fechaInicio,$duracion,$estado,$tipo,$disponible){
     /*
     Funcion que se encarga de imprimir cada Card
     */
+    switch ($estado) {
+      case 0:
+        $estado = "disponible";
+        break;
+      case 1:
+        $estado = "en curso";
+        break;
+      case 2:
+        $estado = "finalizado";
+        break;
+      case 3:
+        $estado = "lleno";
+        break;
+    }
+    $fechaFinalizacion = new DateTime($fechaInicio);
+    $fechaFinalizacion->add(new DateInterval('PT'.$duracion.'H'));
     $salida ="<li>
             <div class='card' style='width: 18rem;''>
               <div class='card-body'>
@@ -11,8 +27,10 @@
                 <h6 class='card-subtitle mb-2 text-muted'>Origen: " .$origen. "</h6>
                 <h6 class='card-subtitle mb-2 text-muted'>Destino: " .$destino. "</h6>
                 <h6 class='card-subtitle mb-2 text-muted'>Chofer: " .$chofer. "</h6>
-                <h6 class='card-subtitle mb-2 text-muted'>Fecha de Inicio: " .$fechaInicio. "</h6>
-                <h6 class='card-subtitle mb-3 text-muted'>Fecha de Finalizacion: " .$fechaFinalizacion. "</h6>
+                <h6 class='card-subtitle mb-2 text-muted'>Fecha de Inicio:</h6>
+                <h6 class='card-subtitle mb-2 text-muted'>" .$fechaInicio. "</h6>
+                <h6 class='card-subtitle mb-2 text-muted'>Fecha de Finalizacion:</h6>
+                <h6 class='card-subtitle mb-3 text-muted'>" .$fechaFinalizacion->format('Y-m-d H:i:s')."</h6>
                 <h6 class='card-subtitle mb-2 text-muted'>Estado: " .$estado. "</h6>
                 <h6 class='card-subtitle mb-2 text-muted'>Tipo: " .$tipo. "</h6>";
                 if($disponible == 1){
@@ -37,10 +55,10 @@
     echo "<article id='main-col'>";
     echo "<ul id='services'>";
           while ($fila = $consulta->fetch_assoc()) {
-            print_r($fila);
-            echo tarjeta($fila['idviajes'],$fila['nombre'],$fila['localidad_destino']
-                        ,$fila['idvehiculo'],$fila['fechaYHora'],$fila['fechaYHora']
-                        ,'completo',$fila['tipo'],$disponible);
+            //print_r($fila);
+            echo tarjeta($fila['idviajes'],$fila['nombre_origen'],$fila['nombre_destino']
+                        ,$fila['nombre_user'],$fila['fechaYHora'],$fila['duracion']
+                        ,$fila['estado_viaje'],$fila['tipo'],$disponible);
           }
     echo "</ul>";
     echo "</article>";
