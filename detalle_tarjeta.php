@@ -13,7 +13,7 @@ function impresion_detalle_viaje($idviaje,$fechaYHora,$tipo,$duracion,$costo
   $asientosDisponibles = 1;
   $asientos_ocupados = $capacidad - $asientosDisponibles;
   $precio_persona = $costo / $asientos_ocupados;
-  
+
   $salida = "
   <div class='container'>
     <article id='main-col'>
@@ -35,7 +35,7 @@ function impresion_detalle_viaje($idviaje,$fechaYHora,$tipo,$duracion,$costo
               <h5 class='card-title'>Fecha de Finalizacion</h5>
               <h6 class='card-subtitle mb-2 text-muted'>".$fechaFinalizacion->format('Y-m-d H:i:s')."</h6>
               <h5 class='card-title'>Duracion del Viaje</h5>
-              <h6 class='card-subtitle mb-2 text-muted'>".$duracion."</h6>
+              <h6 class='card-subtitle mb-2 text-muted'>".$duracion." hrs</h6>
               <h5 class='card-title'>Tipo de Viaje</h5>
               <h6 class='card-subtitle mb-2 text-muted'>".$tipo."</h6>
               <h5 class='card-title'>Modelo del Vehiculo</h5>
