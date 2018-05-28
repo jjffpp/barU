@@ -1,9 +1,5 @@
 <!DOCTYPE html>
-<?php
-  $cookie_name = 'user';
-  $cookie_value = 'julian';
-  setcookie($cookie_name,$cookie_value,time() + (86400*30),"/"); // "/" es que estará en toda la pagina
-?>
+
 <html>
   <head>
     <meta charset="utf-8">
