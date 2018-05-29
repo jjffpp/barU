@@ -3,28 +3,32 @@
 <head>
   <title>Login</title>
   <meta charset = "utf-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-  <h1>Login de Usuarios</h1>
-  <hr />
   <form action="checklogin.php" method="post" >
-      <label>Email:</label><br>
+    <div class="container">
+      <h1><b>Login de Usuarios<b></h1>
+      <hr>
+      <label><b>Email<b></label><br>
       <input name="username" type="text" id="username" required>
       <br><br>
-      <label>Password:</label><br>
+      <label><b>Password<b></label><br>
       <input name="password" type="password" id="password" required>
       <br>
       <?php if(isset($_GET['valido']))
       {
         if($_GET['valido']= 'false')
         {
-          echo 'Nombre de usuario y/o contraseña invalido';
+          echo '<b>Nombre de usuario y/o contraseña invalido<b>';
         }
       }
        ?>
+      <hr>
       <br>
-      <input type="submit" name="Submit" value="LOGIN">
+      <button type="submit" class="login" name="submit">LOGIN</button>
+      <button type="button" class="cancelar">Cancelar</button>
+    </div>
   </form>
-  <hr/>
 </body>
 </html>
