@@ -1,10 +1,10 @@
 <?php
-
+session_start();
 include_once "tarjeta.php";
 include_once "consultas_bd.php";
 
 //CONSULTA A LA BD
-$resultado = consultaViajesRecomendados();//esta es a modo de prueba
+$resultado = consultarMisViajes($_SESSION["idUsuario"]);//esta es a modo de prueba
 
 /*
 idviaje,origen,destino,chofer,fechaInicio,fechaFinalizacion,estado,tipo,disponible

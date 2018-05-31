@@ -1,5 +1,6 @@
 function volver(){
-  window.location.href = "index_user_identificado.php";
+  window.location.href = "index_user_noidentificado.php";
+
 }
 
 function validarCampos(){

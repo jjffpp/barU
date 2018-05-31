@@ -8,7 +8,7 @@ $(document).ready(function(e){
     var page = $(this).attr('id');
     //boton de detalle_tarjeta
     if(page == 'bajaviaje'){
-      $('#content').load('index_user_identificado.php');
+      //$('#content').load('indexPrimario.php');
 
     }else{
     $.ajax({

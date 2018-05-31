@@ -15,7 +15,7 @@
   </head>
   <body>
 
-    <?php echo imprimir_narvar_visitante(); ?>
+    <?php generarNavbar(); ?>
 
 <form action="registrarUserServer.php" method="POST" name="f1" id="f1">
   <div class="container">

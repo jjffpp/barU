@@ -15,5 +15,5 @@ function comprobarClave() {
   }
 }
 function irMenuPrincipal() {
-    window.location.href = "index_user_noidentificado.php";
+    window.location.href = "indexPrimario.php";
 }
