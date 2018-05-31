@@ -16,7 +16,7 @@ if ($result->num_rows > 0) {
     $_SESSION['username'] = $username;
     $_SESSION['idUsuario'] =  $row['idUsuario'];
 //redirecciona a la pagina principal
-    echo "Bienvenido! " . $row['email'];
+      header("location: index_user_identificado.php");
   }else{
     header("location: login.php?valido=false");
   }
