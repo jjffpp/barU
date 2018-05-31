@@ -1,7 +1,7 @@
 <?php
 
 include_once "tarjeta.php";
-include_once "../consultas_bd.php";
+include_once "consultas_bd.php";
 
 //CONSULTA A LA BD
 $resultado = consultaViajesRecomendados();//esta es a modo de prueba

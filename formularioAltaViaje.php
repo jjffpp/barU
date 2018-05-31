@@ -13,8 +13,8 @@ $hora = $_POST["hora"];
 $combinedDT = date('Y-m-d H:i:s', strtotime("$fecha $hora"));
 $conn= new conexion();
 //la consulta esta con el vehiculo truncado en 4
-$consulta= "INSERT INTO `viajes`(`fechaYHora`, `tipo`, `duracion`, `costo`, `localidad_origen`, `localidad_destino`, `idvehiculo`) VALUES
-('$combinedDT','$tipo','$duracion','$costo','$origen','$destino',4)";
+$consulta= "INSERT INTO `viajes`(`fechaYHora`, `tipo`, `duracion`, `costo`, `localidad_origen`, `localidad_destino`, `idvehiculo`, `estado_viaje`) VALUES
+('$combinedDT','$tipo','$duracion','$costo','$origen','$destino',4,0)";
 $conn->consultarABD($consulta);
 header("location: index_user_identificado.php");
 

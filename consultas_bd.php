@@ -1,7 +1,7 @@
 <?php
 
   function coneccion(){
-    $db = new mysqli('localhost','andresjulian','andres','mydb');
+    $db = new mysqli('localhost','root','','barudb');
     if($db->connect_errno){
       echo "Fallo al conectar a la Base de Datos!!" . $db->connect_errno;
       return 0;
