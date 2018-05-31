@@ -50,7 +50,7 @@
     Funcion que "imprime" el diseño de las Cards de Boostrap y luego
     llama a la funcion tarjeta con los parametros de cada fila de la BD
     */
-    echo "<h1 id='titulovr' class='page-title'>Viajes Recomendados</h1>";
+    echo "<h1 id='titulovr' class='page-title'>Mis Viajes</h1>";
     echo "<div class='container'>";
     echo "<article id='main-col'>";
     echo "<ul id='services'>";

@@ -1,6 +1,6 @@
 <?php
 require "conexion.php";
-session_set_cookie_params(30,"/");
+session_set_cookie_params(3600,"/");
 session_start();
 $tbl_name = "usuarios";
 $username = $_POST['username'];
@@ -16,7 +16,7 @@ if ($result->num_rows > 0) {
     $_SESSION['username'] = $username;
     $_SESSION['idUsuario'] =  $row['idUsuario'];
 //redirecciona a la pagina principal
-    echo "Bienvenido! " . $row['email'];
+      header("location: indexPrimario.php");
   }else{
     header("location: login.php?valido=false");
   }
