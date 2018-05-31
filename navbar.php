@@ -1,9 +1,13 @@
 <?php
+include "consultas_bd.php";
+
 session_start();
+
 function generarNavbar()
 {
 if(isset($_SESSION["idUsuario"])){
-
+  echo $_SESSION["idUsuario"];
+  $nombre = nombre_user($_SESSION["idUsuario"]);
   echo "
   <div class='example3'>
     <nav class='navbar navbar-inverse navbar-fixed-top'>
@@ -24,7 +28,7 @@ if(isset($_SESSION["idUsuario"])){
             <li><a href='#'><span class='glyphicon glyphicon-search'></span> Buscar Viajes</a></li>
             <li><a href='#'><span class='glyphicon glyphicon-road'></span> Registrar Vehiculo</a></li>
             <li class='dropdown'>
-              <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'><span class='glyphicon glyphicon-user'></span> Mi Usuario <span class='caret'></span></a>
+              <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'><span class='glyphicon glyphicon-user'></span> ".$nombre['nombre']."<span class='caret'></span></a>
               <ul class='dropdown-menu' role='menu'>
                 <li><a href='#'>Ver Perfil</a></li>
                 <li><a href='cerrar-sesion.php'>Cerrar Sesion</a></li>

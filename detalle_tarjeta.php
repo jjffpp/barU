@@ -30,7 +30,7 @@ function impresion_detalle_viaje($idviaje,$fechaYHora,$tipo,$duracion,$costo
   $salida = "
   <div class='container'>
     <article id='main-col'>
-      <h2 id='titulovr' class='page-title'>Tu viaje seleccionado</h2>
+      <h2 id='titulovr' class='page-title'>Mi viaje seleccionado</h2>
       <ul id='services'>
         <li>
           <div class='card' style='width: 18rem;'>
