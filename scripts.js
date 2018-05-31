@@ -14,3 +14,6 @@ function comprobarClave() {
     document.getElementById("send").click();
   }
 }
+function irMenuPrincipal() {
+    window.location.href = "index_user_noidentificado.php";
+}

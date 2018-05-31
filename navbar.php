@@ -22,7 +22,7 @@ $salida = "
             <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'><span class='glyphicon glyphicon-user'></span> Visitante <span class='caret'></span></a>
             <ul class='dropdown-menu' role='menu'>
               <li><a href='#'>Iniciar Sesion</a></li>
-              <li><a href='#'>Registrarse</a></li>
+              <li><a href='index.php'>Registrarse</a></li>
             </ul>
           </li>
         </ul>

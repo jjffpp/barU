@@ -66,7 +66,7 @@ footer{
   text-align: center;
 }
 
-input[type=text],input[type=date],select,input[type=time],input[type=float] {
+input[type=text],input[type=password],input[type=date],select,input[type=time],input[type=float] {
     width: 100%;
     padding: 15px;
     margin: 5px 0 22px 0;
@@ -111,4 +111,3 @@ button {
   float: left;
   width: 50%;
 }
-
