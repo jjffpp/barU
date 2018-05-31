@@ -15,7 +15,11 @@
 </head>
 <body>
 
+<<<<<<< HEAD
     <?php generarNavbar(); ?>
+=======
+      <?php echo imprimir_narvar_visitante(); ?>
+>>>>>>> d291dc854c25776ca8ed7e18fe1be46b0088cb01
   <form action="checklogin.php" method="post" >
     <div class="container">
       <h1><b>Login de Usuarios<b></h1>
