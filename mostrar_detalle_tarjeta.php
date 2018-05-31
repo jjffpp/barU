@@ -1,30 +1,22 @@
 <?php
 
-  include_once "detalle_tarjeta.php";
-  include_once "../consultas_bd.php";
+function imprimir_narvar(){
 
-  //idviaje para realizar la consulta completa
-  $idviaje = $_POST['param1'];
-
-  //consulta a la BD con idviaje
-  $resultado_consullta = consulta_viaje_vehiculo($idviaje);
-
-  //fetch_assoc en una sola fila
-  $valor = $resultado_consullta->fetch_assoc();
-
-  //en caso que el usuario esté loggeado se accede
-  if(isset($_COOKIE['user'])){
-    /*
-    origen,destino,chofer,fechaInicio,fechaFinalizacion,tipo,asientosDisponibles,capacidad,precioPersona,disponible
-    disponible(1/0) -> 1 el viaje es acivo para el usuario; 0 el viaje no es activo.
-    La disponibilidad es establece por una consulta a la BD
-    */
-    echo impresion_detalle_viaje($valor['idviajes'],$valor['fechaYHora'],$valor['tipo'],
-      $valor['duracion'],$valor['costo'],$valor['nombre_destino'],
-      $valor['nombre_origen'],$valor['nombre_user'],
-      $valor['capacidad'],$valor['modelo'],$valor['descripcion'],$valor['nombre_user'],$valor['estado_viaje'],1);
-
-  }
-  //print_r($valor);
-
-?>
+$salida = "
+<div class='example3'>
+  <nav class='navbar navbar-inverse navbar-fixed-top'>
+    <div class='container'>
+      <div class='navbar-header'>
+        <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar3'>
+          <span class='sr-only'>Toggle navigation</span>
+          <span class='icon-bar'></span>
+          <span class='icon-bar'></span>
+          <span class='icon-bar'></span>
+        </button>
+        <a class='navbar-brand' href='index_user_identificado.php'><img src='aventonnegro.png'></a>
+      </div>
+      <div class='navbar-collapse collapse'>
+        <ul id='ulnav' class='nav navbar-nav navbar-right'>
+          <li><a href='index_mis_viajes.php'><span class='glyphicon glyphicon-briefcase'></span> Mis Viajes</a></li>
+          <li><a href='#' onclick='comprobarCondiciones()'><span class='glyphicon glyphicon-map-marker'></span> Crear Viaje</a></li>
+          <li><a href='buscarviaje'><span class='glyphicon glyphicon-search'></spa
