@@ -27,7 +27,7 @@ if(isset($_SESSION["idUsuario"])){
               <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'><span class='glyphicon glyphicon-user'></span> Mi Usuario <span class='caret'></span></a>
               <ul class='dropdown-menu' role='menu'>
                 <li><a href='#'>Ver Perfil</a></li>
-                <li><a href='#'>Cerrar Sesion</a></li>
+                <li><a href='cerrar-sesion.php'>Cerrar Sesion</a></li>
               </ul>
             </li>
           </ul>
