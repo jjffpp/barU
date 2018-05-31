@@ -1,4 +1,5 @@
 <?php
+session_start();
 /*
 function consultarABD($aConsulta)
 {
@@ -28,18 +29,15 @@ function poseeVehiculo($idUser)
     }
   }
 }
+*/
 
-function idDeUsuarioConSesionIniciada()
-{
-  if(isset($_SESSION['loggedUserID']))
+  if(isset($_SESSION['idUsuario']))
   {
-    return $_SESSION['loggedUserID'];
+    echo 'true';
   }
   else
   {
-    return -1;
+    echo 'false';
   }
-}
-poseeVehiculo(3);*/
-echo 'true';
+//poseeVehiculo(3);
 ?>
