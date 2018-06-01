@@ -21,7 +21,7 @@
     $fechaFinalizacion = new DateTime($fechaInicio);
     $fechaFinalizacion->add(new DateInterval('PT'.$duracion.'H'));
     $salida ="<li>
-            <div class='card' style='width: 18rem;''>
+            <div class='card' style='width: 66rem;''>
               <div class='card-body'>
                 <h5 class='card-title'>Viaje: ".$idviaje."</h5>
                 <h6 class='card-subtitle mb-2 text-muted'>Origen: " .$origen. "</h6>

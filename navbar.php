@@ -59,7 +59,7 @@ else{
       </div>
       <div class='navbar-collapse collapse'>
         <ul id='ulnav' class='nav navbar-nav navbar-right'>
-          <li><a href='buscarviaje'><span class='glyphicon glyphicon-search'></span> Buscar Viajes</a></li>
+          <li><a href='#'><span class='glyphicon glyphicon-search'></span> Buscar Viajes</a></li>
           <li class='dropdown'>
             <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'><span class='glyphicon glyphicon-user'></span> Visitante <span class='caret'></span></a>
             <ul class='dropdown-menu' role='menu'>

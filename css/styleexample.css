@@ -1,7 +1,22 @@
+html{
+  position: relative; min-height: 100%;
+}
 body{
   font-family: "Lato";
   padding-top: 70px;
+  margin: 0 auto 150px;
 }
+
+footer{
+  height: 100px;
+  position: absolute; left: 0; bottom: 0; width: 100%;
+  padding:40px;
+  margin-top:20px;
+  color: white;
+  background-color:#222; /*e8491d*/
+  text-align: center;
+}
+
 
 .navbar-brand {
   padding: 0px;
@@ -56,14 +71,6 @@ ul#services li{
   border: #cccccc solid 1px;
   margin-bottom:5px;
   background:#e6e6e6;
-}
-
-footer{
-  padding:20px;
-  margin-top:20px;
-  color: white;
-  background-color:#222; /*e8491d*/
-  text-align: center;
 }
 
 input[type=text],input[type=password],input[type=date],select,input[type=time],input[type=float] {
