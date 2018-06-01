@@ -16,5 +16,5 @@ $consulta= "INSERT INTO `usuarios`(`email`, `password`, `nombre`, `apellido`, `f
 ('$email','$contra','$name','$apellido','$nacimiento', '$dir', '$desc',0)";
 $conn->consultarABD($consulta);
 
-header("location:index_user_noidentificado.php");
+header("location:indexPrimario.php");
  ?>
