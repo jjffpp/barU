@@ -6,7 +6,7 @@ session_start();
 function generarNavbar()
 {
 if(isset($_SESSION["idUsuario"])){
-  echo $_SESSION["idUsuario"];
+
   $nombre = nombre_user($_SESSION["idUsuario"]);
   echo "
   <div class='example3'>
