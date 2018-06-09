@@ -11,6 +11,6 @@ idviaje,origen,destino,chofer,fechaInicio,fechaFinalizacion,estado,tipo,disponib
 disponible(1/0) -> si hay un usuario loggeado; 0 si no hay un usuario loggeado.
 La disponibilidad se establece por Cookie de sesion
 */
-echo mostrar_tarjeta($resultado,1);
+echo mostrar_tarjeta($resultado,0);
 
 ?>

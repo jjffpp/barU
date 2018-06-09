@@ -62,7 +62,7 @@
 
     echo "<div class='container'>";
     echo "<article id='main-col'>";
-    echo "<h2 id='titulovr' class='page-title'>Mis Viajes</h2>";
+    echo "<h2 id='titulovr' class='page-title'>Viajes</h2>";
     echo "<ul id='services'>";
           while ($fila = $consulta->fetch_assoc()) {
             //print_r($fila);
