@@ -22,7 +22,7 @@
     echo impresion_detalle_viaje($valor['idviajes'],$valor['fechaYHora'],$valor['tipo'],
       $valor['duracion'],$valor['costo'],$valor['nombre_destino'],
       $valor['nombre_origen'],$valor['nombre_user'],
-      $valor['capacidad'],$valor['modelo'],$valor['descripcion'],$valor['nombre_user'],$valor['estado_viaje'],1);
+      $valor['capacidad'],$valor['modelo'],$valor['descripcion'],$valor['nombre_user'],$valor['estado_viaje'],0);
 
   //}
   //print_r($valor);
