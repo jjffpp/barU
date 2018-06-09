@@ -3,6 +3,11 @@ include "consultas_bd.php";
 
 session_start();
 
+function generarJS(){
+  if(isset($_SESSION["idUsuario"]))
+    echo "<script type='text/javascript' src='f2.js'></script>";
+}
+
 function generarNavbar()
 {
 if(isset($_SESSION["idUsuario"])){
@@ -88,4 +93,5 @@ function imprimir_footer(){
   ";
   return $salida;
 }
+
 ?>
