@@ -1,8 +1,7 @@
 $(document).ready(function(e){
 
   //carga las tarjetas de viajes recomendados
-  $('#content').load('misviajes.php');
-
+  $('#content').load('ViajesPantallaPrincipal.php');
   //dispara la tarjeta completa del viaje del cual se clickea
   $('body').on('click','ul#services button',function(e){
     var page = $(this).attr('id');
