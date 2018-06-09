@@ -22,6 +22,21 @@
     return $valor;
   }
 
+  function listarTodosLosViajes(){
+    $db = coneccion();
+
+    $sql = "SELECT v.idviajes,l.nombre AS nombre_origen,ld.nombre AS nombre_destino,v.fechaYHora,v.duracion,v.estado_viaje,v.tipo,
+                   vv.modelo,vv.descripcion,vv.capacidad,v.costo
+            FROM usuarios as u INNER JOIN usuarios_has_viajes as uhv ON uhv.usuarios_idUsuario = u.idUsuario
+            INNER JOIN viajes as v ON v.idviajes = uhv.viajes_idviajes
+            INNER JOIN vehiculo as vv ON v.idvehiculo=vv.idvehiculo
+            INNER JOIN localidades as ld ON ld.idlocalidades=v.localidad_destino
+            INNER JOIN localidades as l ON v.localidad_origen=l.idlocalidades
+            ";
+    $buscar = $db->query($sql);
+    return $buscar;
+  }
+
   function consultarMisViajes($idUser){
     $db = coneccion();
 
