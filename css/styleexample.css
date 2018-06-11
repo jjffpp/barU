@@ -72,8 +72,7 @@ ul#services li{
   margin-bottom:5px;
   background:#e6e6e6;
 }
-
-input[type=text],input[type=password],input[type=date],select,input[type=time],input[type=float] {
+input[type=text],input[type=password],input[type=date],select,input[type=time],input[type=float],input[type=number]{
     width: 100%;
     padding: 15px;
     margin: 5px 0 22px 0;
@@ -82,7 +81,7 @@ input[type=text],input[type=password],input[type=date],select,input[type=time],i
     background: #f1f1f1;
 }
 
-input[type=text]:focus, input[type=float]:focus {
+input[type=text]:focus,input[type=float]:focus,input[type=number]:focus{
     background-color: #ddd;
     outline: none;
 }
