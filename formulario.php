@@ -41,8 +41,7 @@
        <label for:"tipo"><b>Tipo viaje<b><br></label>
        <select name="tipo" onchange="actualizarFront(this)" id="tipo">
          <option value="" selected="selected">Seleccione tipo de viaje</option>
-         <option  value="semanal">semanal</option>
-         <option value="diario">diario</option>
+         <option value="semanal">semanal</option>
          <option value="ocacional">ocacional</option>
        </select><br/>
 
