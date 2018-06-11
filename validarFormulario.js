@@ -18,32 +18,44 @@ function validarCampos(){
       if ( !/^([0-9])*[.]?[0-9]*$/.test(duracion) | ! duracion != "" ){
         alert ("campo duracion incorrecto");
       }else{
-        if (! tipo != ""){
-          alert ("No seleccionó un tipo de viaje");
+        if(document.getElementById("days").style.display == "block"){
+        checked = $("input[type=checkbox]:checked").length;
+        if(!checked){
+          alert("Debe seleccionar por lo menos un dia de la semana en un viaje de tipo semanal");
         }else{
-          if (! origen > 0){
-            alert ("No seleccionó lugar de partida");
-          }else{
-            if (! destino > 0){
-              alert ("No seleccionó lugar de destino");
-            }else{
-              var now = new Date();
-              var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-              fecha = new Date(fecha);
-              if (fecha < today){
-                alert ("fecha en el pasado, ingrese nuevamente la fecha de partida");
-              }else{
-                if (! hora != ""){
-                  alert("hora incorrecta, ingrese nuevamente la hora de partida");
-                }else{
-                    alert("el viaje se ha creado correctamente!");
-                    document.getElementById("send").click();
-                }
-              }
-            }
-          }
+          seguir();
+        }
+      }else{seguir();}
+
+    }
+  }
+
+}
+function seguir()
+{
+if (! tipo != ""){
+  alert ("No seleccionó un tipo de viaje");
+}else{
+  if (! origen > 0){
+    alert ("No seleccionó lugar de partida");
+  }else{
+    if (! destino > 0){
+      alert ("No seleccionó lugar de destino");
+    }else{
+      var now = new Date();
+      var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      fecha = new Date(fecha);
+      if (fecha < today){
+        alert ("fecha en el pasado, ingrese nuevamente la fecha de partida");
+      }else{
+        if (! hora != ""){
+          alert("hora incorrecta, ingrese nuevamente la hora de partida");
+        }else{
+            alert("el viaje se ha creado correctamente!");
+            document.getElementById("send").click();
         }
       }
     }
-
+  }
+}
 }

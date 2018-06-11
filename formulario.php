@@ -2,9 +2,20 @@
 <?php include "navbar.php" ?>
 <html lang="en" dir="ltr">
 <head>
-   <meta charset="utf-8">
 
+  <script>
+            function actualizarFront(sel){
+              var seleccion = document.getElementById("days");
+              if(sel.value=="semanal"){ seleccion.style.display = "block";}
+              else{
+                seleccion.style.display = "none";
+              }
+              }
+
+        </script>
+   <meta charset="utf-8">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/estilo.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!--<script src="js/jquery-3.3.1.min.js"></script>-->
@@ -28,12 +39,38 @@
        <label for:"duracion"><b>Duracion (en hs) <b><br></label>
        <input type="float" id="duracion" name="duracion"/><br/>
        <label for:"tipo"><b>Tipo viaje<b><br></label>
-       <select name="tipo" id="tipo">
-         <option value="" selected="selected"></option>
-         <option value="semanal">semanal</option>
+       <select name="tipo" onchange="actualizarFront(this)" id="tipo">
+         <option value="" selected="selected">Seleccione tipo de viaje</option>
+         <option  value="semanal">semanal</option>
          <option value="diario">diario</option>
          <option value="ocacional">ocacional</option>
        </select><br/>
+
+       <div class="days" id="days">
+    <label>
+      <input type="checkbox" value="1" name="days"> Lunes
+    </label>
+    <label>
+      <input type="checkbox" value="2" name="days"> Martes
+    </label>
+    <label>
+      <input type="checkbox" value="3" name="days"> Miercoles
+    </label>
+    <label>
+      <input type="checkbox" value="4" name="days"> Jueves
+    </label>
+    <label>
+      <input type="checkbox" value="5" name="days"> Viernes
+    </label>
+    <label>
+      <input type="checkbox" value="6" name="days"> Sabado
+    </label>
+    <label>
+      <input type="checkbox" value="0" name="days"> Domingo
+    </label>
+    <hr>
+  </div>
+
        <label for:"origen"><b>Lugar de partida<b><br></label>
        <select name="origen" id="origen">
          <option value="" selected="selected">Elegi un origen</option>
