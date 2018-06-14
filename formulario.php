@@ -4,6 +4,78 @@
 <head>
 
   <script>
+            function comprobarFechaInicial(fecha) {
+              if(comprobarQueNoSeaPasado(fecha)){
+                seleccionaDia(fecha);
+              }
+
+            }
+            function comprobarFechaFinal(fecha){
+
+              var fechaInicial= document.getElementById("fecha2");
+              var fechaFinal= document.getElementById("fecha3");
+              if(fechaInicial.value == ''){ alert("Ingrese primero una fecha inicial"); fechaFinal.value='';  return false;}
+              var partes = fechaInicial.value.split('-');
+              var partes2 = fechaFinal.value.split('-');
+              var fechaInicialDate = new Date(partes[0], partes[1]-1, partes[2]);
+              var fechaFinalDate = new Date(partes2[0], partes2[1]-1, partes2[2]);
+              if(fechaFinalDate<fechaInicialDate){
+                alert("La fecha final no puede ser anterior a la inicial, ingrese una fecha valida");
+                fechaFinal.value='';
+              }
+              seleccionaDia(fecha);
+
+            }
+            function comprobarQueNoSeaPasado(fecha) {
+              var fechaHoy = new Date();
+              var partes = fecha.value.split('-');
+              var fechaIngresada = new Date(partes[0], partes[1]-1, partes[2]);
+              if(fechaIngresada < fechaHoy){
+                alert("Fecha del pasado, ingrese una fecha valida");
+                fecha.value= '';
+                return false;
+              }
+              return true;
+
+            }
+            function seleccionaDia(fecha) {
+              var partes = fecha.value.split('-');
+              date = new Date(partes[0], partes[1]-1, partes[2]);
+
+              switch (date.getDay()) {
+                case 1: document.getElementById("lunes").checked = true;
+                        document.getElementById("lunes").disabled= true;
+
+                  break;
+                  case 2: document.getElementById("martes").checked = true;
+                          document.getElementById("martes").disabled= true;
+
+                    break;
+                    case 3: document.getElementById("miercoles").checked = true;
+                            document.getElementById("miercoles").disabled= true;
+
+                      break;
+                      case 4: document.getElementById("jueves").checked = true;
+                              document.getElementById("jueves").disabled= true;
+
+                        break;
+                        case 5: document.getElementById("viernes").checked = true;
+                                document.getElementById("viernes").disabled= true;
+
+                          break;
+                          case 6: document.getElementById("sabado").checked = true;
+                                  document.getElementById("sabado").disabled= true;
+
+                            break;
+                            case 7: document.getElementById("domingo").checked = true;
+                                    document.getElementById("domingo").disabled= true;
+
+                              break;
+                default:
+
+              }
+
+            }
             function actualizarFront(sel){
                 var seleccion = document.getElementById("days");
                 if((sel.value=="semanal")||  (sel.value=="ocacional")){
@@ -85,40 +157,40 @@
 
 
             <label for:"fecha2"><b>Fecha de partida inicial<b><br></label>
-            <input type="date" id="fecha2" name="fecha2"/><br/>
+            <input type="date" id="fecha2" onchange="comprobarFechaInicial(this)" name="fecha2"/><br/>
 
 
             <label for:"fecha3"><b>Fecha de ultima partida<b><br></label>
-            <input type="date" id="fecha3" name="fecha3"/><br/>
+            <input type="date" id="fecha3" onchange="comprobarFechaFinal(this)" name="fecha3"/><br/>
 
 
             <p>Seleccione que dias de la semana desea realizar su viaje</p>
 <label>
-<input type="checkbox" value="1" name="days"> Lunes
+<input type="checkbox" id="lunes" value="1" name="days"> Lunes
 </label>
 <label>
-<input type="checkbox" value="2" name="days"> Martes
+<input type="checkbox" id="martes"value="2" name="days"> Martes
 </label>
 <label>
-<input type="checkbox" value="3" name="days"> Miercoles
+<input type="checkbox" id="miercoles"value="3" name="days"> Miercoles
 </label>
 <label>
-<input type="checkbox" value="4" name="days"> Jueves
+<input type="checkbox" id="jueves"value="4" name="days"> Jueves
 </label>
 <label>
-<input type="checkbox" value="5" name="days"> Viernes
+<input type="checkbox" id="viernes" value="5" name="days"> Viernes
 </label>
 <label>
-<input type="checkbox" value="6" name="days"> Sabado
+<input type="checkbox" id="sabado" value="6" name="days"> Sabado
 </label>
 <label>
-<input type="checkbox" value="0" name="days"> Domingo
+<input type="checkbox" id="domingo" value="0" name="days"> Domingo
 </label><br>
     <hr>
           </div>
             <div class="oca" id="oca" style="display:none">
             <label for:"fecha"><b>Fecha de partida<b><br></label>
-            <input type="date" id="fecha" name="fecha"/><br/>
+            <input type="date" id="fecha" onchange="comprobarFechaInicial(this)" name="fecha"/><br/>
           </div>
           <div class="hora2" id="hora2" style="display:none">
 
