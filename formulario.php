@@ -5,10 +5,26 @@
 
   <script>
             function actualizarFront(sel){
-              var seleccion = document.getElementById("days");
-              if(sel.value=="semanal"){ seleccion.style.display = "block";}
-              else{
+                var seleccion = document.getElementById("days");
+                if((sel.value=="semanal")||  (sel.value=="ocacional")){
+                  document.getElementById("hora2").style.display="block";
+                }
+                else{
+                  document.getElementById("hora2").style.display="none";
+                }
+              if(sel.value=="semanal"){
+               seleccion.style.display = "block";}
+              else
+              {
                 seleccion.style.display = "none";
+              }
+              if(sel.value=="ocacional")
+              {
+                   document.getElementById("oca").style.display="block";
+              }
+              else {
+
+                   document.getElementById("oca").style.display="none";
               }
               }
 
@@ -34,67 +50,95 @@
        <h1>Creación de viaje</h1>
        <p>Por favor, complete todos los campos para crear un nuevo viaje</p>
        <hr>
-       <label for:"costo" ><b>Costo<b><br></label>
-       <input type="float" id="costo" name="costo"/><br/>
-       <label for:"duracion"><b>Duracion (en hs) <b><br></label>
-       <input type="float" id="duracion" name="duracion"/><br/>
-       <label for:"tipo"><b>Tipo viaje<b><br></label>
-       <select name="tipo" onchange="actualizarFront(this)" id="tipo">
-         <option value="" selected="selected">Seleccione tipo de viaje</option>
-         <option value="semanal">semanal</option>
-         <option value="ocacional">ocacional</option>
-       </select><br/>
 
-       <div class="days" id="days">
-    <label>
-      <input type="checkbox" value="1" name="days"> Lunes
-    </label>
-    <label>
-      <input type="checkbox" value="2" name="days"> Martes
-    </label>
-    <label>
-      <input type="checkbox" value="3" name="days"> Miercoles
-    </label>
-    <label>
-      <input type="checkbox" value="4" name="days"> Jueves
-    </label>
-    <label>
-      <input type="checkbox" value="5" name="days"> Viernes
-    </label>
-    <label>
-      <input type="checkbox" value="6" name="days"> Sabado
-    </label>
-    <label>
-      <input type="checkbox" value="0" name="days"> Domingo
-    </label>
-    <hr>
-  </div>
-
-       <label for:"origen"><b>Lugar de partida<b><br></label>
-       <select name="origen" id="origen">
-         <option value="" selected="selected">Elegi un origen</option>
-         <?php
-         require 'conexion.php';
-         $conn= new conexion();
-         $consulta = "select idlocalidades, nombre from localidades order by nombre asc";
-         $resulQuery = $conn->consultarABD($consulta);
-         while($row = mysqli_fetch_assoc($resulQuery)) {
-           echo "<option value=\"" . $row["idlocalidades"] . "\">" . $row["nombre"] . "</option>";
-         }
-         echo "</select><br/>";
-         echo "<label for:\"destino\"><b>Lugar de destino<b><br></label>
-                <select name=\"destino\" id=\"destino\">
-                <option value=\"\" selected=\"selected\">Elegi un destino</option>";
-                mysqli_data_seek($resulQuery,0);
+              <label for:"origen"><b>Lugar de partida<b><br></label>
+              <select name="origen" id="origen">
+                <option value="" selected="selected">Elegi un origen</option>
+                <?php
+                require 'conexion.php';
+                $conn= new conexion();
+                $consulta = "select idlocalidades, nombre from localidades order by nombre asc";
+                $resulQuery = $conn->consultarABD($consulta);
                 while($row = mysqli_fetch_assoc($resulQuery)) {
                   echo "<option value=\"" . $row["idlocalidades"] . "\">" . $row["nombre"] . "</option>";
                 }
-         echo "</select><br/>";
-        ?>
-        <label for:"fecha"><b>Fecha de partida<b><br></label>
-        <input type="date" id="fecha" name="fecha"/><br/>
-        <label for:"hora"><b>Hora de partida<b><br></label>
-        <input type="time" id="hora" name="hora"/><br/>
+                echo "</select><br/>";
+                echo "<label for:\"destino\"><b>Lugar de destino<b><br></label>
+                       <select name=\"destino\" id=\"destino\">
+                       <option value=\"\" selected=\"selected\">Elegi un destino</option>";
+                       mysqli_data_seek($resulQuery,0);
+                       while($row = mysqli_fetch_assoc($resulQuery)) {
+                         echo "<option value=\"" . $row["idlocalidades"] . "\">" . $row["nombre"] . "</option>";
+                       }
+                echo "</select><br/>";
+               ?>
+
+               <label for:"tipo"><b>Tipo viaje<b><br></label>
+               <select name="tipo" onchange="actualizarFront(this)" id="tipo">
+                 <option value="" selected="selected">Seleccione tipo de viaje</option>
+                 <option value="semanal">semanal</option>
+                 <option value="ocacional">ocacional</option>
+               </select><br/>
+
+               <div class="days" id="days">
+
+
+
+            <label for:"fecha2"><b>Fecha de partida inicial<b><br></label>
+            <input type="date" id="fecha2" name="fecha2"/><br/>
+
+
+            <label for:"fecha3"><b>Fecha de ultima partida<b><br></label>
+            <input type="date" id="fecha3" name="fecha3"/><br/>
+
+
+            <p>Seleccione que dias de la semana desea realizar su viaje</p>
+<label>
+<input type="checkbox" value="1" name="days"> Lunes
+</label>
+<label>
+<input type="checkbox" value="2" name="days"> Martes
+</label>
+<label>
+<input type="checkbox" value="3" name="days"> Miercoles
+</label>
+<label>
+<input type="checkbox" value="4" name="days"> Jueves
+</label>
+<label>
+<input type="checkbox" value="5" name="days"> Viernes
+</label>
+<label>
+<input type="checkbox" value="6" name="days"> Sabado
+</label>
+<label>
+<input type="checkbox" value="0" name="days"> Domingo
+</label><br>
+    <hr>
+          </div>
+            <div class="oca" id="oca" style="display:none">
+            <label for:"fecha"><b>Fecha de partida<b><br></label>
+            <input type="date" id="fecha" name="fecha"/><br/>
+          </div>
+          <div class="hora2" id="hora2" style="display:none">
+
+            <label for:"hora"><b>Hora de partida<b><br></label>
+
+                      <input type="time" id="hora" name="hora"/><br/>
+            <label for:"duracion"><b>Duracion (en hs) <b><br></label>
+
+              <input type="float" id="duracion" name="duracion"/><br/>
+            <label for:"costo" ><b>Costo<b><br></label>
+
+                     <input type="float" id="costo" name="costo"/><br/>
+
+          </div>
+
+
+
+
+
+
         <div class="botones">
           <button type="button" onclick="validarCampos()" class="crearViaje">Crear Viaje</button>
           <button type="submit" id="send" style="display:none;"></button>
