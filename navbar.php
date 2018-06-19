@@ -87,7 +87,8 @@ function imprimir_footer(){
   $salida = "
 
   <footer>
-    <p>MPG Web Deisgn, Copyright &copy; 2018</p>
+    <p>MPG Copyright &copy; 2018</p>
+    <p>Avenida Siempreviva 123. Telefono: (221) 555-5555. email: solucionesMPG@mpg.com</p>
   </footer>
 
   ";
