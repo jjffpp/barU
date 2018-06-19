@@ -29,18 +29,16 @@
     $salida ="<li>
             <div class='card' style='width: 66rem;''>
               <div class='card-body'>
-                <h5 class='card-title'>Viaje: ".$idviaje."</h5>
-                <h6 class='card-subtitle mb-2 text-muted'>Origen: " .$origen. "</h6>
-                <h6 class='card-subtitle mb-2 text-muted'>Destino: " .$destino. "</h6>
-                <h6 class='card-subtitle mb-2 text-muted'>Fecha de Inicio:</h6>
-                <h6 class='card-subtitle mb-2 text-muted'>" .$fechaYHora. "</h6>
-                <h6 class='card-subtitle mb-2 text-muted'>Fecha de Finalizacion:</h6>
-                <h6 class='card-subtitle mb-3 text-muted'>" .$fechaFinalizacion->format('Y-m-d H:i:s')."</h6>
-                <h6 class='card-subtitle mb-2 text-muted'>Estado: " .$estado. "</h6>
-                <h6 class='card-subtitle mb-2 text-muted'>Tipo: " .$tipo. "</h6>
-                <h6 class='card-subtitle mb-2 text-muted'>Costo por Persona: " .round($precio_persona). "</h6>
-                <h6 class='card-subtitle mb-2 text-muted'>Model del Vehiculo: " .$descripcion_vehiculo. "</h6>
-                <h6 class='card-subtitle mb-2 text-muted'>asientosDisponibles: " .$asientosDisponibles. "</h6>";
+                <h3 class='card-title'>Numero Unico de Viaje: ".$idviaje."</h5>
+                <u><h4 class='card-subtitle mb-2'>Origen:</u> " .$origen. "</h6>
+                <u><h4 class='card-subtitle mb-2'>Destino:</u> " .$destino. "</h6>
+                <u><h4 class='card-subtitle mb-2'>Fecha de Inicio:</u> " .$fechaYHora. "</h6>
+                <u><h4 class='card-subtitle mb-2'>Fecha de Finalizacion:</u> " .$fechaFinalizacion->format('Y-m-d H:i:s')."</h6>
+                <u><h4 class='card-subtitle mb-2'>Estado:</u> " .$estado. "</h6>
+                <u><h4 class='card-subtitle mb-2'>Tipo:</u> " .$tipo. "</h6>
+                <u><h4 class='card-subtitle mb-2'>Costo por Persona:</u> $" .round($precio_persona). "</h6>
+                <u><h4 class='card-subtitle mb-2'>Model del Vehiculo:</u> " .$descripcion_vehiculo. "</h6>
+                <u><h4 class='card-subtitle mb-2'>Asientos Disponibles:</u> " .$asientosDisponibles. "</h6>";
 
                 if($disponible == 1){
                   $salida .= "<button id='".$idviaje."' type='button' class='btn btn-success btn-md' name='button'>acceder</button>";
