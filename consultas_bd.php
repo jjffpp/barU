@@ -32,7 +32,8 @@
             INNER JOIN vehiculo as vv ON v.idvehiculo=vv.idvehiculo
             INNER JOIN localidades as ld ON ld.idlocalidades=v.localidad_destino
             INNER JOIN localidades as l ON v.localidad_origen=l.idlocalidades
-            ORDER BY v.fechaYHora DESC
+            WHERE v.fechaYHora >= CURDATE()
+            ORDER BY v.fechaYHora ASC
             ";
     $buscar = $db->query($sql);
     return $buscar;
