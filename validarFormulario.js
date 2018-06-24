@@ -3,7 +3,10 @@ function volver(){
 
 }
 
+
 function validarCampos(){
+  tipoDeViaje = document.getElementById("tipo").value;
+  if(tipoDeViaje=='') {alert("Ingrese el tipo de viaje"); return; }
   costo = document.getElementById("costo").value;
   duracion = document.getElementById("duracion").value;
   tipo = document.getElementById("tipo").value;
@@ -42,6 +45,7 @@ if (! tipo != ""){
     if (! destino > 0){
       alert ("No seleccionó lugar de destino");
     }else{
+      if(origen==destino) {alert("El origen no puede ser igual al destino");return;}
       var now = new Date();
       var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
       fecha = new Date(fecha);

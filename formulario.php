@@ -10,6 +10,22 @@
               }
 
             }
+
+            function comprobarQueSePueda(botoncito) {
+              if(document.getElementById('fecha2').value == '' || document.getElementById('fecha3').value == '' ){
+                alert("Debe ingresar primero una fecha inicial y una fecha final");
+                botoncito.checked=false;
+              }
+              else
+              {
+                  var estadoBoton = botoncito.checked;
+                  seleccionaDia(document.getElementById("fecha2"));
+                  seleccionaDia(document.getElementById("fecha3"));
+                  if(botoncito.checked != estadoBoton) {
+                    alert("No puede desmarcar este boton, corresponde a un dia de semana de su fecha inicial y/o final");
+                  }
+              }
+            }
             function comprobarFechaFinal(fecha){
 
               var fechaInicial= document.getElementById("fecha2");
@@ -44,37 +60,36 @@
 
               switch (date.getDay()) {
                 case 1: document.getElementById("lunes").checked = true;
-                        document.getElementById("lunes").disabled= true;
+                        //document.getElementById("lunes").disabled= true;
 
                   break;
                   case 2: document.getElementById("martes").checked = true;
-                          document.getElementById("martes").disabled= true;
+                          //document.getElementById("martes").disabled= true;
 
                     break;
                     case 3: document.getElementById("miercoles").checked = true;
-                            document.getElementById("miercoles").disabled= true;
+                            //document.getElementById("miercoles").disabled= true;
 
                       break;
                       case 4: document.getElementById("jueves").checked = true;
-                              document.getElementById("jueves").disabled= true;
+                              //document.getElementById("jueves").disabled= true;
 
                         break;
                         case 5: document.getElementById("viernes").checked = true;
-                                document.getElementById("viernes").disabled= true;
+                                //document.getElementById("viernes").disabled= true;
 
                           break;
                           case 6: document.getElementById("sabado").checked = true;
-                                  document.getElementById("sabado").disabled= true;
+                                  //document.getElementById("sabado").disabled= true;
 
                             break;
                             case 7: document.getElementById("domingo").checked = true;
-                                    document.getElementById("domingo").disabled= true;
+                                    //document.getElementById("domingo").disabled= true;
 
                               break;
                 default:
 
               }
-
             }
             function actualizarFront(sel){
                 var seleccion = document.getElementById("days");
@@ -85,6 +100,7 @@
                   document.getElementById("hora2").style.display="none";
                 }
               if(sel.value=="semanal"){
+                document.getElementById('fecha').disabled=true;
                seleccion.style.display = "block";}
               else
               {
@@ -92,7 +108,16 @@
               }
               if(sel.value=="ocacional")
               {
-                   document.getElementById("oca").style.display="block";
+                  document.getElementById('fecha2').disabled=true;
+                  document.getElementById('fecha3').disabled=true;
+                  document.getElementById('lunes').disabled=true;
+                  document.getElementById('martes').disabled=true;
+                  document.getElementById('miercoles').disabled=true;
+                  document.getElementById('jueves').disabled=true;
+                  document.getElementById('viernes').disabled=true;
+                  document.getElementById('sabado').disabled=true;
+                  document.getElementById('domingo').disabled=true;
+                  document.getElementById('oca').style.display="block";
               }
               else {
 
@@ -165,27 +190,32 @@
 
 
             <p>Seleccione que dias de la semana desea realizar su viaje</p>
+
+            <div class="" id="botonera">
+
 <label>
-<input type="checkbox" id="lunes" value="1" name="days"> Lunes
+<input type="checkbox" onclick="comprobarQueSePueda(this)" id="lunes" value="1" name="days[]"> Lunes
 </label>
 <label>
-<input type="checkbox" id="martes"value="2" name="days"> Martes
+<input type="checkbox" onclick="comprobarQueSePueda(this)" id="martes"value="2" name="days[]"> Martes
 </label>
 <label>
-<input type="checkbox" id="miercoles"value="3" name="days"> Miercoles
+<input type="checkbox" onclick="comprobarQueSePueda(this)" id="miercoles"value="3" name="days[]"> Miercoles
 </label>
 <label>
-<input type="checkbox" id="jueves"value="4" name="days"> Jueves
+<input type="checkbox" onclick="comprobarQueSePueda(this)" id="jueves"value="4" name="days[]"> Jueves
 </label>
 <label>
-<input type="checkbox" id="viernes" value="5" name="days"> Viernes
+<input type="checkbox" onclick="comprobarQueSePueda(this)" id="viernes" value="5" name="days[]"> Viernes
 </label>
 <label>
-<input type="checkbox" id="sabado" value="6" name="days"> Sabado
+<input type="checkbox" onclick="comprobarQueSePueda(this)" id="sabado" value="6" name="days[]"> Sabado
 </label>
 <label>
-<input type="checkbox" id="domingo" value="0" name="days"> Domingo
+<input type="checkbox" onclick="comprobarQueSePueda(this)" id="domingo" value="0" name="days[]"> Domingo
 </label><br>
+
+</div>
     <hr>
           </div>
             <div class="oca" id="oca" style="display:none">
@@ -205,11 +235,6 @@
                      <input type="float" id="costo" name="costo"/><br/>
 
           </div>
-
-
-
-
-
 
         <div class="botones">
           <button type="button" onclick="validarCampos()" class="crearViaje">Crear Viaje</button>
