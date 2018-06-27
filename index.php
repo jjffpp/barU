@@ -22,7 +22,14 @@
     <h1>Registrarse</h1>
     <p>Por favor, complete todos los campos para registrarse al sistema.</p>
     <hr>
-
+    <?php if(isset($_GET['valido']))
+    {
+      if($_GET['valido']= 'false')
+      {
+        echo '<b><h4>El EMAIL ya esta siendo utilizado en el sistema, vuelva a intentarlo</h4><b>';
+      }
+    }
+     ?>
     <label for="nombre"><b>Nombre/s</b></label>
     <input type="text" placeholder="Ingrese Nombre" name="name" required>
 
@@ -30,7 +37,7 @@
     <input type="text" placeholder="Ingrese apellido" name="apellido" required>
 
     <label for="birth"><b>Fecha de Nacimiento</b></label>
-    <input type="date" placeholder="Ingrese fecha de nacimiento" name="birth" required>
+    <input type="date" placeholder="Ingrese fecha de nacimiento" id="nacimiento" name="birth" required>
 
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="Ingrese Email" name="email" required>
@@ -49,7 +56,7 @@
 
     <div class="clearfix">
       <button type="button" onclick="irMenuPrincipal()" class="cancelar">Cancelar</button>
-      <button type="button" onclick="comprobarClave()" class="crearViaje">Registrarse</button>
+      <button type="button" onclick="comprobarClaveYmayor18()" class="crearViaje">Registrarse</button>
       <button type="submit" id="send" class="signupbtn" style="display:none;"></button>
     </div>
   </div>
