@@ -118,7 +118,8 @@ function darDeAltaViajeSemanal($fechaPrimerViaje,$fechaUltimaSalida,$diasDeLaSem
   //ACA SE DA DE ALTA UN VIAJE SEMANAL, HAY QUE VER COMO METERLO A LA BASE DE DATOS
   $primera = date('Y-m-d H:i:s', strtotime("$fechaPrimerViaje $hora"));
   $segunda = date('Y-m-d H:i:s', strtotime("$fechaUltimaSalida $hora"));
-  if($primera > $segunda){
+
+  /*if($primera > $segunda){
       echo "PRIMERA :".$primera;
   }
   else {
@@ -131,37 +132,26 @@ function darDeAltaViajeSemanal($fechaPrimerViaje,$fechaUltimaSalida,$diasDeLaSem
   echo "</br>";
   echo "Segunda : " . $segunda;
   echo "</br>";
-  echo "Dia de la semana de la fecha inicial: ".date("w",strtotime($segunda));
+  echo "Dia de la semana de la fecha inicial: ".date("w",strtotime($segunda));*/
 
   $diff = abs(strtotime($primera) - strtotime($segunda));
   $dias = $diff / (60*60*24);
-  echo "</br>";
-  echo "Dias: " . $dias;
-  echo "</br>";
+
   $semanas = intval($dias / 7);
-  echo "Cantidad de Semanas: " . $semanas;
-  echo "</br>";
+
   $diferencia1 = $dias - ($semanas * 7);
-  echo "Diferencia: " . $diferencia1;
-  echo "</br>";
-  echo "Tamaño: " . sizeof($diasDeLaSemana);
-  echo "</br>";
 
   $f = 5;
   $fechaFinalizacion = new DateTime($primera);
 
   $fechaFinalizacion->add(new DateInterval('P'.$f.'D'));
   $fechaFinalizacion->format('Y-m-d H:i:s');
-  echo "SUMA FECHA: ".$fechaFinalizacion->format('Y-m-d H:i:s');
-  echo "</br>";
+
 
   $diaInicial = date("w",strtotime($primera));
   $diaFin = date("d",strtotime($segunda));
   $mesFin = date("m",strtotime($segunda));
-  echo "MEEEEES: ".$mesFin;
 
-  echo "DIA DE LA SEMANA INICIAL: ".$diaInicial;
-  echo "</br>";
   $fechaFin = new DateTime($segunda);
   $fechaTemporal = new DateTime($primera);
   $futilizar = new DateTime($primera);
@@ -226,10 +216,7 @@ echo "</br>";*/
 }*/
 
 $conn= new conexion();
-echo "</br>";
-echo "</br>";
-echo $futilizar->format('Y-m-d H:i:s')." Dia: ".nombreDelDia($diaInicial);
-echo "</br>";
+
 for ($i=1; $i <= $dias; $i++) {
 
   $futilizar->add(new DateInterval('P1D'));
