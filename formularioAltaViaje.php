@@ -225,6 +225,7 @@ echo "</br>";*/
   }
 }*/
 
+$conn= new conexion();
 echo "</br>";
 echo "</br>";
 echo $futilizar->format('Y-m-d H:i:s')." Dia: ".nombreDelDia($diaInicial);
@@ -244,11 +245,25 @@ for ($i=1; $i <= $dias; $i++) {
     if(($diaSecundario == $diasDeLaSemana[$j])&&($dd <= $diaFin)&&($mm <= $mesFin)){
       echo $futilizar->format('Y-m-d H:i:s')." Dia: ".nombreDelDia($j);
       $fecha = $futilizar->format('Y-m-d H:i:s');
-      darDeAltaViajeOcacional($duracion,$costo,$tipo,$origen,$destino,$fecha,$hora);
+      echo "Fecha: " . $fecha;
+      $consulta= "INSERT INTO `viajes`(`fechaYHora`, `tipo`, `duracion`, `costo`, `localidad_origen`, `localidad_destino`, `idvehiculo`,`estado_viaje`) VALUES
+      ('$fecha','$tipo','$duracion','$costo','$origen','$destino',4,0)";
+      $conn->consultarABD($consulta);
+      $consulta= "SELECT max(idviajes) as maximo
+                  FROM  viajes";
+      $resultado = $conn->consultarABD($consulta);
+      $row = mysqli_fetch_assoc($resultado);
+      //var_dump($row['maximo']);
+      //var_dump($_SESSION['idUsuario']);
+      $id= $_SESSION['idUsuario'];
+      $numerito = $row['maximo'];
+      $consulta  = "INSERT INTO `usuarios_has_viajes` (`usuarios_idUsuario`,`viajes_idviajes`) VALUES ('$id', '$numerito')";
+      $conn->consultarABD($consulta);
       echo "</br>";
     }
   }
 }
+header("location: indexPrimario.php");
 
 }
 
