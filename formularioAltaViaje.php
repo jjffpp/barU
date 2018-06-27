@@ -49,7 +49,7 @@ else if($_POST["tipo"]=="semanal")
   echo $fechaUltimaSalida, "<br />";            //ESTA ES LA FECHA DEL ULTIMO DIA QUE SE REALIZA EL VIAJE
 
   echo $diasDeLaSemana, "<br />";               //ATENCION: ESTO ES UN ARREGLO QUE TIENE LOS DIAS DE LA SEMANA QUE QUIERE REALIZAR LOS VIAJE
-                                                //NO IMPORTA EL VALOR DE LAS KEYS, SINO LAS VALUES!!, LOS DIAS DE LA SEMANA ESTAN MAPEADOS DE ESTA FORMA:
+  print_r($diasDeLaSemana);                                             //NO IMPORTA EL VALOR DE LAS KEYS, SINO LAS VALUES!!, LOS DIAS DE LA SEMANA ESTAN MAPEADOS DE ESTA FORMA:
                                                 //LUNES = 1
                                                 //MARTES = 2
                                                 //MIERCOLES = 3
@@ -85,8 +85,7 @@ else if($_POST["tipo"]=="semanal")
   echo $costo, "<br />";                        //COSTO DE CADA UNO DE LOS VIAJES, GLOBAL A TODOS LOS VIAJES
   echo $hora, "<br />";                         //HORA DE SALIDA DE CADA VIAJE, ESTO ES GLOBAL A TODOS LOS VIAJES
 
-
-  die();   //BORRAR ESTE DIE                    //LA FUNCIONALIDAD QUE HAY QUE IMPLEMENTAR ES CREAR UN VIAJE POR CADA DIA DE LA SEMANA SELECCIONADO EN EL RANGO DE FECHAS QUE LLEGA
+  darDeAltaViajeSemanal($fechaPrimerViaje,$fechaUltimaSalida,$diasDeLaSemana);   //BORRAR ESTE DIE                    //LA FUNCIONALIDAD QUE HAY QUE IMPLEMENTAR ES CREAR UN VIAJE POR CADA DIA DE LA SEMANA SELECCIONADO EN EL RANGO DE FECHAS QUE LLEGA
 }                                               //OSEA QUE SI LLEGA EL 1/3/2018 como fecha inicial y 1/4/2018 COMO FECHA FINAL y en el arreglo de fechas llega solo el lunes,
                                                 //ENTONCES HAY QUE CREAR UN VIAJE POR CADA LUNES ENTRE ESAS DOS FECHAS INCLUSIVE SI ES LUNES EL 1/3/2018 o el 1/4/2018
                                                 //MODELE EL FRONT PARA QUE SIEMRPE EN EL ARREGLO LLEGUEN LOS DIAS DE LA SEMANA CORRESPONDIENTES A LAS FECHAS INGRESADAS, MAS CUALQUIER
@@ -114,9 +113,192 @@ function darDeAltaViajeOcacional($duracion,$costo,$tipo,$origen,$destino,$fecha,
   header("location: indexPrimario.php");
 }
 
-function darDeAltaViajeSemanal()
+function darDeAltaViajeSemanal($fechaPrimerViaje,$fechaUltimaSalida,$diasDeLaSemana)
 {
   //ACA SE DA DE ALTA UN VIAJE SEMANAL, HAY QUE VER COMO METERLO A LA BASE DE DATOS
+  $primera = date($fechaPrimerViaje);
+  $segunda = date($fechaUltimaSalida);
+  if($primera > $segunda){
+      echo "PRIMERA :".$primera;
+  }
+  else {
+    echo "Segunda :".$segunda;
+  }
+
+  echo "Primera : " . $primera;
+  echo "</br>";
+  echo date("w",strtotime($primera));
+  echo "</br>";
+  echo "Segunda : " . $segunda;
+  echo "</br>";
+  echo "Dia de la semana de la fecha inicial: ".date("w",strtotime($segunda));
+
+  $diff = abs(strtotime($primera) - strtotime($segunda));
+  $dias = $diff / (60*60*24);
+  echo "</br>";
+  echo "Dias: " . $dias;
+  echo "</br>";
+  $semanas = intval($dias / 7);
+  echo "Cantidad de Semanas: " . $semanas;
+  echo "</br>";
+  $diferencia1 = $dias - ($semanas * 7);
+  echo "Diferencia: " . $diferencia1;
+  echo "</br>";
+  echo "Tamaño: " . sizeof($diasDeLaSemana);
+  echo "</br>";
+
+  $f = 5;
+  $fechaFinalizacion = new DateTime($primera);
+
+  $fechaFinalizacion->add(new DateInterval('P'.$f.'D'));
+  $fechaFinalizacion->format('Y-m-d');
+  echo "SUMA FECHA: ".$fechaFinalizacion->format('Y-m-d');
+  echo "</br>";
+
+  $diaInicial = date("w",strtotime($primera));
+
+  echo "DIA DE LA SEMANA INICIAL: ".$diaInicial;
+  echo "</br>";
+  $fechaFin = new DateTime($segunda);
+  $fechaTemporal = new DateTime($primera);
+  /*for ($i=0; $i < $semanas; $i++) {
+    for ($j=0; $j < sizeof($diasDeLaSemana); $j++) {
+      if($diaInicial == $diasDeLaSemana[$j]){
+        $fecha = clone $fechaTemporal;
+        echo "Es Igual: ".$fecha->format('Y-m-d')." Dia: ".nombreDelDia($diasDeLaSemana[$j]);
+        echo "</br>";
+      }
+      elseif ($diaInicial < $diasDeLaSemana[$j]) {
+        $diferencia = $diasDeLaSemana[$j] - $diaInicial;
+        $fecha0 = clone $fechaTemporal;
+        $fecha0->add(new DateInterval('P'.$diferencia.'D'));
+        $fecha0->format('Y-m-d');
+        echo "Es Menor: ".$fecha0->format('Y-m-d')." Diferencia = ". $diferencia." Dia: ".nombreDelDia($diferencia+$diaInicial);
+        echo "</br>";
+      }
+      else {
+        $diferencia = $diaInicial - $diasDeLaSemana[$j];
+        $fecha1 = clone $fechaTemporal;
+        $diferencia = 7 - $diferencia;
+        $fecha1->add(new DateInterval('P'.$diferencia.'D'));
+        $fecha1->format('Y-m-d');
+        echo "Es mayor: ".$fecha1->format('Y-m-d')." Diferencia = ". $diferencia." Dia: ".nombreDelDia(($diaInicial+$diferencia)-7);
+        echo "</br>";
+      }
+
+    }
+    $fechaTemporal->add(new DateInterval('P7D'));
+    $fechaTemporal->format('Y-m-d');
+    //$fechaTemporal = strtotime ( strtotime ( $fechaTemporal )."+ 7 days" ) ;
+    //$fechaTemporal = date("Y-m-d",$fechaTemporal);
+  }*/
+for ($k=0; $k < $semanas; $k++) {
+  for ($j=0; $j < sizeof($diasDeLaSemana); $j++) {
+    $contador=0;
+    if($diaInicial == $diasDeLaSemana[$j]){
+      for ($i=$j; $i < sizeof($diasDeLaSemana); $i++) {
+        if($diaInicial < $diasDeLaSemana[$i]) {
+         $diferencia = $diasDeLaSemana[$i] - $diaInicial;
+         $fecha0 = clone $fechaTemporal;
+         $fecha0->add(new DateInterval('P'.$diferencia.'D'));
+         $fecha0->format('Y-m-d');
+         echo "Es menor: ". $fecha0->format('Y-m-d')." Diferencia = ". $diferencia." Dia: ".nombreDelDia($diferencia+$diaInicial);
+         echo "</br>";
+      }
+      else{
+        $fecha = clone $fechaTemporal;
+        echo "Es Igual: ".$fecha->format('Y-m-d')." Dia: ".nombreDelDia($diasDeLaSemana[$i]);
+        echo "</br>";
+      }
+      $contador++;
+    }
+    if($contador < sizeof($diasDeLaSemana)){
+      for ($i=0; $i < sizeof($diasDeLaSemana)-$contador; $i++) {
+        if($diaInicial>$diasDeLaSemana[$i]){
+          $diferencia = $diaInicial - $diasDeLaSemana[$i];
+          $fecha1 = clone $fechaTemporal;
+          $diferencia = 7 - $diferencia;
+          $fecha1->add(new DateInterval('P'.$diferencia.'D'));
+          $fecha1->format('Y-m-d');
+          echo "Es mayor: ".$fecha1->format('Y-m-d')." Diferencia = ". $diferencia." Dia: ".nombreDelDia(($diaInicial+$diferencia)-7);
+          echo "</br>";
+        }
+      }
+    }
+  }
+}
+$fechaTemporal->add(new DateInterval('P7D'));
+$fechaTemporal->format('Y-m-d');
+}
+
+$ff = clone $fechaTemporal;
+for ($j=0; $j < $diferencia1+1; $j++) {
+  $contador=0;
+  echo "DD:".$diasDeLaSemana[$j];
+  echo "</br>";
+  if($diaInicial == $diasDeLaSemana[$j]){
+    for ($i=$j; $i < sizeof($diasDeLaSemana); $i++) {
+      if($diaInicial < $diasDeLaSemana[$i]) {
+       $diferencia = $diasDeLaSemana[$i] - $diaInicial;
+       $fecha0 = clone $fechaTemporal;
+       $fecha0->add(new DateInterval('P'.$diferencia.'D'));
+       $fecha0->format('Y-m-d');
+       echo "Es menor: ". $fecha0->format('Y-m-d')." Diferencia = ". $diferencia." Dia: ".nombreDelDia($diferencia+$diaInicial);
+       echo "</br>";
+    }
+    else{
+      $fecha = clone $fechaTemporal;
+      echo "Es Igual: ".$fecha->format('Y-m-d')." Dia: ".nombreDelDia($diasDeLaSemana[$i]);
+      echo "</br>";
+    }
+    $contador++;
+    $ff->add(new DateInterval('P'.$contador.'D'));
+  }
+
+  $ff->add(new DateInterval('P'.$contador.'D'));
+  if($contador < sizeof($diasDeLaSemana)){
+    for ($i=0; $i < sizeof($diasDeLaSemana)-$contador; $i++) {
+      $ff->add(new DateInterval('P'.$contador.'D'));
+      if(($diaInicial>$diasDeLaSemana[$i])&&($ff<$fechaFin)){
+        $diferencia = $diaInicial - $diasDeLaSemana[$i];
+        $fecha1 = clone $fechaTemporal;
+        $diferencia = 7 - $diferencia;
+        $fecha1->add(new DateInterval('P'.$diferencia.'D'));
+        $fecha1->format('Y-m-d');
+        echo "Es mayor: ".$fecha1->format('Y-m-d')." Diferencia = ". $diferencia." Dia: ".nombreDelDia(($diaInicial+$diferencia)-7);
+        echo "</br>";
+      }
+    }
+  }
+}
+}
+}
+
+function nombreDelDia($dia){
+  switch ($dia) {
+    case 0:
+      $fecha = "Domingo";
+      break;
+    case 1:
+    $fecha = "Lunes";
+      break;
+    case 2:
+    $fecha = "Martes";
+      break;
+    case 3:
+    $fecha = "Miercoles";
+      break;
+    case 4:
+    $fecha = "Jueves";
+      break;
+    case 5:
+    $fecha = "Viernes";
+      break;
+    case 6:
+    $fecha = "Sabado";
+      break;
+  }
+  return $fecha;
 }
 
 ?>

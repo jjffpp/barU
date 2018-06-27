@@ -38,7 +38,7 @@
                 <u><h4 class='card-subtitle mb-2'>Tipo:</u> " .$tipo. "</h6>
                 <u><h4 class='card-subtitle mb-2'>Costo por Persona:</u> $" .round($precio_persona). "</h6>
                 <u><h4 class='card-subtitle mb-2'>Model del Vehiculo:</u> " .$descripcion_vehiculo. "</h6>
-                <u><h4 class='card-subtitle mb-2'>Asientos Disponibles:</u> " .$asientosDisponibles. "</h6>";
+                <u><h4 class='card-subtitle mb-2'>Asientos Disponibles:</u> NULL</h6>";
 
                 if($disponible == 1){
                   $salida .= "<button id='".$idviaje."' type='button' class='btn btn-success btn-md' name='button'>acceder</button>";
