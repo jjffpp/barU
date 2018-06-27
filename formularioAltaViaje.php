@@ -156,42 +156,13 @@ function darDeAltaViajeSemanal($fechaPrimerViaje,$fechaUltimaSalida,$diasDeLaSem
   echo "</br>";
 
   $diaInicial = date("w",strtotime($primera));
+  $diaFin = date("d",strtotime($segunda));
 
   echo "DIA DE LA SEMANA INICIAL: ".$diaInicial;
   echo "</br>";
   $fechaFin = new DateTime($segunda);
   $fechaTemporal = new DateTime($primera);
-  /*for ($i=0; $i < $semanas; $i++) {
-    for ($j=0; $j < sizeof($diasDeLaSemana); $j++) {
-      if($diaInicial == $diasDeLaSemana[$j]){
-        $fecha = clone $fechaTemporal;
-        echo "Es Igual: ".$fecha->format('Y-m-d')." Dia: ".nombreDelDia($diasDeLaSemana[$j]);
-        echo "</br>";
-      }
-      elseif ($diaInicial < $diasDeLaSemana[$j]) {
-        $diferencia = $diasDeLaSemana[$j] - $diaInicial;
-        $fecha0 = clone $fechaTemporal;
-        $fecha0->add(new DateInterval('P'.$diferencia.'D'));
-        $fecha0->format('Y-m-d');
-        echo "Es Menor: ".$fecha0->format('Y-m-d')." Diferencia = ". $diferencia." Dia: ".nombreDelDia($diferencia+$diaInicial);
-        echo "</br>";
-      }
-      else {
-        $diferencia = $diaInicial - $diasDeLaSemana[$j];
-        $fecha1 = clone $fechaTemporal;
-        $diferencia = 7 - $diferencia;
-        $fecha1->add(new DateInterval('P'.$diferencia.'D'));
-        $fecha1->format('Y-m-d');
-        echo "Es mayor: ".$fecha1->format('Y-m-d')." Diferencia = ". $diferencia." Dia: ".nombreDelDia(($diaInicial+$diferencia)-7);
-        echo "</br>";
-      }
 
-    }
-    $fechaTemporal->add(new DateInterval('P7D'));
-    $fechaTemporal->format('Y-m-d');
-    //$fechaTemporal = strtotime ( strtotime ( $fechaTemporal )."+ 7 days" ) ;
-    //$fechaTemporal = date("Y-m-d",$fechaTemporal);
-  }*/
 for ($k=0; $k < $semanas; $k++) {
   for ($j=0; $j < sizeof($diasDeLaSemana); $j++) {
     $contador=0;
@@ -223,6 +194,7 @@ for ($k=0; $k < $semanas; $k++) {
           echo "Es mayor: ".$fecha1->format('Y-m-d')." Diferencia = ". $diferencia." Dia: ".nombreDelDia(($diaInicial+$diferencia)-7);
           echo "</br>";
         }
+        $var = $i;
       }
     }
   }
@@ -231,7 +203,25 @@ $fechaTemporal->add(new DateInterval('P7D'));
 $fechaTemporal->format('Y-m-d');
 }
 
-$ff = clone $fechaTemporal;
+$fecha = clone $fechaTemporal;
+echo "Es Igual: ".$fecha->format('Y-m-d')." Dia: ".nombreDelDia($diasDeLaSemana[$i]);
+echo "</br>";
+
+
+
+for ($i=0; $i < $diferencia; $i++) {
+  $fechaTemporal->add(new DateInterval('P1D'));
+  $f = $fechaTemporal->format('Y-m-d');
+  $diaSecundario = date("w",strtotime($f));
+  $dd = date("d",strtotime($f));
+  for ($j=0; $j < sizeof($diasDeLaSemana); $j++) {
+    if(($diaSecundario == $diasDeLaSemana[$j])&&($dd <= $diaFin)){
+      echo $fechaTemporal->format('Y-m-d')." Dia: ".nombreDelDia($i);
+      echo "</br>";
+    }
+  }
+}
+/*$ff = clone $fechaTemporal;
 for ($j=0; $j < $diferencia1+1; $j++) {
   $contador=0;
   echo "DD:".$diasDeLaSemana[$j];
@@ -271,7 +261,7 @@ for ($j=0; $j < $diferencia1+1; $j++) {
     }
   }
 }
-}
+}*/
 }
 
 function nombreDelDia($dia){
