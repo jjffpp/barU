@@ -83,7 +83,7 @@
                                   //document.getElementById("sabado").disabled= true;
 
                             break;
-                            case 7: document.getElementById("domingo").checked = true;
+                            case 0: document.getElementById("domingo").checked = true;
                                     //document.getElementById("domingo").disabled= true;
 
                               break;
@@ -194,6 +194,8 @@
             <div class="" id="botonera">
 
 <label>
+<input type="checkbox" onclick="comprobarQueSePueda(this)" id="domingo" value="0" name="days[]"> Domingo
+<label>
 <input type="checkbox" onclick="comprobarQueSePueda(this)" id="lunes" value="1" name="days[]"> Lunes
 </label>
 <label>
@@ -211,8 +213,6 @@
 <label>
 <input type="checkbox" onclick="comprobarQueSePueda(this)" id="sabado" value="6" name="days[]"> Sabado
 </label>
-<label>
-<input type="checkbox" onclick="comprobarQueSePueda(this)" id="domingo" value="0" name="days[]"> Domingo
 </label><br>
 
 </div>
