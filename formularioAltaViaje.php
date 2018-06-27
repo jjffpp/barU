@@ -85,7 +85,7 @@ else if($_POST["tipo"]=="semanal")
   echo $costo, "<br />";                        //COSTO DE CADA UNO DE LOS VIAJES, GLOBAL A TODOS LOS VIAJES
   echo $hora, "<br />";                         //HORA DE SALIDA DE CADA VIAJE, ESTO ES GLOBAL A TODOS LOS VIAJES
 
-  darDeAltaViajeSemanal($fechaPrimerViaje,$fechaUltimaSalida,$diasDeLaSemana);   //BORRAR ESTE DIE                    //LA FUNCIONALIDAD QUE HAY QUE IMPLEMENTAR ES CREAR UN VIAJE POR CADA DIA DE LA SEMANA SELECCIONADO EN EL RANGO DE FECHAS QUE LLEGA
+  darDeAltaViajeSemanal($fechaPrimerViaje,$fechaUltimaSalida,$diasDeLaSemana,$duracion,$costo,$tipo,$origen,$destino,$hora);   //BORRAR ESTE DIE                    //LA FUNCIONALIDAD QUE HAY QUE IMPLEMENTAR ES CREAR UN VIAJE POR CADA DIA DE LA SEMANA SELECCIONADO EN EL RANGO DE FECHAS QUE LLEGA
 }                                               //OSEA QUE SI LLEGA EL 1/3/2018 como fecha inicial y 1/4/2018 COMO FECHA FINAL y en el arreglo de fechas llega solo el lunes,
                                                 //ENTONCES HAY QUE CREAR UN VIAJE POR CADA LUNES ENTRE ESAS DOS FECHAS INCLUSIVE SI ES LUNES EL 1/3/2018 o el 1/4/2018
                                                 //MODELE EL FRONT PARA QUE SIEMRPE EN EL ARREGLO LLEGUEN LOS DIAS DE LA SEMANA CORRESPONDIENTES A LAS FECHAS INGRESADAS, MAS CUALQUIER
@@ -113,11 +113,11 @@ function darDeAltaViajeOcacional($duracion,$costo,$tipo,$origen,$destino,$fecha,
   header("location: indexPrimario.php");
 }
 
-function darDeAltaViajeSemanal($fechaPrimerViaje,$fechaUltimaSalida,$diasDeLaSemana)
+function darDeAltaViajeSemanal($fechaPrimerViaje,$fechaUltimaSalida,$diasDeLaSemana,$duracion,$costo,$tipo,$origen,$destino,$hora)
 {
   //ACA SE DA DE ALTA UN VIAJE SEMANAL, HAY QUE VER COMO METERLO A LA BASE DE DATOS
-  $primera = date($fechaPrimerViaje);
-  $segunda = date($fechaUltimaSalida);
+  $primera = date('Y-m-d H:i:s', strtotime("$fechaPrimerViaje $hora"));
+  $segunda = date('Y-m-d H:i:s', strtotime("$fechaUltimaSalida $hora"));
   if($primera > $segunda){
       echo "PRIMERA :".$primera;
   }
@@ -151,8 +151,8 @@ function darDeAltaViajeSemanal($fechaPrimerViaje,$fechaUltimaSalida,$diasDeLaSem
   $fechaFinalizacion = new DateTime($primera);
 
   $fechaFinalizacion->add(new DateInterval('P'.$f.'D'));
-  $fechaFinalizacion->format('Y-m-d');
-  echo "SUMA FECHA: ".$fechaFinalizacion->format('Y-m-d');
+  $fechaFinalizacion->format('Y-m-d H:i:s');
+  echo "SUMA FECHA: ".$fechaFinalizacion->format('Y-m-d H:i:s');
   echo "</br>";
 
   $diaInicial = date("w",strtotime($primera));
@@ -165,6 +165,8 @@ function darDeAltaViajeSemanal($fechaPrimerViaje,$fechaUltimaSalida,$diasDeLaSem
   $fechaFin = new DateTime($segunda);
   $fechaTemporal = new DateTime($primera);
   $futilizar = new DateTime($primera);
+
+/*
 for ($k=0; $k < $semanas; $k++) {
   for ($j=0; $j < sizeof($diasDeLaSemana); $j++) {
     $contador=0;
@@ -207,9 +209,7 @@ $fechaTemporal->format('Y-m-d');
 
 $fecha = clone $fechaTemporal;
 echo "Es Igual: ".$fecha->format('Y-m-d')." Dia: ".nombreDelDia($diasDeLaSemana[$i]);
-echo "</br>";
-
-
+echo "</br>";*/
 
 /*for ($i=0; $i < $diferencia; $i++) {
   $fechaTemporal->add(new DateInterval('P1D'));
@@ -224,14 +224,15 @@ echo "</br>";
     }
   }
 }*/
+
 echo "</br>";
 echo "</br>";
-echo $futilizar->format('Y-m-d')." Dia: ".nombreDelDia($diaInicial);
+echo $futilizar->format('Y-m-d H:i:s')." Dia: ".nombreDelDia($diaInicial);
 echo "</br>";
 for ($i=1; $i <= $dias; $i++) {
 
   $futilizar->add(new DateInterval('P1D'));
-  $f = $futilizar->format('Y-m-d');
+  $f = $futilizar->format('Y-m-d H:i:s');
   $diaSecundario = date("w",strtotime($f));
   $dd = date("d",strtotime($f));
   $mm = date("m",strtotime($f));
@@ -241,7 +242,9 @@ for ($i=1; $i <= $dias; $i++) {
   }
   for ($j=0; $j < sizeof($diasDeLaSemana); $j++) {
     if(($diaSecundario == $diasDeLaSemana[$j])&&($dd <= $diaFin)&&($mm <= $mesFin)){
-      echo $futilizar->format('Y-m-d')." Dia: ".nombreDelDia($j);
+      echo $futilizar->format('Y-m-d H:i:s')." Dia: ".nombreDelDia($j);
+      $fecha = $futilizar->format('Y-m-d H:i:s');
+      darDeAltaViajeOcacional($duracion,$costo,$tipo,$origen,$destino,$fecha,$hora);
       echo "</br>";
     }
   }
