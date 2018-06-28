@@ -1,5 +1,8 @@
 <?php
-
+  session_start();
+  //include_once "consultarSiTieneAsientosDisponibles.php";
+  include_once "usuarioEstaSumadoAlViaje.php";
+  include_once "consultarAsientosDisponiblesDeUnViaje.php";
   function tarjeta($idviaje,$fechaYHora,$tipo,$duracion,$costo
                             ,$origen,$destino,$capacidad,$modelo
                             ,$descripcion_vehiculo,$estado_viaje,$disponible){
@@ -23,9 +26,11 @@
     $fechaFinalizacion = new DateTime($fechaYHora);
     $fechaFinalizacion->add(new DateInterval('PT'.$duracion.'H'));
     //$asientosDisponibles aun no se encuentra en la BD
-    $asientosDisponibles = 1;
+    $asientosDisponibles = consultarAsientosDisponibles($idviaje);
     $asientos_ocupados = $capacidad - $asientosDisponibles;
     $precio_persona = $costo / $asientos_ocupados;
+    //<u><h4 class='card-subtitle mb-2'>Costo por Persona:</u> $" .round($precio_persona). "</h6>
+    //<u><h4 class='card-subtitle mb-2'>Estado:</u> " .$estado. "</h6>
     $salida ="<li>
             <div class='card' style='width: 66rem;''>
               <div class='card-body'>
@@ -34,13 +39,15 @@
                 <u><h4 class='card-subtitle mb-2'>Destino:</u> " .$destino. "</h6>
                 <u><h4 class='card-subtitle mb-2'>Fecha de Inicio:</u> " .$fechaYHora. "</h6>
                 <u><h4 class='card-subtitle mb-2'>Fecha de Finalizacion:</u> " .$fechaFinalizacion->format('Y-m-d H:i:s')."</h6>
-                <u><h4 class='card-subtitle mb-2'>Estado:</u> " .$estado. "</h6>
-                <u><h4 class='card-subtitle mb-2'>Tipo:</u> " .$tipo. "</h6>
-                <u><h4 class='card-subtitle mb-2'>Costo por Persona:</u> $" .round($precio_persona). "</h6>
-                <u><h4 class='card-subtitle mb-2'>Model del Vehiculo:</u> " .$descripcion_vehiculo. "</h6>
-                <u><h4 class='card-subtitle mb-2'>Asientos Disponibles:</u> NULL</h6>";
 
-                if($disponible == 1){
+                <u><h4 class='card-subtitle mb-2'>Tipo:</u> " .$tipo. "</h6>
+
+                <u><h4 class='card-subtitle mb-2'>Model del Vehiculo:</u> " .$descripcion_vehiculo. "</h6>
+                <u><h4 class='card-subtitle mb-2'>Asientos Disponibles:</u>".$asientosDisponibles."</h6>";
+
+
+                if($asientosDisponibles > 0 && isset($_SESSION["idUsuario"]))
+                {
                   $salida .= "<button id='".$idviaje."' type='button' class='btn btn-success btn-md' name='button'>acceder</button>";
                 }
               $salida .= "</div>

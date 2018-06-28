@@ -1,3 +1,7 @@
+function sumarAlViaje(button){
+    
+}
+
 function comprobarCondiciones() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {

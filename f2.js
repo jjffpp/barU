@@ -11,7 +11,7 @@ $(document).ready(function(e){
 
     }else{
     $.ajax({
-      url: 'mostrar_detalle_tarjeta.php',
+      url: 'sumarseAlViaje.php',
       type: 'POST',
       data: { param1: page },
       success: function(html){

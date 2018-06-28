@@ -9,9 +9,9 @@ $(document).ready(function(e){
     if(page == 'bajaviaje'){
       //$('#content').load('indexPrimario.php');
 
-    }else{
+    }/*else{
     $.ajax({
-      url: 'mostrar_detalle_tarjeta.php',
+      url: 'sumarseAlViaje.php',
       type: 'POST',
       data: { param1: page },
       success: function(html){
@@ -20,7 +20,7 @@ $(document).ready(function(e){
       }
     })
       e.preventDefault();
-  }
+  }*/
 
   });
 
