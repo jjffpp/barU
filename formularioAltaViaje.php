@@ -18,7 +18,8 @@ if($_POST["tipo"]=="ocacional")
   $destino = $_POST["destino"];
   $fecha = $_POST["fecha"];
   $hora = $_POST["hora"];
-  darDeAltaViajeOcacional($duracion,$costo,$tipo,$origen,$destino,$fecha,$hora);
+  $vehiculo = $_POST["vehiculo"];
+  darDeAltaViajeOcacional($duracion,$costo,$tipo,$origen,$destino,$fecha,$hora,$vehiculo);
   echo $origen, "<br />";
   echo $destino, "<br />";
   echo $tipo, "<br />";
@@ -42,6 +43,8 @@ else if($_POST["tipo"]=="semanal")
   $duracion = $_POST["duracion"];
   $costo = $_POST["costo"];
   $hora = $_POST["hora"];
+  $vehiculo = $_POST["vehiculo"];
+
   echo $origen, "<br />";                       //LUGAR DE ORIGEN
   echo $destino, "<br />";                      //LUGAR DE DESTINO
   echo $tipo, "<br />";                         //TIPO DE VIAJE, ACA HAY UN STRING QUE DICE "ocacional" O "semanal", tal vez convenga guardar el tipo de viaje en la base de datos
@@ -91,14 +94,14 @@ else if($_POST["tipo"]=="semanal")
                                                 //MODELE EL FRONT PARA QUE SIEMRPE EN EL ARREGLO LLEGUEN LOS DIAS DE LA SEMANA CORRESPONDIENTES A LAS FECHAS INGRESADAS, MAS CUALQUIER
                                                 //OTRA QUE EL USUARIO SELECCIONE, ASI QUE SIEMPRE VA A LLEGAR ALGO VALIDO
 
-function darDeAltaViajeOcacional($duracion,$costo,$tipo,$origen,$destino,$fecha,$hora)
+function darDeAltaViajeOcacional($duracion,$costo,$tipo,$origen,$destino,$fecha,$hora,$vehiculo)
 {
   //inserto en la base de datos
   $combinedDT = date('Y-m-d H:i:s', strtotime("$fecha $hora"));
   $conn= new conexion();
   //la consulta esta con el vehiculo truncado en 4
   $consulta= "INSERT INTO `viajes`(`fechaYHora`, `tipo`, `duracion`, `costo`, `localidad_origen`, `localidad_destino`, `idvehiculo`,`estado_viaje`) VALUES
-  ('$combinedDT','$tipo','$duracion','$costo','$origen','$destino',4,0)";
+  ('$combinedDT','$tipo','$duracion','$costo','$origen','$destino','$vehiculo',0)";
   $conn->consultarABD($consulta);
   $consulta= "SELECT max(idviajes) as maximo
               FROM  viajes";

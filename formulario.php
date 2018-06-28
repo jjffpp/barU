@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <?php include "navbar.php" ?>
 <html lang="en" dir="ltr">
 <head>
@@ -167,7 +168,19 @@
                        while($row = mysqli_fetch_assoc($resulQuery)) {
                          echo "<option value=\"" . $row["idlocalidades"] . "\">" . $row["nombre"] . "</option>";
                        }
+                echo "</select>";
+                $id= $_SESSION['idUsuario'];
+                $consulta = "SELECT vehiculo.idVehiculo, vehiculo.descripcion FROM vehiculo INNER JOIN usuarios ON vehiculo.owner = usuarios.idUsuario WHERE usuarios.idUsuario = '$id'";
+                $resulQuery = $conn->consultarABD($consulta);
+
+
+                echo "<label for:\"vehiculo\"><b>Seleccione el vehiculo<b><br></label>
+                       <select name=\"vehiculo\" id=\"vehiculo\">";
+                       while($row = mysqli_fetch_assoc($resulQuery)) {
+                         echo "<option value=\"" . $row["idVehiculo"] . "\">" . $row["descripcion"] . "</option>";
+                       }
                 echo "</select><br/>";
+
                ?>
 
                <label for:"tipo"><b>Tipo viaje<b><br></label>
