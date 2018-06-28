@@ -45,6 +45,7 @@ else if($_POST["tipo"]=="semanal")
   $hora = $_POST["hora"];
   $vehiculo = $_POST["vehiculo"];
 
+
   echo $origen, "<br />";                       //LUGAR DE ORIGEN
   echo $destino, "<br />";                      //LUGAR DE DESTINO
   echo $tipo, "<br />";                         //TIPO DE VIAJE, ACA HAY UN STRING QUE DICE "ocacional" O "semanal", tal vez convenga guardar el tipo de viaje en la base de datos
@@ -88,7 +89,7 @@ else if($_POST["tipo"]=="semanal")
   echo $costo, "<br />";                        //COSTO DE CADA UNO DE LOS VIAJES, GLOBAL A TODOS LOS VIAJES
   echo $hora, "<br />";                         //HORA DE SALIDA DE CADA VIAJE, ESTO ES GLOBAL A TODOS LOS VIAJES
 
-  darDeAltaViajeSemanal($fechaPrimerViaje,$fechaUltimaSalida,$diasDeLaSemana,$duracion,$costo,$tipo,$origen,$destino,$hora);   //BORRAR ESTE DIE                    //LA FUNCIONALIDAD QUE HAY QUE IMPLEMENTAR ES CREAR UN VIAJE POR CADA DIA DE LA SEMANA SELECCIONADO EN EL RANGO DE FECHAS QUE LLEGA
+  darDeAltaViajeSemanal($fechaPrimerViaje,$fechaUltimaSalida,$diasDeLaSemana,$duracion,$costo,$tipo,$origen,$destino,$hora,$vehiculo);   //BORRAR ESTE DIE                    //LA FUNCIONALIDAD QUE HAY QUE IMPLEMENTAR ES CREAR UN VIAJE POR CADA DIA DE LA SEMANA SELECCIONADO EN EL RANGO DE FECHAS QUE LLEGA
 }                                               //OSEA QUE SI LLEGA EL 1/3/2018 como fecha inicial y 1/4/2018 COMO FECHA FINAL y en el arreglo de fechas llega solo el lunes,
                                                 //ENTONCES HAY QUE CREAR UN VIAJE POR CADA LUNES ENTRE ESAS DOS FECHAS INCLUSIVE SI ES LUNES EL 1/3/2018 o el 1/4/2018
                                                 //MODELE EL FRONT PARA QUE SIEMRPE EN EL ARREGLO LLEGUEN LOS DIAS DE LA SEMANA CORRESPONDIENTES A LAS FECHAS INGRESADAS, MAS CUALQUIER
@@ -116,7 +117,7 @@ function darDeAltaViajeOcacional($duracion,$costo,$tipo,$origen,$destino,$fecha,
   header("location: indexPrimario.php");
 }
 
-function darDeAltaViajeSemanal($fechaPrimerViaje,$fechaUltimaSalida,$diasDeLaSemana,$duracion,$costo,$tipo,$origen,$destino,$hora)
+function darDeAltaViajeSemanal($fechaPrimerViaje,$fechaUltimaSalida,$diasDeLaSemana,$duracion,$costo,$tipo,$origen,$destino,$hora,$vehiculo)
 {
   //ACA SE DA DE ALTA UN VIAJE SEMANAL, HAY QUE VER COMO METERLO A LA BASE DE DATOS
   $primera = date('Y-m-d H:i:s', strtotime("$fechaPrimerViaje $hora"));
@@ -237,7 +238,7 @@ for ($i=1; $i <= $dias; $i++) {
       $fecha = $futilizar->format('Y-m-d H:i:s');
       echo "Fecha: " . $fecha;
       $consulta= "INSERT INTO `viajes`(`fechaYHora`, `tipo`, `duracion`, `costo`, `localidad_origen`, `localidad_destino`, `idvehiculo`,`estado_viaje`) VALUES
-      ('$fecha','$tipo','$duracion','$costo','$origen','$destino',4,0)";
+      ('$fecha','$tipo','$duracion','$costo','$origen','$destino','$vehiculo',0)";
       $conn->consultarABD($consulta);
       $consulta= "SELECT max(idviajes) as maximo
                   FROM  viajes";
