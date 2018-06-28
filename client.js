@@ -12,6 +12,7 @@ function comprobarCondiciones() {
         else
         {
           //SE INFORMA LA CONDICION NO CUMPLIDA
+          alert("Usted debe primero registar un vehiculo");
         }
       }
     };
