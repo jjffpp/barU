@@ -6,7 +6,7 @@ function validarCampos(){
   capacidad = document.getElementById("capacidad").value;
   descripcion = document.getElementById("descripcion").value;
 
-if (! /^[0-9]+$/.test(capacidad) | ! capacidad != ""){
+if (! /^[2-9]+$/.test(capacidad) | ! capacidad != ""){
   alert ("campo capacidad incorrecto");
 }else{
   if (! modelo != ""){

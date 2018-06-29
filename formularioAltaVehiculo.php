@@ -20,8 +20,10 @@
        <h1>Agregar vehiculo</h1>
        <p>Por favor, complete todos los campos para crear un nuevo vehiculo</p>
        <hr>
+       <label for:"descripcion"><b>Modelo (ej: chevrolet corsa)<b><br></label>
+       <input type="text" id="descripcion" name="descripcion"/><br/>
        <label for:"capacidad"><b>Capacidad<b><br></label>
-       <input type="number" id="capacidad" name="capacidad"/><br/>
+       <input min="1" type="number" id="capacidad" name="capacidad"/><br/>
        <label for:"modelo" ><b>Año <b><br></label>
        <select name="modelo" id="modelo">
          <option value="" selected="selected">seleccione año del vehiculo</option>
@@ -31,8 +33,6 @@
          }
          ?>
        </select><br/>
-       <label for:"descripcion"><b>Modelo (ej: chevrolet corsa)<b><br></label>
-       <input type="text" id="descripcion" name="descripcion"/><br/>
         <div class="botones">
           <button type="button" onclick="validarCampos()" class="crearViaje">Crear vehiculo</button>
           <button type="submit" id="send" style="display:none;"></button>
