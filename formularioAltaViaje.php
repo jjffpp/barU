@@ -221,6 +221,22 @@ echo "</br>";*/
 
 $conn= new conexion();
 
+$fecha = $futilizar->format('Y-m-d H:i:s');
+echo "Fecha: " . $fecha;
+$consulta= "INSERT INTO `viajes`(`fechaYHora`, `tipo`, `duracion`, `costo`, `localidad_origen`, `localidad_destino`, `idvehiculo`,`estado_viaje`) VALUES
+('$fecha','$tipo','$duracion','$costo','$origen','$destino','$vehiculo',0)";
+$conn->consultarABD($consulta);
+$consulta= "SELECT max(idviajes) as maximo
+            FROM  viajes";
+$resultado = $conn->consultarABD($consulta);
+$row = mysqli_fetch_assoc($resultado);
+//var_dump($row['maximo']);
+//var_dump($_SESSION['idUsuario']);
+$id= $_SESSION['idUsuario'];
+$numerito = $row['maximo'];
+$consulta  = "INSERT INTO `usuarios_has_viajes` (`usuarios_idUsuario`,`viajes_idviajes`) VALUES ('$id', '$numerito')";
+$conn->consultarABD($consulta);
+
 for ($i=1; $i <= $dias; $i++) {
 
   $futilizar->add(new DateInterval('P1D'));

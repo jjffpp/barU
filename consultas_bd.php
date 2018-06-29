@@ -22,18 +22,27 @@
     return $valor;
   }
 
+  function usuarioEnSemana($idViaje,$idUsuario){
+    $db = coneccion();
+
+    $sql = "SELECT *
+            FROM usuarios_has_viajes as usr
+            WHERE usr.usuarios_idUsuario='$idUsuario' AND usr.viajes_idviajes= '$idViaje'";
+    $buscar = $db->query($sql);
+    return $buscar;
+  }
+
   function listarTodosLosViajes(){
     $db = coneccion();
 
-    $sql = "SELECT viajes.idviajes, origen.nombre AS nombreorigen,
-    destino.nombre AS nombredestino, viajes.fechaYHora,
-    viajes.duracion,viajes.estado_viaje,viajes.tipo,vehiculo.modelo,vehiculo.descripcion,
-    vehiculo.capacidad,viajes.costo FROM viajes INNER JOIN localidades as origen
-     on(viajes.localidad_origen = origen.idlocalidades) INNER JOIN localidades as destino
-      on(viajes.localidad_destino=destino.idlocalidades) INNER JOIN vehiculo ON
-      (vehiculo.idvehiculo = viajes.idvehiculo)
-            WHERE viaje.fechaYHora >= CURDATE()
-            ORDER BY viaje.fechaYHora ASC
+
+    $sql = "SELECT v.idviajes,v.fechaYHora,v.tipo, v.duracion,v.costo, origen.nombre AS nombre_origen,destino.nombre AS nombre_destino,vehiculo.capacidad
+                  ,vehiculo.modelo,vehiculo.descripcion,v.estado_viaje
+            FROM viajes as v INNER JOIN localidades as origen on v.localidad_origen = origen.idlocalidades
+            INNER JOIN localidades as destino on v.localidad_destino=destino.idlocalidades
+            INNER JOIN vehiculo ON vehiculo.idvehiculo = v.idvehiculo
+            WHERE v.fechaYHora >= CURDATE()
+            ORDER BY v.fechaYHora ASC
             ";
     $buscar = $db->query($sql);
     return $buscar;

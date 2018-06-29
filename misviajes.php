@@ -5,7 +5,7 @@ include_once "consultas_bd.php";
 
 //CONSULTA A LA BD
 $resultado = consultarMisViajes($_SESSION["idUsuario"]);//esta es a modo de prueba
-
+var_dump($resultado);
 /*
 idviaje,origen,destino,chofer,fechaInicio,fechaFinalizacion,estado,tipo,disponible
 disponible(1/0) -> si hay un usuario loggeado; 0 si no hay un usuario loggeado.

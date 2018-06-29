@@ -23,6 +23,7 @@
         $estado = "lleno";
         break;
     }
+
     $fechaFinalizacion = new DateTime($fechaYHora);
     $fechaFinalizacion->add(new DateInterval('PT'.$duracion.'H'));
     //$asientosDisponibles aun no se encuentra en la BD
@@ -43,12 +44,15 @@
                 <u><h4 class='card-subtitle mb-2'>Tipo:</u> " .$tipo. "</h6>
 
                 <u><h4 class='card-subtitle mb-2'>Model del Vehiculo:</u> " .$descripcion_vehiculo. "</h6>
-                <u><h4 class='card-subtitle mb-2'>Asientos Disponibles:</u>".$asientosDisponibles."</h6>";
+                <u><h4 class='card-subtitle mb-2'>Asientos Disponibles:</u>". $asientosDisponibles."</h6>";
 
 
-                if($asientosDisponibles > 0 && isset($_SESSION["idUsuario"]))
+                if($asientosDisponibles > 0 && (isset($_SESSION["idUsuario"])))
                 {
-                  $salida .= "<button id='".$idviaje."' type='button' class='btn btn-success btn-md' name='button'>acceder</button>";
+                  if(!usuarioEstaSumadoAlViaje($idviaje,$_SESSION["idUsuario"])){
+                      $salida .= "<button id='".$idviaje."' type='button' class='btn btn-success btn-md' name='button'>acceder</button>";
+                  }
+
                 }
               $salida .= "</div>
             </div>
