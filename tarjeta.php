@@ -50,7 +50,7 @@
                 if($asientosDisponibles > 0 && (isset($_SESSION["idUsuario"])))
                 {
                   if(!usuarioEstaSumadoAlViaje($idviaje,$_SESSION["idUsuario"])){
-                      $salida .= "<button id='".$idviaje."' type='button' class='btn btn-success btn-md' name='button'>acceder</button>";
+                      $salida .= "<button id='".$idviaje."' type='button' class='btn btn-success btn-md' name='button'>Sumarse</button>";
                   }
 
                 }
