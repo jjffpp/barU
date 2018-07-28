@@ -250,9 +250,9 @@
           </div>
 
         <div class="botones">
-          <button type="button" onclick="validarCampos()" class="crearViaje">Crear Viaje</button>
+          <button type="button" onclick="validarCampos()" class="button crearViaje">Crear Viaje</button>
           <button type="submit" id="send" style="display:none;"></button>
-          <button type="button" onclick="irMenuPrincipal()" class="cancelar">Cancelar</button>
+          <button type="button" onclick="irMenuPrincipal()" class="button cancelar">Cancelar</button>
         </div>
       </div>
     </form>

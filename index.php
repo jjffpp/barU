@@ -55,8 +55,8 @@
     <input type="password" id="recheck" placeholder="Repita contraseña" name="pswrepeat" required>
 
     <div class="clearfix">
-      <button type="button" onclick="irMenuPrincipal()" class="cancelar">Cancelar</button>
-      <button type="button" onclick="comprobarClaveYmayor18()" class="crearViaje">Registrarse</button>
+      <button type="button" onclick="irMenuPrincipal()" class=" cancelar buttonDef">Cancelar</button>
+      <button type="button" onclick="comprobarClaveYmayor18()" class=" crearViaje buttonDef">Registrarse</button>
       <button type="submit" id="send" class="signupbtn" style="display:none;"></button>
     </div>
   </div>

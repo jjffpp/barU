@@ -3,7 +3,8 @@ $(document).ready(function(e){
   //carga las tarjetas de viajes recomendados
   $('#content').load('ViajesPantallaPrincipal.php');
   //dispara la tarjeta completa del viaje del cual se clickea
-  $('body').on('click','ul#services button',function(e){
+  $('body').on('click','.sumarse',function(e){
+
     var page = $(this).attr('id');
     //boton de detalle_tarjeta
     if(page == 'bajaviaje'){

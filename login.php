@@ -36,8 +36,8 @@
        ?>
       <hr>
       <br>
-      <button type="submit" class="crearViaje" name="submit">LOGIN</button>
-      <button type="button" onclick="irMenuPrincipal()" class="cancelar">Cancelar</button>
+      <button type="submit" class="button crearViaje" name="submit">LOGIN</button>
+      <button type="button" onclick="irMenuPrincipal()" class="button cancelar">Cancelar</button>
     </div>
   </form>
 

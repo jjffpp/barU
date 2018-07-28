@@ -51,16 +51,16 @@
                 if($asientosDisponibles > 0 && (isset($_SESSION["idUsuario"])))
                 {
                   if(!usuarioEstaSumadoAlViaje($idviaje,$_SESSION["idUsuario"])){
-                      $salida .= "<button id='".$idviaje."' type='button' class='btn btn-success btn-md' name='button'>Sumarse</button>";
+                      $salida .= "<button id='".$idviaje."' type='button' class='btn btn-success buttonGreen btn-md sumarse' name='button'>Sumarse</button>";
                   }
 
                 }
                 if((isset($_SESSION["idUsuario"])) && !usuarioEsCreadorDeViaje($idviaje,$_SESSION["idUsuario"]) && usuarioEstaSumadoAlViaje($idviaje,$_SESSION["idUsuario"]))
                 {
-                    $salida .= "<button id='".$idviaje."' type='button' class='btn btn-success btn-md' name='button'>Bajarse Del Viaje</button>";
+                    $salida .= "<button id='".$idviaje."' onClick='bajarseDelViaje(this.id)' type='button' class='btn-md buttonRed' name='button'>Bajarse Del Viaje</button>";
                 }
                 if((isset($_SESSION["idUsuario"]) && usuarioEsCreadorDeViaje($idviaje,$_SESSION["idUsuario"]))){
-                    $salida .= "<button id='".$idviaje."' type='button' class='btn btn-success btn-md' name='button'>Eliminar Viaje</button>";
+                    $salida .= "<button id='".$idviaje."' type='button' onClick='eliminarViaje(this.id)' class='buttonRed btn-md' name='button'>Eliminar Viaje</button>";
                 }
               $salida .= "</div>
             </div>
@@ -76,7 +76,7 @@
     Funcion que "imprime" el diseño de las Cards de Boostrap y luego
     llama a la funcion tarjeta con los parametros de cada fila de la BD
     */
-
+    echo "<script type='text/javascript' src='bajarUser.js'></script>";
     echo "<div class='container'>";
     echo "<article id='main-col'>";
     echo "<h2 id='titulovr' class='page-title'>Viajes</h2>";
