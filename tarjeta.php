@@ -55,6 +55,10 @@
                   }
 
                 }
+                if((isset($_SESSION["idUsuario"])) && !usuarioEsCreadorDeViaje($idviaje,$_SESSION["idUsuario"]) && usuarioEstaSumadoAlViaje($idviaje,$_SESSION["idUsuario"]))
+                {
+                    $salida .= "<button id='".$idviaje."' type='button' class='btn btn-success btn-md' name='button'>Bajarse Del Viaje</button>";
+                }
                 if((isset($_SESSION["idUsuario"]) && usuarioEsCreadorDeViaje($idviaje,$_SESSION["idUsuario"]))){
                     $salida .= "<button id='".$idviaje."' type='button' class='btn btn-success btn-md' name='button'>Eliminar Viaje</button>";
                 }
