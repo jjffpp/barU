@@ -2,6 +2,7 @@
   session_start();
   //include_once "consultarSiTieneAsientosDisponibles.php";
   include_once "usuarioEstaSumadoAlViaje.php";
+  include_once "usuarioEsCreadorDeViaje.php";
   include_once "consultarAsientosDisponiblesDeUnViaje.php";
   function tarjeta($idviaje,$fechaYHora,$tipo,$duracion,$costo
                             ,$origen,$destino,$capacidad,$modelo
@@ -53,6 +54,9 @@
                       $salida .= "<button id='".$idviaje."' type='button' class='btn btn-success btn-md' name='button'>Sumarse</button>";
                   }
 
+                }
+                if((isset($_SESSION["idUsuario"]) && usuarioEsCreadorDeViaje($idviaje,$_SESSION["idUsuario"]))){
+                    $salida .= "<button id='".$idviaje."' type='button' class='btn btn-success btn-md' name='button'>Eliminar Viaje</button>";
                 }
               $salida .= "</div>
             </div>
