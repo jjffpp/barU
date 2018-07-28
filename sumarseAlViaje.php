@@ -2,7 +2,7 @@
 include_once "conexion.php";
 session_start();
 $idUsuario =$_SESSION["idUsuario"];
-$idViaje = $_POST['param1'];
+$idViaje = $_POST['idViaje'];
 
 $conn= new conexion();
 $consulta = "INSERT INTO `usuarios_has_viajes`(`usuarios_idUsuario`, `viajes_idviajes`)
