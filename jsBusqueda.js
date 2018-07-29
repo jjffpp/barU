@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 function seguir(origen,destino,fechaInicio,fechaFin){
   if (! origen > 0){
     alert ("No seleccionó lugar de partida");
@@ -29,13 +29,10 @@ function seguir(origen,destino,fechaInicio,fechaFin){
   return true;
 }
 
-=======
->>>>>>> 1f63bed54cca4ce1ce64def5cfe5107eeb2c85db
 var box = (function () {
 
   var resultadoOrigen;
   var resultadoDestino;
-<<<<<<< HEAD
   var fechaSeleccionadaInicio;
   var fechaSeleccionadaFinal;
 
@@ -50,7 +47,6 @@ var box = (function () {
   var destinoIndice;
 
   var buscar = function(){
-
     origen.addEventListener('change', function(){
       indiceOrigen = origen.selectedIndex
       origenIndice = origen.options
@@ -66,36 +62,11 @@ var box = (function () {
     })
     fechaFinal.addEventListener('change', function(){
       fechaSeleccionadaFinal = fechaFinal.value
-=======
-  var fechaSeleccionada;
-
-  var buscar = function(){
-    var origen = document.getElementById("origen")
-    var destino = document.getElementById("destino")
-    var fecha = document.getElementById("fecha")
-
-    origen.addEventListener('change', function(){
-      var indiceOrigen = origen.selectedIndex
-      var origenIndice = origen.options
-      resultadoOrigen = origenIndice[indiceOrigen].text;
+      var fechaSeleccionada;
     })
-    destino.addEventListener('change', function(){
-      var indiceDestino = destino.selectedIndex
-      var destinoIndice = destino.options
-      resultadoDestino = destinoIndice[indiceDestino].text
-    })
-    fecha.addEventListener('change', function(){
-      fechaSeleccionada = fecha.value
-      console.log(fechaSeleccionada)
->>>>>>> 1f63bed54cca4ce1ce64def5cfe5107eeb2c85db
-    })
-
   }
-
   var buscarAction = function(){
     var buscar = document.getElementById("buscar");
-<<<<<<< HEAD
-
     buscar.addEventListener('click', function(){
       if(typeof fechaSeleccionadaFinal === 'undefined'){ fechaSeleccionadaFinal="" }
       if(seguir(indiceOrigen,indiceDestino,fecha.value,fechaFinal.value)){
@@ -118,14 +89,7 @@ var box = (function () {
           console.log("campos invalidos")
         }
       }
-
-=======
-    buscar.addEventListener('click', function(){
-      if((typeof fechaSeleccionada !== 'undefined')&&(typeof resultadoOrigen !== 'undefined')&&(typeof resultadoDestino !== 'undefined')){
-        $('#content').load('misviajes.php');
-      }
->>>>>>> 1f63bed54cca4ce1ce64def5cfe5107eeb2c85db
-    })
+    });
   }
 
   return {
