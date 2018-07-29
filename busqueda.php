@@ -65,7 +65,6 @@
                 <div class="col-12">
                   <label>Fecha Final (no obligatorio)</label>
                   <input type="date" id="fechaFinal" name="fecha"/>
-                </div>
                 <div class="form-group">
                   <button type="submit" class="btn btn-primary btn-md btn-block " id="buscar">Buscar</button>
                 </div>
