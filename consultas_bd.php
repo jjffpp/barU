@@ -22,6 +22,35 @@
     return $valor;
   }
 
+  function busqueda($origen,$destino,$fecha,$fechaFin){
+    $db = coneccion();
+
+    $sql = "SELECT v.idviajes,v.fechaYHora,v.tipo, v.duracion,v.costo, origen.nombre AS nombre_origen,destino.nombre AS nombre_destino,vehiculo.capacidad
+                  ,vehiculo.modelo,vehiculo.descripcion,v.estado_viaje
+            FROM viajes as v INNER JOIN localidades as origen on v.localidad_origen = origen.idlocalidades
+            INNER JOIN localidades as destino on v.localidad_destino=destino.idlocalidades
+            INNER JOIN vehiculo ON vehiculo.idvehiculo = v.idvehiculo
+            WHERE (DATE(v.fechaYHora) BETWEEN '$fecha' AND '$fechaFin') AND origen.nombre='$origen' AND destino.nombre='$destino'
+            ORDER BY v.fechaYHora ASC
+            ";
+    $buscar = $db->query($sql) or die($db->error);
+    return $buscar;
+  }
+  function busquedaSinFin($origen,$destino,$fecha){
+    $db = coneccion();
+
+    $sql = "SELECT v.idviajes,v.fechaYHora,v.tipo, v.duracion,v.costo, origen.nombre AS nombre_origen,destino.nombre AS nombre_destino,vehiculo.capacidad
+                  ,vehiculo.modelo,vehiculo.descripcion,v.estado_viaje
+            FROM viajes as v INNER JOIN localidades as origen on v.localidad_origen = origen.idlocalidades
+            INNER JOIN localidades as destino on v.localidad_destino=destino.idlocalidades
+            INNER JOIN vehiculo ON vehiculo.idvehiculo = v.idvehiculo
+            WHERE DATE(v.fechaYHora)='$fecha' AND origen.nombre='$origen' AND destino.nombre='$destino'
+            ORDER BY v.fechaYHora ASC
+            ";
+    $buscar = $db->query($sql) or die($db->error);
+    return $buscar;
+  }
+
   function usuarioEnSemana($idViaje,$idUsuario){
     $db = coneccion();
 
