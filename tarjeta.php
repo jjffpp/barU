@@ -73,13 +73,13 @@
     echo "<article id='main-col'>";
     echo "<h2 id='titulovr' class='page-title'>Viajes</h2>";
     echo "<ul id='services'>";
-          while ($fila = $consulta->fetch_assoc()) {
-            //print_r($fila);
-            echo tarjeta($fila['idviajes'],$fila['fechaYHora'],$fila['tipo']
-                        ,$fila['duracion'],$fila['costo'],$fila['nombre_origen']
-                        ,$fila['nombre_destino'],$fila['capacidad']
-                        ,$fila['modelo'],$fila['descripcion'],$fila['estado_viaje'],$disponible);
-          }
+    while ($fila = $consulta->fetch_assoc()) {
+      //print_r($fila);
+      echo tarjeta($fila['idviajes'],$fila['fechaYHora'],$fila['tipo']
+                  ,$fila['duracion'],$fila['costo'],$fila['nombre_origen']
+                  ,$fila['nombre_destino'],$fila['capacidad']
+                  ,$fila['modelo'],$fila['descripcion'],$fila['estado_viaje'],$disponible);
+    }
     echo "</ul>";
     echo "</article>";
     echo "</div>";
