@@ -17,6 +17,12 @@ footer{
   text-align: center;
 }
 
+.margen-andres{
+  padding-top: 20px;
+  padding-bottom: 10px;
+  margin-right: 20px;
+  border-style:solid;
+}
 
 .navbar-brand {
   padding: 0px;
@@ -106,6 +112,16 @@ hr {
 }
 .button {
     background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+.buttonRed {
+    background-color: red;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;

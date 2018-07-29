@@ -77,6 +77,22 @@
     return $buscar;
   }
 
+  function consultarPasajerosDelViaje(){
+    $db = coneccion();
+
+    $sql = "SELECT v.idviajes,l.nombre AS nombre_origen,us.apellido AS apellido_user,us.nombre AS nombre_user, us.idUsuario as id_user
+            FROM usuarios as u INNER JOIN usuarios_has_viajes as uhv ON uhv.usuarios_idUsuario = u.idUsuario
+            INNER JOIN viajes as v ON v.idviajes = uhv.viajes_idviajes
+            INNER JOIN vehiculo as vv ON v.idvehiculo=vv.idvehiculo
+            INNER JOIN localidades as ld ON ld.idlocalidades=v.localidad_destino
+            INNER JOIN localidades as l ON v.localidad_origen=l.idlocalidades
+            INNER JOIN usuarios as us ON us.idUsuario=uhv.usuarios_idUsuario
+            WHERE uhv.viajes_idviajes=10
+            ";
+    $buscar = $db->query($sql);
+    return $buscar;
+  }
+
   function consultarMisViajes($idUser){
     $db = coneccion();
 
