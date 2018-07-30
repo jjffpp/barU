@@ -4,6 +4,7 @@
   include_once "usuarioEstaSumadoAlViaje.php";
   include_once "usuarioEsCreadorDeViaje.php";
   include_once "consultarAsientosDisponiblesDeUnViaje.php";
+  include_once "haTerminadoElViaje.php";
   function tarjeta($idviaje,$fechaYHora,$tipo,$duracion,$costo
                             ,$origen,$destino,$capacidad,$modelo
                             ,$descripcion_vehiculo,$estado_viaje,$disponible){
@@ -47,6 +48,10 @@
                 <u><h4 class='card-subtitle mb-2'>Model del Vehiculo:</u> " .$descripcion_vehiculo. "</h6>
                 <u><h4 class='card-subtitle mb-2'>Asientos Disponibles:</u>". $asientosDisponibles."</h6>";
 
+                if(isset($_SESSION["idUsuario"]) && elViajeEstaEnProgreso($idviaje)){
+                  $salida .= "<button id='".$idviaje."'type='button' class='btn-md buttonYellow' name='button'>Viaje En Progreso</button>";
+                }
+                else{
 
                 if($asientosDisponibles > 0 && (isset($_SESSION["idUsuario"])))
                 {
@@ -55,13 +60,24 @@
                   }
 
                 }
-                if((isset($_SESSION["idUsuario"])) && !usuarioEsCreadorDeViaje($idviaje,$_SESSION["idUsuario"]) && usuarioEstaSumadoAlViaje($idviaje,$_SESSION["idUsuario"]))
+
+
+
+
+                if((isset($_SESSION["idUsuario"])) && haTerminadoElViaje($idviaje) && usuarioEstaSumadoAlViaje($idviaje,$_SESSION["idUsuario"]))
+                {
+                    $salida .= "<button id='".$idviaje."' onClick='puntuarViaje(this.id)' type='button' class='btn-md buttonBlue' name='button'>Viaje Concluido - Puntuar</button>";
+                }
+
+                if((isset($_SESSION["idUsuario"])) && !haTerminadoElViaje($idviaje) && !usuarioEsCreadorDeViaje($idviaje,$_SESSION["idUsuario"]) && usuarioEstaSumadoAlViaje($idviaje,$_SESSION["idUsuario"]))
                 {
                     $salida .= "<button id='".$idviaje."' onClick='bajarseDelViaje(this.id)' type='button' class='btn-md buttonRed' name='button'>Bajarse Del Viaje</button>";
                 }
-                if((isset($_SESSION["idUsuario"]) && usuarioEsCreadorDeViaje($idviaje,$_SESSION["idUsuario"]))){
+                if((isset($_SESSION["idUsuario"]) && !haTerminadoElViaje($idviaje) && usuarioEsCreadorDeViaje($idviaje,$_SESSION["idUsuario"]))){
                     $salida .= "<button id='".$idviaje."' type='button' onClick='eliminarViaje(this.id)' class='buttonRed btn-md' name='button'>Eliminar Viaje</button>";
                 }
+
+              }
               $salida .= "</div>
             </div>
           </li>
@@ -76,6 +92,7 @@
     Funcion que "imprime" el diseño de las Cards de Boostrap y luego
     llama a la funcion tarjeta con los parametros de cada fila de la BD
     */
+    echo "<script type='text/javascript' src='puntuarViaje.js'></script>";
     echo "<script type='text/javascript' src='bajarUser.js'></script>";
     echo "<div class='container'>";
     echo "<article id='main-col'>";
