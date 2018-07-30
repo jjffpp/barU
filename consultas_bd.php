@@ -77,7 +77,7 @@
     return $buscar;
   }
 
-  function consultarPasajerosDelViaje(){
+  function consultarPasajerosDelViaje($idViaje){
     $db = coneccion();
 
     $sql = "SELECT v.idviajes,l.nombre AS nombre_origen,us.apellido AS apellido_user,us.nombre AS nombre_user, us.idUsuario as id_user
@@ -87,7 +87,7 @@
             INNER JOIN localidades as ld ON ld.idlocalidades=v.localidad_destino
             INNER JOIN localidades as l ON v.localidad_origen=l.idlocalidades
             INNER JOIN usuarios as us ON us.idUsuario=uhv.usuarios_idUsuario
-            WHERE uhv.viajes_idviajes=10
+            WHERE uhv.viajes_idviajes=$idViaje
             ";
     $buscar = $db->query($sql);
     return $buscar;
