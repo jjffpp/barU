@@ -32,10 +32,16 @@ if($_POST["tipo"]=="ocacional")
         $inicio = $row["fechahora"];
         $dur = $row["duracion"];
         $fin = date('Y-m-d H:i:s', strtotime($inicio."+ $dur hours" ));
-        $fechahora = date('Y-m-d H:i:s', strtotime("$fecha $hora"));
-        if(($fechahora >= $inicio) && ($fechahora <= $fin)) {
+        $fechahorainicio = date('Y-m-d H:i:s', strtotime("$fecha $hora"));
+        $fechahorafin = date('Y-m-d H:i:s', strtotime($fechahorainicio."+ $duracion hours" ));
+        if(($fechahorainicio >= $inicio) && ($fechahorainicio <= $fin)) {
               $sepuede = 1;
               break;
+        }else{
+          if(($fechahorafin >= $inicio) && ($fechahorafin <= $fin)) {
+            $sepuede = 1;
+            break;
+          }
         }
     }
   }
@@ -113,7 +119,7 @@ else if($_POST["tipo"]=="semanal")
   echo $duracion, "<br />";                     //DURACION DE CADA VIAJE INDIVIDIAL APROXIMADAMENTE
   echo $costo, "<br />";                        //COSTO DE CADA UNO DE LOS VIAJES, GLOBAL A TODOS LOS VIAJES
   echo $hora, "<br />";                         //HORA DE SALIDA DE CADA VIAJE, ESTO ES GLOBAL A TODOS LOS VIAJES
-  if (validarSuperposicionFechasEnRangoFechas($fechaPrimerViaje,$fechaUltimaSalida,$id,$diasDeLaSemana,$hora) == 0){
+  if (validarSuperposicionFechasEnRangoFechas($fechaPrimerViaje,$fechaUltimaSalida,$id,$diasDeLaSemana,$hora, $duracion) == 0){
     darDeAltaViajeSemanal($fechaPrimerViaje,$fechaUltimaSalida,$diasDeLaSemana,$duracion,$costo,$tipo,$origen,$destino,$hora,$vehiculo);   //BORRAR ESTE DIE                    //LA FUNCIONALIDAD QUE HAY QUE IMPLEMENTAR ES CREAR UN VIAJE POR CADA DIA DE LA SEMANA SELECCIONADO EN EL RANGO DE FECHAS QUE LLEGA
   }else{
       header("location: formulario.php?fechaSuperpuesta=true");
@@ -330,7 +336,7 @@ function nombreDelDia($dia){
   return $fecha;
 }
 
-function validarSuperposicionFechas($fecha, $hora, $id){
+function validarSuperposicionFechas($fecha, $hora, $id, $duracion){
   $conn= new conexion();
   //devuelve los viajes(fecha hora y duracion)  del usuario logeado
   $consulta1 = "SELECT `viajes`.`fechaYHora` as fechahora, `viajes`.`duracion` as duracion FROM `vehiculo`
@@ -342,16 +348,21 @@ function validarSuperposicionFechas($fecha, $hora, $id){
         $inicio = $row["fechahora"];
         $dur = $row["duracion"];
         $fin = date('Y-m-d H:i:s', strtotime($inicio."+ $dur hours" ));
-        $fechahora = date('Y-m-d H:i:s', strtotime("$fecha $hora"));
+        $fechahorainicio = date('Y-m-d H:i:s', strtotime("$fecha $hora"));
+        $fechahorafin = date('Y-m-d H:i:s', strtotime($fechahorainicio."+ $duracion hours" ));
         //esta en el rango de inicio y fin de un viaje
-        if(($fechahora >= $inicio) && ($fechahora <= $fin)) {
+        if(($fechahorainicio >= $inicio) && ($fechahorainicio <= $fin)) {
               return 1;
+        }else{
+          if(($fechahorafin >= $inicio) && ($fechahorafin <= $fin)){
+            return 1;
+          }
         }
     }
   }
   return 0;
 }
-function validarSuperposicionFechasEnRangoFechas($fechaPrimerViaje,$fechaUltimaSalida,$id,$diasDeLaSemana,$hora){
+function validarSuperposicionFechasEnRangoFechas($fechaPrimerViaje,$fechaUltimaSalida,$id,$diasDeLaSemana,$hora, $duracion){
   $primera = date('Y-m-d H:i:s', strtotime("$fechaPrimerViaje $hora"));
   $segunda = date('Y-m-d H:i:s', strtotime("$fechaUltimaSalida $hora"));
   $diff = abs(strtotime($primera) - strtotime($segunda));
@@ -373,7 +384,7 @@ function validarSuperposicionFechasEnRangoFechas($fechaPrimerViaje,$fechaUltimaS
   $conn= new conexion();
   $fecha = $futilizar->format('Y-m-d H:i:s');
   echo "Fecha: " . $fecha;
-  if (validarSuperposicionFechas($fechaPrimerViaje, $hora, $id) == 0){
+  if (validarSuperposicionFechas($fechaPrimerViaje, $hora, $id, $duracion) == 0){
     for ($i=1; $i <= $dias; $i++) {
       $futilizar->add(new DateInterval('P1D'));
       $f = $futilizar->format('Y-m-d H:i:s');
@@ -389,7 +400,7 @@ function validarSuperposicionFechasEnRangoFechas($fechaPrimerViaje,$fechaUltimaS
           echo $futilizar->format('Y-m-d H:i:s')." Dia: ".nombreDelDia($j);
           $fecha = $futilizar->format('Y-m-d');
           echo "Fecha: " . $fecha;
-          if (validarSuperposicionFechas($fecha, $hora, $id) == 1){
+          if (validarSuperposicionFechas($fecha, $hora, $id, $duracion) == 1){
             return 1;
           }
         }
