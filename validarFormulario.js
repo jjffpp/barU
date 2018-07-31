@@ -55,7 +55,6 @@ if (! tipo != ""){
         if (! hora != ""){
           alert("hora incorrecta, ingrese nuevamente la hora de partida");
         }else{
-            alert("el viaje se ha creado correctamente!");
             document.getElementById("send").click();
         }
       }

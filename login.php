@@ -30,7 +30,9 @@
       {
         if($_GET['valido']= 'false')
         {
-          echo '<b>Nombre de usuario y/o contraseña invalido<b>';
+          $message = "Nombre de usuario y/o contraseña invalido";
+          echo "<script type='text/javascript'>alert('$message');</script>";
+          //echo '<b>Nombre de usuario y/o contraseña invalido<b>';
         }
       }
        ?>

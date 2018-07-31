@@ -141,14 +141,20 @@
    <title>Crear viaje</title>
 </head>
 <body>
-
-    <?php generarNavbar() ?>
+    <?php generarNavbar();
+      if(isset($_GET['fechaSuperpuesta'])){
+          if($_GET['fechaSuperpuesta']= 'true'){
+            $message = "Fecha superpuesta con otro viaje previamente creado";
+            echo "<script type='text/javascript'>alert('$message');</script>";
+            //echo '<br><b>fechas superpuestas con otro viaje!<b><br>';
+          }
+      }
+    ?>
   <form action="formularioAltaViaje.php" method="post" id="formulario">
      <div class="container">
        <h1>Creación de viaje</h1>
        <p>Por favor, complete todos los campos para crear un nuevo viaje</p>
        <hr>
-
               <label for:"origen"><b>Lugar de partida<b><br></label>
               <select name="origen" id="origen">
                 <option value="" selected="selected">Elegi un origen</option>

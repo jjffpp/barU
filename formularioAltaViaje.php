@@ -19,14 +19,39 @@ if($_POST["tipo"]=="ocacional")
   $fecha = $_POST["fecha"];
   $hora = $_POST["hora"];
   $vehiculo = $_POST["vehiculo"];
-  darDeAltaViajeOcacional($duracion,$costo,$tipo,$origen,$destino,$fecha,$hora,$vehiculo);
-  echo $origen, "<br />";
-  echo $destino, "<br />";
-  echo $tipo, "<br />";
-  echo $fecha, "<br />";
-  echo $duracion, "<br />";
-  echo $costo, "<br />";
-  echo $hora, "<br />";
+  $id= $_SESSION['idUsuario'];
+  $sepuede=0;
+  $conn= new conexion();
+  //devuelve los viajes(fecha hora y duracion)  del usuario logeado
+  $consulta1 = "SELECT `viajes`.`fechaYHora` as fechahora, `viajes`.`duracion` as duracion FROM `vehiculo`
+                INNER JOIN `viajes` on (`vehiculo`.`idvehiculo` = `viajes`.`idvehiculo`)
+                where `vehiculo`.`owner` = '$id'";
+  $result = $conn->consultarABD($consulta1);
+  if (mysqli_num_rows($result) > 0) {
+    while($row = mysqli_fetch_assoc($result)) {
+        $inicio = $row["fechahora"];
+        $dur = $row["duracion"];
+        $fin = date('Y-m-d H:i:s', strtotime($inicio."+ $dur hours" ));
+        $fechahora = date('Y-m-d H:i:s', strtotime("$fecha $hora"));
+        if(($fechahora >= $inicio) && ($fechahora <= $fin)) {
+              $sepuede = 1;
+              break;
+        }
+    }
+  }
+  if ($sepuede == 0){
+    darDeAltaViajeOcacional($duracion,$costo,$tipo,$origen,$destino,$fecha,$hora,$vehiculo);
+    echo $origen, "<br />";
+    echo $destino, "<br />";
+    echo $tipo, "<br />";
+    echo $fecha, "<br />";
+    echo $duracion, "<br />";
+    echo $costo, "<br />";
+    echo $hora, "<br />";
+  }else{
+    header("location: formulario.php?fechaSuperpuesta=true");
+  }
+
 }
 else if($_POST["tipo"]=="semanal")
 {
