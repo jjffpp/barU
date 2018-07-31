@@ -69,7 +69,7 @@ else if($_POST["tipo"]=="semanal")
   $costo = $_POST["costo"];
   $hora = $_POST["hora"];
   $vehiculo = $_POST["vehiculo"];
-
+  $id= $_SESSION['idUsuario'];
 
   echo $origen, "<br />";                       //LUGAR DE ORIGEN
   echo $destino, "<br />";                      //LUGAR DE DESTINO
@@ -113,12 +113,16 @@ else if($_POST["tipo"]=="semanal")
   echo $duracion, "<br />";                     //DURACION DE CADA VIAJE INDIVIDIAL APROXIMADAMENTE
   echo $costo, "<br />";                        //COSTO DE CADA UNO DE LOS VIAJES, GLOBAL A TODOS LOS VIAJES
   echo $hora, "<br />";                         //HORA DE SALIDA DE CADA VIAJE, ESTO ES GLOBAL A TODOS LOS VIAJES
-
-  darDeAltaViajeSemanal($fechaPrimerViaje,$fechaUltimaSalida,$diasDeLaSemana,$duracion,$costo,$tipo,$origen,$destino,$hora,$vehiculo);   //BORRAR ESTE DIE                    //LA FUNCIONALIDAD QUE HAY QUE IMPLEMENTAR ES CREAR UN VIAJE POR CADA DIA DE LA SEMANA SELECCIONADO EN EL RANGO DE FECHAS QUE LLEGA
-}                                               //OSEA QUE SI LLEGA EL 1/3/2018 como fecha inicial y 1/4/2018 COMO FECHA FINAL y en el arreglo de fechas llega solo el lunes,
+  if (validarSuperposicionFechasEnRangoFechas($fechaPrimerViaje,$fechaUltimaSalida,$id,$diasDeLaSemana,$hora) == 0){
+    darDeAltaViajeSemanal($fechaPrimerViaje,$fechaUltimaSalida,$diasDeLaSemana,$duracion,$costo,$tipo,$origen,$destino,$hora,$vehiculo);   //BORRAR ESTE DIE                    //LA FUNCIONALIDAD QUE HAY QUE IMPLEMENTAR ES CREAR UN VIAJE POR CADA DIA DE LA SEMANA SELECCIONADO EN EL RANGO DE FECHAS QUE LLEGA
+  }else{
+      header("location: formulario.php?fechaSuperpuesta=true");
+  }
+                                               //OSEA QUE SI LLEGA EL 1/3/2018 como fecha inicial y 1/4/2018 COMO FECHA FINAL y en el arreglo de fechas llega solo el lunes,
                                                 //ENTONCES HAY QUE CREAR UN VIAJE POR CADA LUNES ENTRE ESAS DOS FECHAS INCLUSIVE SI ES LUNES EL 1/3/2018 o el 1/4/2018
                                                 //MODELE EL FRONT PARA QUE SIEMRPE EN EL ARREGLO LLEGUEN LOS DIAS DE LA SEMANA CORRESPONDIENTES A LAS FECHAS INGRESADAS, MAS CUALQUIER
                                                 //OTRA QUE EL USUARIO SELECCIONE, ASI QUE SIEMPRE VA A LLEGAR ALGO VALIDO
+}
 
 function darDeAltaViajeOcacional($duracion,$costo,$tipo,$origen,$destino,$fecha,$hora,$vehiculo)
 {
@@ -165,9 +169,9 @@ function darDeAltaViajeSemanal($fechaPrimerViaje,$fechaUltimaSalida,$diasDeLaSem
 
   $diff = abs(strtotime($primera) - strtotime($segunda));
   $dias = $diff / (60*60*24);
-
+//cantidad de semanas
   $semanas = intval($dias / 7);
-
+//si tiene dias restantes
   $diferencia1 = $dias - ($semanas * 7);
 
   $f = 5;
@@ -324,6 +328,77 @@ function nombreDelDia($dia){
       break;
   }
   return $fecha;
+}
+
+function validarSuperposicionFechas($fecha, $hora, $id){
+  $conn= new conexion();
+  //devuelve los viajes(fecha hora y duracion)  del usuario logeado
+  $consulta1 = "SELECT `viajes`.`fechaYHora` as fechahora, `viajes`.`duracion` as duracion FROM `vehiculo`
+                INNER JOIN `viajes` on (`vehiculo`.`idvehiculo` = `viajes`.`idvehiculo`)
+                where `vehiculo`.`owner` = '$id'";
+  $result = $conn->consultarABD($consulta1);
+  if (mysqli_num_rows($result) > 0) {
+    while($row = mysqli_fetch_assoc($result)) {
+        $inicio = $row["fechahora"];
+        $dur = $row["duracion"];
+        $fin = date('Y-m-d H:i:s', strtotime($inicio."+ $dur hours" ));
+        $fechahora = date('Y-m-d H:i:s', strtotime("$fecha $hora"));
+        //esta en el rango de inicio y fin de un viaje
+        if(($fechahora >= $inicio) && ($fechahora <= $fin)) {
+              return 1;
+        }
+    }
+  }
+  return 0;
+}
+function validarSuperposicionFechasEnRangoFechas($fechaPrimerViaje,$fechaUltimaSalida,$id,$diasDeLaSemana,$hora){
+  $primera = date('Y-m-d H:i:s', strtotime("$fechaPrimerViaje $hora"));
+  $segunda = date('Y-m-d H:i:s', strtotime("$fechaUltimaSalida $hora"));
+  $diff = abs(strtotime($primera) - strtotime($segunda));
+  $dias = $diff / (60*60*24);
+//cantidad de semanas
+  $semanas = intval($dias / 7);
+//si tiene dias restantes
+  $diferencia1 = $dias - ($semanas * 7);
+  $f = 5;
+  $fechaFinalizacion = new DateTime($primera);
+  $fechaFinalizacion->add(new DateInterval('P'.$f.'D'));
+  $fechaFinalizacion->format('Y-m-d H:i:s');
+  $diaInicial = date("w",strtotime($primera));
+  $diaFin = date("d",strtotime($segunda));
+  $mesFin = date("m",strtotime($segunda));
+  $fechaFin = new DateTime($segunda);
+  $fechaTemporal = new DateTime($primera);
+  $futilizar = new DateTime($primera);
+  $conn= new conexion();
+  $fecha = $futilizar->format('Y-m-d H:i:s');
+  echo "Fecha: " . $fecha;
+  if (validarSuperposicionFechas($fechaPrimerViaje, $hora, $id) == 0){
+    for ($i=1; $i <= $dias; $i++) {
+      $futilizar->add(new DateInterval('P1D'));
+      $f = $futilizar->format('Y-m-d H:i:s');
+      $diaSecundario = date("w",strtotime($f));
+      $dd = date("d",strtotime($f));
+      $mm = date("m",strtotime($f));
+      $contador = $i;
+      if($contador>7){
+        $contador=0;
+      }
+      for ($j=0; $j < sizeof($diasDeLaSemana); $j++) {
+        if(($diaSecundario == $diasDeLaSemana[$j])&&($dd <= $diaFin)&&($mm <= $mesFin)){
+          echo $futilizar->format('Y-m-d H:i:s')." Dia: ".nombreDelDia($j);
+          $fecha = $futilizar->format('Y-m-d');
+          echo "Fecha: " . $fecha;
+          if (validarSuperposicionFechas($fecha, $hora, $id) == 1){
+            return 1;
+          }
+        }
+      }
+    }
+  }else{
+    return 1;
+  }
+    return 0;
 }
 
 ?>
