@@ -35,6 +35,15 @@ include_once "consultas_bd.php";
       ";
       }
   }
+  $valor .= "<div class='col-lg-12 col-md-12 col-sm-12 hidden finalizado'>
+                <div class='row'>
+                  <div class='col-lg-3 col-md-3 col-sm-3'></div>
+                    <div class='col-lg-6 bg-success text-center margen-andres'>
+                      <label class='m-5'>Puntuacion Exitosa</label>
+                    </div>
+                  <div class='col-lg-3 col-md-3 col-sm-3'></div>
+                </div>
+            </div>";
   $valor .= "</div></div></div>";
   //var_dump($valor);
   echo $valor;

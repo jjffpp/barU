@@ -16,6 +16,8 @@ function comprobacionPositiva(obj,idviaje,idSesion){
     }
   })
   columna[0].classList.add('hidden')
+  var columnaFin = document.querySelector('.finalizado');
+  columnaFin.classList.remove('hidden');
 }
 function comprobacionNegativa(obj,idviaje,idSesion){
   var id = obj.id / 10;
@@ -35,4 +37,6 @@ function comprobacionNegativa(obj,idviaje,idSesion){
   })
   console.log(columna)
   columna[0].classList.add('hidden')
+  var columnaFin = document.querySelector('.finalizado');
+  columnaFin.classList.remove('hidden');
 }

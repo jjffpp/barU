@@ -29,8 +29,10 @@
     $sql = "UPDATE usuarios SET puntuacion=$resultado WHERE idUsuario=$id";
   }
   $db->query($sql) or die($db->error);
+  $db->close();
+  $db=coneccion();
   $sql= "INSERT INTO `usuario_puntua_usuario`(`idUsuario_puntuado`, `idUsuario`, `idViaje`) VALUES
   ('$id','$idSesion','$idViaje')";
   $db->query($sql) or die($db->error);
-
+  $db->close();
 ?>
