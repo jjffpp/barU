@@ -9,10 +9,26 @@ include_once "consultas_bd.php";
       <div class="row">';
 
   $resultado = consultarPasajerosDelViaje($idViaje);
-
+  /*$votados = consultarVotados($idViaje);
+  $r = array();
+  while($fila3 = $resultado->fetch_assoc()){
+    $fila2 = $votados->fetch_assoc();
+    if($fila3['id_user'] != $fila2['idUsuario']){
+      array_push($r, $fila3);
+    }
+  }
+  var_dump($r);*/
+  function existe($user,$idViaje,$idSesion){
+    $conn = consultarVotados($idViaje,$user,$idSesion);
+    if($conn->num_rows > 0){
+      return false;
+    }else{
+      return true;
+    }
+  }
   while ($fila = $resultado->fetch_assoc()) {
 
-      if($_SESSION["idUsuario"] != $fila['id_user']){
+      if($_SESSION["idUsuario"] != $fila['id_user'] && existe($fila['id_user'],$idViaje,$idSesion)){
         print_r($fila['id_user']);
         $valor .= "
           <div class='col-lg-12 columna ".$fila['id_user']."'>

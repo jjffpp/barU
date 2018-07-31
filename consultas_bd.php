@@ -87,8 +87,16 @@
             INNER JOIN localidades as ld ON ld.idlocalidades=v.localidad_destino
             INNER JOIN localidades as l ON v.localidad_origen=l.idlocalidades
             INNER JOIN usuarios as us ON us.idUsuario=uhv.usuarios_idUsuario
-            WHERE uhv.viajes_idviajes=$idViaje
+            WHERE uhv.viajes_idviajes=$idViaje AND us.idUsuario
             ";
+    $buscar = $db->query($sql);
+    return $buscar;
+  }
+
+  function consultarVotados($idViaje,$idUsuario,$idSesion){
+    $db = coneccion();
+
+    $sql = "SELECT * FROM usuario_puntua_usuario as upu WHERE upu.idViaje='$idViaje' AND upu.idUsuario_puntuado='$idUsuario' AND upu.idUsuario='$idSesion'";
     $buscar = $db->query($sql);
     return $buscar;
   }

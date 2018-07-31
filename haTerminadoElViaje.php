@@ -59,7 +59,7 @@ function haTerminadoElViaje($idviaje)
 
 function haPuntuadoATodos($idViaje,$idUsuario){
   $conn= new conexion();
-  $consultaPuntos = "SELECT * FROM usuario_puntua_usuario as upu WHERE upu.idViaje='$idViaje'";
+  $consultaPuntos = "SELECT * FROM usuario_puntua_usuario as upu WHERE upu.idViaje='$idViaje' AND upu.idUsuario='$idUsuario'";
   $resulQuery2 = $conn->consultarABD($consultaPuntos);
 
   $cantidadDeVotados = mysqli_num_rows($resulQuery2);
@@ -68,9 +68,14 @@ function haPuntuadoATodos($idViaje,$idUsuario){
 
   $cantidadDeViajeros = mysqli_num_rows($resulQuery2) - 1;
   if($cantidadDeVotados == $cantidadDeViajeros){
-    return true;
+    if($cantidadDeVotados==0 && $cantidadDeViajeros==0){
+      return 10;
+    }else{
+      return 1;
+    }
+
   }else{
-    return false;
+    return -10;
   }
 }
 ?>
