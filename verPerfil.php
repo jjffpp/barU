@@ -62,6 +62,7 @@
                         FROM vehiculo INNER JOIN usuarios ON vehiculo.owner = usuarios.idUsuario
                         WHERE usuarios.idUsuario = '$id'";
           $resultado1 = $conn->consultarABD($consulta1);
+          if ($resultado1->num_rows > 0){
           echo "<div>";
             echo "<table class=\"tablaVehiculos\" style=\"border: none;width:100%;text-align: center;\">";
             echo "<tr style=\"border: none; background-color: #75797C; opacity: 0.9;margin: 8px 0;color: white;\">";
@@ -78,6 +79,7 @@
               }
             echo "</table>";
         echo "</div>";
+      }
        ?>
        </div>
       </div>
