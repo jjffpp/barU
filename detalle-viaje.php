@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php include "navbar.php" ?>
+<?php include "cargarSolicitudes.php" ?>
 <html>
   <head>
     <meta charset="utf-8">
@@ -13,9 +14,11 @@
   </head>
   <body>
     <?php generarNavbar(); ?>
-    <div class="container-fluid">
-    </div>
-    
+    <div class="container  mt-20">
+    <?php cargarSolicitudes(); ?>      
+    </div>    
     <?php echo imprimir_footer(); ?>
   </body>
 </html>
+
+
