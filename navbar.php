@@ -37,7 +37,7 @@ if(isset($_SESSION["idUsuario"])){
             <li class='dropdown'>
               <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'><span class='glyphicon glyphicon-user'></span> ".$nombre['nombre']."<span class='caret'></span></a>
               <ul class='dropdown-menu' role='menu'>
-                <li><a href='#'>Ver Perfil</a></li>
+                <li><a href='verPerfil.php'>Ver Perfil</a></li>
                 <li><a href='cerrar-sesion.php'>Cerrar Sesion</a></li>
               </ul>
             </li>
