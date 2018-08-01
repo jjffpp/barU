@@ -7,7 +7,6 @@
 <head>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width">
-   <script src="validarAltaVehiculo.js" type="text/javascript"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -29,32 +28,41 @@
           $consulta= "SELECT * FROM  usuarios WHERE idUsuario = '$id'";
           $resultado = $conn->consultarABD($consulta);
           $row = mysqli_fetch_assoc($resultado) ;
-          echo "<label for:\"nombre\"><b><h3>".$row["nombre"]." ".$row["apellido"]."</h3><b><br></label><br>";
-          echo "<label for:\"email\"><h4><b>Email: <b></h4></label>";
-          echo "<label for:\"email\">".$row["email"]."</label><br>";
-          echo "<label for:\"email\"><h4><b>Fecha de nacimiento: <b></h4></label>";
-          echo "<label for:\"fechaNac\">".$row["fechaNac"]."</label><br>";
-          echo "<label for:\"email\"><h4><b>Direccion: <b></h4></label>";
-          echo "<label for:\"direccion\">".$row["direccion"]."</label><br>";
-          echo "<label for:\"email\"><h4><b>Descripcion: <b></h4></label>";
-          echo "<label for:\"descripcion\">".$row["descripcion"]."</label><br>";
+          echo "<ul style=\"border: none;width:100%;list-style:none\">";
+            echo "<li><b><h3> ".$row["nombre"]." ".$row["apellido"]."<h3></b></li>";
+            echo "<li><b>Email: </b>".$row["email"]."</li>";
+            echo "<li><b>Fecha de nacimiento: </b>".$row["fechaNac"]."</li>";
+            echo "<li><b>Direccion: </b>".$row["direccion"]."</li>";
+            echo "<li><b>Descripcion: </b>".$row["descripcion"]."</li>";
+          echo "</ul>";
+          ?>
+          <div>
+            <button type="button" class="button crearViaje">EDITAR PEFIL</button>
+          </div>
+          <?php
           $consulta1 = "SELECT vehiculo.capacidad as capacidad, vehiculo.modelo as modelo,
                         vehiculo.descripcion as descrip
                         FROM vehiculo INNER JOIN usuarios ON vehiculo.owner = usuarios.idUsuario
                         WHERE usuarios.idUsuario = '$id'";
           $resultado1 = $conn->consultarABD($consulta1);
-          while($row1 = mysqli_fetch_assoc($resultado1)) {
-             echo "<label for:\"capacidad\">".$row1["capacidad"]."</label><br>";
-             echo "<label for:\"modelo\">".$row1["modelo"]."</label><br>";
-             echo "<label for:\"descripcion\">".$row1["descrip"]."</label><br>";
-          }
+          echo "<div>";
+            echo "<table class=\"tablaVehiculos\" style=\"border: none;width:100%;text-align: center;\">";
+            echo "<tr style=\"border: none; background-color: #919599; opacity: 0.9;margin: 8px 0;color: white;\">";
+              echo "<th style=\"border: none;padding: 14px 20px;text-align: center;\">Vehiculo</th>";
+              echo "<th style=\"border: none;padding: 14px 20px;text-align: center;\">Año</th>";
+              echo "<th style=\"border: none;padding: 14px 20px;text-align: center;\">Capacidad</th>";
+            echo "</tr>";
+              while($row1 = mysqli_fetch_assoc($resultado1)) {
+                echo "<tr style=\"border: none;\">";
+                  echo "<td style=\"border-bottom: 1px solid black;\"><b>".$row1["descrip"]."</b></td>";
+                  echo "<td style=\"border-bottom: 1px solid black;\">".$row1["modelo"]."</td>";
+                  echo "<td style=\"border-bottom: 1px solid black;\">".$row1["capacidad"]."</td>";
+                echo "</tr>";
+              }
+            echo "</table>";
+        echo "</div>";
        ?>
        </div>
-        <div class="botones">
-          <button type="button" onclick="validarCampos()" class="button crearViaje">Crear vehiculo</button>
-          <button type="submit" id="send" style="display:none;"></button>
-          <button type="button" onclick="irMenuPrincipal()" class="button cancelar">Cancelar</button>
-        </div>
       </div>
     </form>
     <?php echo imprimir_footer(); ?>
