@@ -38,6 +38,16 @@
           echo "<label for:\"direccion\">".$row["direccion"]."</label><br>";
           echo "<label for:\"email\"><h4><b>Descripcion: <b></h4></label>";
           echo "<label for:\"descripcion\">".$row["descripcion"]."</label><br>";
+          $consulta1 = "SELECT vehiculo.capacidad as capacidad, vehiculo.modelo as modelo,
+                        vehiculo.descripcion as descrip
+                        FROM vehiculo INNER JOIN usuarios ON vehiculo.owner = usuarios.idUsuario
+                        WHERE usuarios.idUsuario = '$id'";
+          $resultado1 = $conn->consultarABD($consulta1);
+          while($row1 = mysqli_fetch_assoc($resultado1)) {
+             echo "<label for:\"capacidad\">".$row1["capacidad"]."</label><br>";
+             echo "<label for:\"modelo\">".$row1["modelo"]."</label><br>";
+             echo "<label for:\"descripcion\">".$row1["descrip"]."</label><br>";
+          }
        ?>
        </div>
         <div class="botones">
