@@ -28,7 +28,7 @@
       <br>
       <?php if(isset($_GET['valido']))
       {
-        if($_GET['valido']= 'false')
+        if($_GET['valido'] == 'false')
         {
           $message = "Nombre de usuario y/o contraseña invalido";
           echo "<script type='text/javascript'>alert('$message');</script>";

@@ -143,7 +143,7 @@
 <body>
     <?php generarNavbar();
       if(isset($_GET['fechaSuperpuesta'])){
-          if($_GET['fechaSuperpuesta']= 'true'){
+          if($_GET['fechaSuperpuesta'] == 'true'){
             $message = "Fecha superpuesta con otro viaje previamente creado";
             echo "<script type='text/javascript'>alert('$message');</script>";
             //echo '<br><b>fechas superpuestas con otro viaje!<b><br>';

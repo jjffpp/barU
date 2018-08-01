@@ -24,9 +24,11 @@
     <hr>
     <?php if(isset($_GET['valido']))
     {
-      if($_GET['valido']= 'false')
+      if($_GET['valido'] == 'false')
       {
-        echo '<b><h4>El EMAIL ya esta siendo utilizado en el sistema, vuelva a intentarlo</h4><b>';
+        $message = "El EMAIL ya esta siendo utilizado en el sistema, vuelva a intentarlo";
+        echo "<script type='text/javascript'>alert('$message');</script>";
+        //echo '<b><h4>El EMAIL ya esta siendo utilizado en el sistema, vuelva a intentarlo</h4><b>';
       }
     }
      ?>

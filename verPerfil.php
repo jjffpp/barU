@@ -13,7 +13,7 @@
    <!--<script src="js/jquery-3.3.1.min.js"></script>-->
    <link rel="stylesheet" href="./css/styleexample.css">
    <!--<script type="text/javascript" src="f2.js"></script>-->
-   <title>Agregar vehiculo</title>
+   <title>Ver Perfil usuario</title>
 </head>
 <body>
   <?php generarNavbar(); ?>
