@@ -95,9 +95,9 @@
     echo "<script type='text/javascript' src='puntuarViaje.js'></script>";
     echo "<script type='text/javascript' src='bajarUser.js'></script>";
     echo "<div class='container'>";
-    echo "<article id='main-col'>";
-    echo "<h2 id='titulovr' class='page-title'>Viajes</h2>";
-    echo "<ul id='services'>";
+    echo "<article id='main-col' class='no-width'>";
+    echo "<h2 id='titulovr' class='page-title margin-bot-20 margin-top-30'>Viajes</h2>";
+    echo "<ul id='services' class='no-padding-left'>";
     while ($fila = $consulta->fetch_assoc()) {
       //print_r($fila);
       echo tarjeta($fila['idviajes'],$fila['fechaYHora'],$fila['tipo']

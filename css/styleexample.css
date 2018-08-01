@@ -6,7 +6,18 @@ body{
   padding-top: 70px;
   margin: 0 auto 150px;
 }
-
+.no-width{
+  width: auto!important;
+}
+.margin-top-30{
+  margin-top: 30px;
+}
+.margin-bot-20{
+  margin-bottom: 20px;
+}
+.no-padding-left{
+  padding-left: 0px;
+}
 footer{
   height: 100px;
   position: absolute; left: 0; bottom: 0; width: 100%;
