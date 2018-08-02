@@ -1,8 +1,12 @@
 <html lang="en" dir="ltr">
 <head>
    <meta charset="utf-8">
+   <?php include "navbar.php" ?>
    <meta name="viewport" content="width=device-width">
+   <script type='text/javascript' src='client.js'></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    <link rel="stylesheet" href="./css/styleexample.css">
    <title>Ver Perfil usuario</title>
 </head>
@@ -10,16 +14,17 @@
 include "conexion.php";
 $id = $_GET['idUser'];
 echo "<body>";
+    generarNavbar();
   echo "<form >";
      echo "<div class=\"container\">";
-       echo "<h1>Perfil de Usuario</h1>";
+       echo "<h1 class='margin-top-30'>Perfil de Usuario</h1>";
        echo "<hr>";
        echo "<div class=\"datos\">";
           $conn= new conexion();
           $consulta= "SELECT * FROM  usuarios WHERE idUsuario = '$id'";
           $resultado = $conn->consultarABD($consulta);
           $row = mysqli_fetch_assoc($resultado) ;
-          echo "<table style=\"width:60%;\">";
+          echo "<table>";
           echo "<tr style=\"border: none; background-color: none;margin: 8px 0;\">";
             echo "<th style=\"border: none;\"></th>";
             echo "<th style=\"border: none;\"></th>";
@@ -30,7 +35,7 @@ echo "<body>";
               echo"<img src=\"user.png\" width=\"150\" height=\"150\"/>";
             echo "</td>";
             echo "<td>";
-            echo "<ul style=\"border: none;width:100%;list-style:none;font-size: 1.3em;\">";
+            echo "<ul class='perfil' style=\"border: none;width:100%;list-style:none\">";
               echo "<li><b><h3> ".$row["nombre"]." ".$row["apellido"]."<h3></b></li>";
               echo "<li><b>Email: </b>".$row["email"]."</li>";
               echo "<li><b>Fecha de nacimiento: </b>".$row["fechaNac"]."</li>";
@@ -54,7 +59,7 @@ echo "<body>";
           $resultado1 = $conn->consultarABD($consulta1);
           if ($resultado1->num_rows > 0){
           echo "<div>";
-            echo "<table class=\"tablaVehiculos\" style=\"border: none;width:60%;text-align: center;font-size: 1.1em;\">";
+            echo "<table class=\"tablaVehiculos\" style=\"border: none;width:67%;text-align: center;\">";
             echo "<tr style=\"border: none; background-color: #75797C; opacity: 0.9;margin: 8px 0;color: white;\">";
               echo "<th style=\"border: none;padding: 14px 20px;text-align: center;\">Vehiculo</th>";
               echo "<th style=\"border: none;padding: 14px 20px;text-align: center;\">Año</th>";
@@ -73,5 +78,6 @@ echo "<body>";
        echo "</div>";
       echo "</div>";
     echo "</form>";
+    echo imprimir_footer();
   echo "</body>";
  ?>
