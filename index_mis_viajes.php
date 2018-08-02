@@ -12,7 +12,7 @@
     <script type="text/javascript" src="bootbox.min.js"></script>
     <script type="text/javascript" src="f3.js"></script>
     <script type="text/javascript" src="client.js"></script>
-    <script type="text/javascript" src="jsPuntuar.js"></script>
+
   </head>
   <body>
     <?php generarNavbar(); ?>
@@ -21,5 +21,6 @@
       <ul class="pagination" id="pagination"></ul>
     </center>-->
     <?php echo imprimir_footer(); ?>
+    <script type="text/javascript" src="jsPuntuar.js"></script>
   </body>
 </html>

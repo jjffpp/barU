@@ -1,8 +1,15 @@
+function countMyself(reset) {
+    if ( typeof countMyself.counter == 'undefined' ) {
+        countMyself.counter = 0;
+    }
+    if(reset == 0){
+      countMyself.counter = 0;
+      return countMyself.counter;
+    }
+    return ++countMyself.counter;
+}
 function comprobacionPositiva(obj,idviaje,idSesion){
   var id = obj.id;
-  console.log(id/10)
-  console.log(idviaje)
-  console.log(idSesion)
   var columna = document.getElementsByClassName(id.toString())
   $.ajax({
     url: 'puntuacionInsertar.php',
@@ -11,18 +18,23 @@ function comprobacionPositiva(obj,idviaje,idSesion){
             param2: idviaje,
             param3: idSesion
           },
-    success: function(html){
-
+    success: function(cantidadViajerosEnElViaje){
+      let h = countMyself(1);
+      if(h == cantidadViajerosEnElViaje -1){
+        countMyself(0);
+        columna[0].classList.add('hidden')
+        var columnaFin = document.querySelector('.finalizado');
+        columnaFin.classList.remove('hidden');
+        var delay = 1000;
+        setTimeout(function(){ window.location = "indexPrimario.php"; }, delay)
+      }
+      columna[0].classList.add('hidden')
     }
   })
-  columna[0].classList.add('hidden')
-  var columnaFin = document.querySelector('.finalizado');
-  columnaFin.classList.remove('hidden');
+
 }
 function comprobacionNegativa(obj,idviaje,idSesion){
   var id = obj.id / 10;
-  console.log(obj.id)
-  console.log(id)
   var columna = document.getElementsByClassName(id.toString())
   $.ajax({
     url: 'puntuacionInsertar.php',
@@ -31,12 +43,17 @@ function comprobacionNegativa(obj,idviaje,idSesion){
             param2: idviaje,
             param3: idSesion
           },
-    success: function(html){
-
+    success: function(cantidadViajerosEnElViaje){
+      let h = countMyself(1);
+      if(h = cantidadViajerosEnElViaje -1){
+        countMyself(0);
+        columna[0].classList.add('hidden')
+        var columnaFin = document.querySelector('.finalizado');
+        columnaFin.classList.remove('hidden');
+        var delay = 1000;
+        setTimeout(function(){ window.location = "indexPrimario.php"; }, delay)
+      }
+      columna[0].classList.add('hidden')
     }
   })
-  console.log(columna)
-  columna[0].classList.add('hidden')
-  var columnaFin = document.querySelector('.finalizado');
-  columnaFin.classList.remove('hidden');
 }

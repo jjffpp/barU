@@ -40,7 +40,7 @@ include_once "consultas_bd.php";
 
               </div>
               <div class='col-lg-2 text-center'>
-                <button id='". $fila['id_user'] ."' onclick='comprobacionPositiva(this,$idViaje,$idSesion)' type='button' class='btn btn-success buttonGreen btn-sm positivo' name='button'>+</button>
+                  <button id='". $fila['id_user'] ."' onclick='comprobacionPositiva(this,$idViaje,$idSesion)' type='button' class='btn btn-success buttonGreen btn-sm positivo' name='button'>+</button>
               </div>
               <div class='col-lg-2 text-center'>
                 <button id='". $fila['id_user']*10 ."' onclick='comprobacionNegativa(this,$idViaje,$idSesion)' type='button' class='btn btn-danger buttonRed btn-sm negativo' name='button'>-</button>
