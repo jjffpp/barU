@@ -1,0 +1,33 @@
+.mt-20{
+    margin-top: 20px;
+}
+.ml-10{
+    margin-left: 10px;
+}
+.flex{
+    display: flex;
+}
+.height-50{
+    height: 50px;
+}
+.color-grey{
+    background-color: #222;
+}
+.f-l{
+    float: left;
+}
+.f-r{
+    float: right;
+}
+.mb-5{
+    margin-bottom: 10px!important;
+}
+.mr-5{
+    margin-right: 10px!important;
+}
+.height-auto{
+    height: auto!important;
+}
+.mt-10px{
+    margin-top: 14px
+}

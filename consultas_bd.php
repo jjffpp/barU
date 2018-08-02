@@ -61,6 +61,16 @@
     return $buscar;
   }
 
+  function usuarioEnEspera($idViaje,$idUsuario){
+    $db = coneccion();
+
+    $sql = "SELECT *
+            FROM usariospendientes_has_viajes as usr
+            WHERE usr.usuarios_idUsuario='$idUsuario' AND usr.viajes_idviajes= '$idViaje'";
+    $buscar = $db->query($sql);
+    return $buscar;
+  }
+
   function listarTodosLosViajes(){
     $db = coneccion();
 
