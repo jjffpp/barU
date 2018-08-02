@@ -12,18 +12,25 @@ function seguir(origen,destino,fechaInicio,fechaFin){
         alert("El origen no puede ser igual al destino");
         return false;
       }
-      if(fechaInicio == ""){
+      console.log(fechaInicio)
+      if(typeof fechaInicio === 'undefined'){
         alert("No seleccionó una fecha de inicio")
         return false;
       }
-      /*if(fechaFin == ""){
-        alert("No seleccionó una fecha de fin")
+      if(fechaInicio < '2018-01-01'){
+        alert("Fecha de Inicio incorrecta")
         return false;
-      }*/
+      }
+
       if ((fechaFin < fechaInicio)&&(fechaFin!="")){
         alert ("La fecha de finalizacion no debe ser posterior a la de inicio");
         return false;
       }
+      if(fechaFin > '2100-12-12'){
+        alert("Fecha de finalizacion muy extensa. Ingrese nuevamente")
+        return false;
+      }
+
     }
   }
   return true;
@@ -40,7 +47,7 @@ var box = (function () {
   var destino = document.getElementById("destino")
   var fecha = document.getElementById("fecha")
   var fechaFinal = document.getElementById("fechaFinal")
-
+  var fecha2 = document.getElementById("fecha2")
   var indiceOrigen = origen.selectedIndex;
   var origenIndice;
   var indiceDestino = destino.selectedIndex;
@@ -60,17 +67,44 @@ var box = (function () {
     fecha.addEventListener('change', function(){
       fechaSeleccionadaInicio = fecha.value
     })
+    fecha2.addEventListener('change', function(){
+
+      fechaSeleccionadaInicio = fecha2.value
+      console.log(fechaSeleccionadaInicio)
+    })
     fechaFinal.addEventListener('change', function(){
       fechaSeleccionadaFinal = fechaFinal.value
-      var fechaSeleccionada;
+
     })
+  }
+  var sumarseAlViaje = function(){
+    $('body').on('click','.sumarse',function(e){
+
+      var page = $(this).attr('id');
+      //boton de detalle_tarjeta
+      if(page == 'bajaviaje'){
+        //$('#content').load('indexPrimario.php');
+
+      }else{
+      $.ajax({
+        url: 'sumarseAlViaje.php',
+        type: 'POST',
+        data: { param1: page },
+        success: function(html){
+          $('#content').html(html);
+          //location.reload();
+        }
+      })
+        e.preventDefault();
+    }
+
+    });
   }
   var buscarAction = function(){
     var buscar = document.getElementById("buscar");
     buscar.addEventListener('click', function(){
-      if(typeof fechaSeleccionadaFinal === 'undefined'){ fechaSeleccionadaFinal="" }
-      if(seguir(indiceOrigen,indiceDestino,fecha.value,fechaFinal.value)){
-        if((fecha.value != "")&&(typeof resultadoOrigen !== 'undefined')&&(typeof resultadoDestino !== 'undefined')){
+      if(seguir(indiceOrigen,indiceDestino,fechaSeleccionadaInicio,fechaSeleccionadaFinal)){
+        if((fechaSeleccionadaInicio != "")&&(typeof resultadoOrigen !== 'undefined')&&(typeof resultadoDestino !== 'undefined')){
           $.ajax({
             url: 'miBusqueda.php',
             type: 'POST',
@@ -94,9 +128,11 @@ var box = (function () {
 
   return {
     init: buscar,
-    find: buscarAction
+    find: buscarAction,
+    sumarse: sumarseAlViaje
   }
 })();
 
 box.init();
 box.find();
+box.sumarse();
