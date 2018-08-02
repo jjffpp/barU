@@ -64,11 +64,18 @@
 
 
 
-                if((isset($_SESSION["idUsuario"])) && haTerminadoElViaje($idviaje) && usuarioEstaSumadoAlViaje($idviaje,$_SESSION["idUsuario"]))
+                if((isset($_SESSION["idUsuario"])) && haTerminadoElViaje($idviaje) && usuarioEstaSumadoAlViaje($idviaje,$_SESSION["idUsuario"]) && (haPuntuadoATodos($idviaje,$_SESSION['idUsuario'])==-10))
                 {
                     $salida .= "<button id='".$idviaje."' onClick='puntuarViaje(this.id)' type='button' class='btn-md buttonBlue' name='button'>Viaje Concluido - Puntuar</button>";
                 }
-
+                if((isset($_SESSION["idUsuario"])) && haTerminadoElViaje($idviaje) && usuarioEstaSumadoAlViaje($idviaje,$_SESSION["idUsuario"]) && (haPuntuadoATodos($idviaje,$_SESSION['idUsuario'])==1))
+                {
+                    $salida .= "<button id='".$idviaje."'  class='btn-md buttonGreen' name='button'>Viaje Puntuado</button>";
+                }
+                if((isset($_SESSION["idUsuario"])) && haTerminadoElViaje($idviaje) && usuarioEstaSumadoAlViaje($idviaje,$_SESSION["idUsuario"]) && (haPuntuadoATodos($idviaje,$_SESSION['idUsuario'])==10))
+                {
+                    $salida .= "<button id='".$idviaje."'  class='btn-md buttonGold' name='button'>Haz viajado solo</button>";
+                }
                 if((isset($_SESSION["idUsuario"])) && !haTerminadoElViaje($idviaje) && !usuarioEsCreadorDeViaje($idviaje,$_SESSION["idUsuario"]) && usuarioEstaSumadoAlViaje($idviaje,$_SESSION["idUsuario"]))
                 {
                     $salida .= "<button id='".$idviaje."' onClick='bajarseDelViaje(this.id)' type='button' class='btn-md buttonRed' name='button'>Bajarse Del Viaje</button>";

@@ -21,5 +21,6 @@
       <ul class="pagination" id="pagination"></ul>
     </center>-->
     <?php echo imprimir_footer(); ?>
+    <script type="text/javascript" src="jsPuntuar.js"></script>
   </body>
 </html>

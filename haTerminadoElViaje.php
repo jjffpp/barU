@@ -1,4 +1,5 @@
 <?php
+include_once "consultas_bd.php";
 
 function elViajeEstaEnProgreso($idviaje)
 {
@@ -54,5 +55,27 @@ function haTerminadoElViaje($idviaje)
     }
   }
     return false;
+}
+
+function haPuntuadoATodos($idViaje,$idUsuario){
+  $conn= new conexion();
+  $consultaPuntos = "SELECT * FROM usuario_puntua_usuario as upu WHERE upu.idViaje='$idViaje' AND upu.idUsuario='$idUsuario'";
+  $resulQuery2 = $conn->consultarABD($consultaPuntos);
+
+  $cantidadDeVotados = mysqli_num_rows($resulQuery2);
+  $consultaViajeros = "SELECT * FROM usuarios_has_viajes as uhv WHERE uhv.viajes_idviajes='$idViaje'";
+  $resulQuery2 = $conn->consultarABD($consultaViajeros);
+
+  $cantidadDeViajeros = mysqli_num_rows($resulQuery2) - 1;
+  if($cantidadDeVotados == $cantidadDeViajeros){
+    if($cantidadDeVotados==0 && $cantidadDeViajeros==0){
+      return 10;
+    }else{
+      return 1;
+    }
+
+  }else{
+    return -10;
+  }
 }
 ?>
