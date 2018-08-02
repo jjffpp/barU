@@ -12,7 +12,6 @@
    <title>Ver Perfil usuario</title>
 </head>
 <?php
-session_start();
 include "conexion.php";
 $id = $_GET['idUser'];
 echo "<body>";
@@ -46,11 +45,6 @@ echo "<body>";
             echo "</td>";
             echo "<td>";
               echo "<ul style=\"border: none;width:100%;list-style:none\">";
-              if (isset($_SESSION['idUsuario'])){
-                if($_SESSION['idUsuario'] == $id){
-                  echo "<li><button type=\"button\" onclick=\"irAEditarPerfil()\" style=\"border: none; background-color: #429BEF; opacity: 0.9;color: white;padding: 14px 20px;\">EDITAR PEFIL</button></li>";
-                }
-              }
               echo "<li style=\"color: white;\">-</li>";
               echo "<li><button type=\"button\" onclick=\"()\"style=\"border: none; background-color: #429BEF; opacity: 0.9;color: white;padding: 14px 20px;\">PUNTUACION</button></li>";
               echo "</ul>";
