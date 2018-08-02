@@ -56,7 +56,7 @@
               echo "<ul style=\"border: none;width:100%;list-style:none\">";
                 echo "<li><button type=\"button\" onclick=\"irAEditarPerfil()\" style=\"border: none; background-color: #429BEF; opacity: 0.9;color: white;padding: 14px 20px;\">EDITAR PEFIL</button></li>";
                 echo "<li style=\"color: white;\">-</li>";
-                echo "<li><button type=\"button\" onclick=\"()\"style=\"border: none; background-color: #22F58F; opacity: 0.9;color: white;padding: 14px 20px;\">PUNTUACION</button></li>";
+                echo "<li><button type=\"button\" onclick=\"()\"style=\"border: none; background-color: #429BEF; opacity: 0.9;color: white;padding: 14px 20px;\">PUNTUACION</button></li>";
                 echo "</ul>";
             echo "</td>";
           echo "</tr>";
@@ -69,7 +69,7 @@
           $resultado1 = $conn->consultarABD($consulta1);
           if ($resultado1->num_rows > 0){
           echo "<div>";
-            echo "<table class=\"tablaVehiculos\" style=\"border: none;width:100%;text-align: center;\">";
+            echo "<table class=\"tablaVehiculos\" style=\"border: none;width:57%;text-align: center;\">";
             echo "<tr style=\"border: none; background-color: #75797C; opacity: 0.9;margin: 8px 0;color: white;\">";
               echo "<th style=\"border: none;padding: 14px 20px;text-align: center;\">Vehiculo</th>";
               echo "<th style=\"border: none;padding: 14px 20px;text-align: center;\">Año</th>";
