@@ -55,9 +55,17 @@
 
                 if($asientosDisponibles > 0 && (isset($_SESSION["idUsuario"])))
                 {
-                  if(!usuarioEstaSumadoAlViaje($idviaje,$_SESSION["idUsuario"])){
+                  if(!usuarioEstaSumadoAlViaje($idviaje,$_SESSION["idUsuario"]) && !usuarioEstaEsperandoConfirmacion($idviaje,$_SESSION["idUsuario"])){
                       $salida .= "<button id='".$idviaje."' type='button' class='btn btn-success buttonGreen btn-md sumarse' name='button'>Sumarse</button>";
                   }
+                  if(usuarioEstaEsperandoConfirmacion($idviaje,$_SESSION["idUsuario"])){
+                    $salida .= "<button id='".$idviaje."' onClick='puntuarViaje(this.id)' type='button' class='btn-md buttonLight' name='button'>Esperando Confirmacion</button>";
+                  }
+                  else{
+                    if((isset($_SESSION["idUsuario"])) && haTerminadoElViaje($idviaje) && usuarioEstaSumadoAlViaje($idviaje,$_SESSION["idUsuario"]))
+                    {
+                        $salida .= "<button id='".$idviaje."' onClick='puntuarViaje(this.id)' type='button' class='btn-md buttonBlue' name='button'>Viaje Concluido - Puntuar</button>";
+                    }
 
                 }
 
@@ -102,9 +110,9 @@
     echo "<script type='text/javascript' src='puntuarViaje.js'></script>";
     echo "<script type='text/javascript' src='bajarUser.js'></script>";
     echo "<div class='container'>";
-    echo "<article id='main-col'>";
-    echo "<h2 id='titulovr' class='page-title'>Viajes</h2>";
-    echo "<ul id='services'>";
+    echo "<article id='main-col' class='no-width'>";
+    echo "<h2 id='titulovr' class='page-title margin-bot-20 margin-top-30'>Viajes</h2>";
+    echo "<ul id='services' class='no-padding-left'>";
     while ($fila = $consulta->fetch_assoc()) {
       //print_r($fila);
       echo tarjeta($fila['idviajes'],$fila['fechaYHora'],$fila['tipo']

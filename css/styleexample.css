@@ -6,7 +6,18 @@ body{
   padding-top: 70px;
   margin: 0 auto 150px;
 }
-
+.no-width{
+  width: auto!important;
+}
+.margin-top-30{
+  margin-top: 30px;
+}
+.margin-bot-20{
+  margin-bottom: 20px;
+}
+.no-padding-left{
+  padding-left: 0px;
+}
 footer{
   height: 100px;
   position: absolute; left: 0; bottom: 0; width: 100%;
@@ -101,6 +112,19 @@ hr {
 /*estilo botones*/
 .buttonYellow{
   background-color: black;
+color: white;
+padding: 14px 20px;
+margin: 8px 0;
+border: none;
+cursor: pointer;
+width: 100%;
+opacity: 0.9;
+
+}
+
+
+.buttonLight{
+  background-color: #1B97BF;
 color: white;
 padding: 14px 20px;
 margin: 8px 0;

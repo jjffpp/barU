@@ -16,8 +16,8 @@ $(document).ready(function(e){
       type: 'POST',
       data: { param1: page },
       success: function(html){
-        $('#content').html(html);
-        //location.reload();
+      window.location = "indexPrimario.php";
+        //$('#content').html(html);
       }
     })
       e.preventDefault();
