@@ -5,6 +5,11 @@
 ?>
 <html lang="en" dir="ltr">
 <head>
+  <script>
+  function irAEditarPerfil() {
+      window.location.href = "formularioEditarPerfil.php";
+  }
+  </script>
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -17,7 +22,7 @@
 </head>
 <body>
   <?php generarNavbar(); ?>
-  <form action="altaVehiculo.php" method="post" id="formulario">
+  <form >
      <div class="container">
        <h1>Perfil de Usuario</h1>
        <hr>
@@ -49,9 +54,9 @@
             echo "</td>";
             echo "<td>";
               echo "<ul style=\"border: none;width:100%;list-style:none\">";
-                echo "<li><button type=\"button\" style=\"border: none; background-color: #429BEF; opacity: 0.9;color: white;padding: 14px 20px;\">EDITAR PEFIL</button></li>";
+                echo "<li><button type=\"button\" onclick=\"irAEditarPerfil()\" style=\"border: none; background-color: #429BEF; opacity: 0.9;color: white;padding: 14px 20px;\">EDITAR PEFIL</button></li>";
                 echo "<li style=\"color: white;\">-</li>";
-                echo "<li><button type=\"button\" style=\"border: none; background-color: #22F58F; opacity: 0.9;color: white;padding: 14px 20px;\">PUNTUACION</button></li>";
+                echo "<li><button type=\"button\" onclick=\"()\"style=\"border: none; background-color: #22F58F; opacity: 0.9;color: white;padding: 14px 20px;\">PUNTUACION</button></li>";
                 echo "</ul>";
             echo "</td>";
           echo "</tr>";
