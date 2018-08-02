@@ -5,10 +5,10 @@ session_start();
 
 function generarJS(){
   //if(isset($_SESSION["idUsuario"]))
-    echo "<script type='text/javascript' src='jsPuntuar.js'>";
+    echo "<script type='text/javascript' src='jsPuntuar.js'></script>";
     echo "<script type='text/javascript' src='client.js'></script>";
     echo "<script type='text/javascript' src='f2.js'></script>";
-    echo "<script type='text/javascript' src='bootbox.min.js'>";
+    echo "<script type='text/javascript' src='bootbox.min.js'></script>";
 
 }
 

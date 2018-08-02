@@ -62,8 +62,6 @@
                 }
 
 
-
-
                 if((isset($_SESSION["idUsuario"])) && haTerminadoElViaje($idviaje) && usuarioEstaSumadoAlViaje($idviaje,$_SESSION["idUsuario"]) && (haPuntuadoATodos($idviaje,$_SESSION['idUsuario'])==-10))
                 {
                     $salida .= "<button id='".$idviaje."' onClick='puntuarViaje(this.id)' type='button' class='btn-md buttonBlue' name='button'>Viaje Concluido - Puntuar</button>";
