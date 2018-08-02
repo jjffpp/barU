@@ -115,7 +115,7 @@ var box = (function () {
                   },
             success: function(html){
               //console.log(fechaSeleccionada)
-              $('#content').html(html);
+              $('#content1').html(html);
               //location.reload();
             }
           })

@@ -9,6 +9,7 @@ function puntuarViaje(idViaje) {
           },
     success: function(html){
       //console.log(fechaSeleccionada)
+      $('#busquedaContainer').hide(1000);
       $('#content').html(html);
       //location.reload();
     }

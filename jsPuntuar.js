@@ -26,7 +26,7 @@ function comprobacionPositiva(obj,idviaje,idSesion){
         var columnaFin = document.querySelector('.finalizado');
         columnaFin.classList.remove('hidden');
         var delay = 1000;
-        setTimeout(function(){ window.location = "indexPrimario.php"; }, delay)
+        setTimeout(function(){ window.location = "misviajes.php"; }, delay)
       }
       columna[0].classList.add('hidden')
     }
@@ -51,7 +51,7 @@ function comprobacionNegativa(obj,idviaje,idSesion){
         var columnaFin = document.querySelector('.finalizado');
         columnaFin.classList.remove('hidden');
         var delay = 1000;
-        setTimeout(function(){ window.location = "indexPrimario.php"; }, delay)
+        setTimeout(function(){ window.location = "misviajes.php"; }, delay)
       }
       columna[0].classList.add('hidden')
     }

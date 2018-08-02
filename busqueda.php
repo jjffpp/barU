@@ -26,7 +26,10 @@
   <body>
 
     <?php generarNavbar(); ?>
-    <div class="container">
+    <div id="content">
+
+    </div>
+    <div class="container" id="busquedaContainer">
 
       <div style="margin-top:50px">
 
@@ -62,7 +65,7 @@
                 </div>
                 <div class="col-12" style="padding-bottom: 20px;">
                   <label>
-                    <input type="checkbox" class="entreSemana" > Buscar entre semana
+                    <input type="checkbox" class="entreSemana" > Buscar entre semanas
                   </label>
                 </div>
                 <div class="col-lg-6 col-md-6 fechaInicio">
@@ -70,7 +73,7 @@
                   <input type="date" id="fecha2" name="fecha" class=""/>
                 </div>
                 <div class="col-lg-6 col-md-6 fechaFinal">
-                  <label>Fecha de fin</label>
+                  <label>Fecha de fin:</label>
                   <input type="date" id="fechaFinal" name="fecha" class=""/>
                 </div>
                 <div class="form-group">
@@ -82,7 +85,7 @@
             </div>
 
             <div class="col-12">
-              <div id="content">
+              <div id="content1">
 
               </div>
             </div>
@@ -92,6 +95,7 @@
 
     </div>
     <script src="jsBusqueda.js"></script>
+    <script type="text/javascript" src="jsPuntuar.js"></script>
     <script>
     var check = document.querySelector(".entreSemana")
     var fechaI = document.querySelector(".fechaInicio")
