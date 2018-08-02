@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./css/spacing.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="bajarUser.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="./css/styleexample.css">
     <script type="text/javascript" src="client.js"></script>
@@ -15,10 +16,8 @@
   <body>
     <?php generarNavbar(); ?>
     <div class="container  mt-20">
-    <?php cargarSolicitudes(); ?>      
-    </div>    
+    <?php cargarSolicitudes(); ?>
+    </div>
     <?php echo imprimir_footer(); ?>
   </body>
 </html>
-
-

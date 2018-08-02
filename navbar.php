@@ -33,6 +33,7 @@ if(isset($_SESSION["idUsuario"])){
             <li><a href='index_mis_viajes.php'><span class='glyphicon glyphicon-briefcase'></span> Mis Viajes</a></li>
             <li><a href='#' onclick='comprobarCondiciones()'><span class='glyphicon glyphicon-map-marker'></span> Crear Viaje</a></li>
             <li><a href='busqueda.php'><span class='glyphicon glyphicon-search'></span> Buscar Viajes</a></li>
+            <li><a href='detalle-viaje.php'><span class='glyphicon glyphicon-info-sign'></span> Confirmaciones Pendientes</a></li>            
             <li><a href='formularioAltaVehiculo.php'><span class='glyphicon glyphicon-road'></span> Registrar Vehiculo</a></li>
             <li class='dropdown'>
               <a href='#' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-expanded='false'><span class='glyphicon glyphicon-user'></span> ".$nombre['nombre']."<span class='caret'></span></a>

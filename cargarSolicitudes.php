@@ -29,12 +29,12 @@ function getMisUsuariosPendientes()
   if (mysqli_num_rows($resulQuery1) > 0) {
     while($row = mysqli_fetch_assoc($resulQuery1)) {
         $idV = $row["viajes_idviajes"];
-        $userAc = $row["usuarios_idUsuario"];
-        $userAc = getUserAct($userAc);
+        $userAc1 = $row["usuarios_idUsuario"];
+        $userAc = getUserAct($userAc1);
         $response .= "<nav class='navbar navbar-inverse mb-5'>
         <span class='navbar-brand ml-10 mt-10px height-auto  f-l'>El usuario $userAc quiere sumarse a tu viaje con ID $idV</span>
-        <button type='button' class='f-r mr-5 btn btn-default navbar-btn'>Rechazar</button>
-        <button type='button' class='f-r mr-5 btn btn-default navbar-btn'>Aceptar</button>
+        <button type='button' onclick=rechazar('$userAc1','$idV') class='f-r mr-5 btn btn-default navbar-btn'>Rechazar</button>
+        <button type='button' onclick=aceptar('$userAc1','$idV') class='f-r mr-5 btn btn-default navbar-btn'>Aceptar</button>
       </nav>";
       // $row["usuarios_idUsuario"];
       // $row["viajes_idviajes"];

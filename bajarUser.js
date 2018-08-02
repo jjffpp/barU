@@ -14,6 +14,30 @@ function bajarseDelViaje(idViaje) {
 });
 }
 
+function aceptar(userId,viajeId) {
+  console.log(`${userId}+${viajeId}`)
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+           window.location = "detalle-viaje.php";
+      }
+  };
+  xmlhttp.open("POST", "aceptar.php", true);
+  xmlhttp.send(`${userId}-${viajeId}`);
+}
+
+function rechazar(userId,viajeId) {
+  console.log(`${userId}+${viajeId}`)
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+           window.location = "detalle-viaje.php";
+      }
+  };
+  xmlhttp.open("POST", "rechazar.php", true);
+  xmlhttp.send(`${userId}-${viajeId}`);
+}
+
 function eliminarViaje(idViaje)
 {
   bootbox.confirm("Realmente desea eliminar el viaje? Esta operacion bajara a todos los pasajeros", function(result){
