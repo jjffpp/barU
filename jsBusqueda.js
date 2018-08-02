@@ -103,6 +103,7 @@ var box = (function () {
   var buscarAction = function(){
     var buscar = document.getElementById("buscar");
     buscar.addEventListener('click', function(){
+      if(typeof fechaSeleccionadaFinal === 'undefined'){ fechaSeleccionadaFinal=""; }
       if(seguir(indiceOrigen,indiceDestino,fechaSeleccionadaInicio,fechaSeleccionadaFinal)){
         if((fechaSeleccionadaInicio != "")&&(typeof resultadoOrigen !== 'undefined')&&(typeof resultadoDestino !== 'undefined')){
           $.ajax({
