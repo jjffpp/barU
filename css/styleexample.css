@@ -1,10 +1,22 @@
 html{
   position: relative; min-height: 100%;
 }
+.block{
+  display: block;
+}
 body{
   font-family: "Lato";
   padding-top: 70px;
   margin: 0 auto 150px;
+}
+a.celeste:hover{
+  color:#00cccc!important;
+}
+.celeste{
+  color: #00e6e6
+}
+.texto{
+  color: white!important;
 }
 .perfil li{
   margin: 10px;
@@ -19,6 +31,10 @@ tbody tr{
 .margin-top-30{
   margin-top: 30px;
 }
+.margin-top-10{
+  margin-top: 10px;
+}
+
 .margin-bot-20{
   margin-bottom: 20px;
 }

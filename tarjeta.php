@@ -37,7 +37,8 @@
     $salida ="<li>
             <div class='card' style='width: 66rem;''>
               <div class='card-body'>
-                <h3 class='card-title'>Numero Unico de Viaje: ".$idviaje."</h5>
+
+                <h3 class='card-title'>Numero Unico de Viaje: "."<a href='#' onClick='cargar($idviaje)'>$idviaje</a>"."</h5>
                 <u><h4 class='card-subtitle mb-2'>Origen:</u> " .$origen. "</h6>
                 <u><h4 class='card-subtitle mb-2'>Destino:</u> " .$destino. "</h6>
                 <u><h4 class='card-subtitle mb-2'>Fecha de Inicio:</u> " .$fechaYHora. "</h6>
@@ -81,7 +82,7 @@
 
                     if((isset($_SESSION["idUsuario"]) && !haTerminadoElViaje($idviaje) && usuarioEsCreadorDeViaje($idviaje,$_SESSION["idUsuario"]))){
                         $salida .= "<button id='".$idviaje."' type='button' onClick='eliminarViaje(this.id)' class='buttonRed btn-md' name='button'>Eliminar Viaje</button>";
-                    
+
                   }
                 }
 
@@ -108,6 +109,8 @@
     echo "<ul id='services' class='no-padding-left'>";
     while ($fila = $consulta->fetch_assoc()) {
       //print_r($fila);
+      $temp = $fila['idviajes'];
+
       echo tarjeta($fila['idviajes'],$fila['fechaYHora'],$fila['tipo']
                   ,$fila['duracion'],$fila['costo'],$fila['nombre_origen']
                   ,$fila['nombre_destino'],$fila['capacidad']
@@ -117,4 +120,5 @@
     echo "</article>";
     echo "</div>";
   }
+  echo "<script>function cargar(idViaje){ window.location.href = 'detalleViaje-api.php?idViaje=' + idViaje;}</script>";
  ?>

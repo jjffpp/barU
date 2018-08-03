@@ -1,4 +1,5 @@
 <?php
+
 function cargarSolicitudes()
 {
     echo getMisUsuariosPendientes();
@@ -32,7 +33,7 @@ function getMisUsuariosPendientes()
         $userAc1 = $row["usuarios_idUsuario"];
         $userAc = getUserAct($userAc1);
         $response .= "<nav class='navbar navbar-inverse mb-5'>
-        <span class='navbar-brand ml-10 mt-10px height-auto  f-l'>El usuario <a href='verPerfil-api.php?idUser=$userAc1'>$userAc</a> quiere sumarse a tu viaje con ID $idV</span>
+        <span class='navbar-brand texto ml-10 mt-10px height-auto  f-l'>El usuario <a class='celeste' href='verPerfil-api.php?idUser=$userAc1'>$userAc</a> quiere sumarse a tu viaje con ID <a class='celeste' href='detalleViaje-api.php?idViaje=$idV'>$idV</a></span>
         <button type='button' onclick=rechazar('$userAc1','$idV') class='f-r mr-5 btn btn-default navbar-btn'>Rechazar</button>
         <button type='button' onclick=aceptar('$userAc1','$idV') class='f-r mr-5 btn btn-default navbar-btn'>Aceptar</button>
       </nav>";
