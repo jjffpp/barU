@@ -82,10 +82,18 @@ echo "<body>";
               }
             echo "</table>";
         echo "</div>";
-        echo "<div class='col-lg-12 puntuacion hidden width:100%;text-align: center' style='padding-left:50%; border-bottom: 5px solid green;border-top: 5px solid green;'>";
+        echo "<div class='col-lg-12 puntuacion hidden width:100%;text-align: center' style='padding-left:50%; margin-top:20px; border-bottom: 5px solid green;border-top: 5px solid green;'>";
         echo "<h1 id='pp' class=';'>HOLA</h1>";
         echo "</div>";
 
+      }else{
+        echo "<div class='dataVehiculo'>";
+        echo "</div>";
+        echo "<div style='margin-bottom:10px;'>";
+        echo "</div>";
+        echo "<div class='col-lg-12 puntuacion hidden width:100%;text-align: center' style='padding-left:50%;padding-top:10px; border-bottom: 5px solid green;border-top: 5px solid green;'>";
+        echo "<h1 id='pp' class=';'>HOLA</h1>";
+        echo "</div>";
       }
        ?>
        </div>
@@ -95,8 +103,10 @@ echo "<body>";
     <script>
       function puntuacionUsuario(id){
         console.log(id);
-        $(".dataVehiculo").hide(1000);
-        $("#pp").show();
+        var dd = document.querySelector(".dataVehiculo")
+        //$(".dataVehiculo").hide(1000);
+        console.log()
+        $("#pp").show(1000);
         var hh = document.getElementById("pp");
         parent = hh.parentElement
         parent.classList.remove("hidden")

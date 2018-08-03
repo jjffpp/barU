@@ -20,6 +20,7 @@ function comprobacionPositiva(obj,idviaje,idSesion){
           },
     success: function(cantidadViajerosEnElViaje){
       let h = countMyself(1);
+      console.log(h)
       if(h == cantidadViajerosEnElViaje -1){
         countMyself(0);
         columna[0].classList.add('hidden')
@@ -45,7 +46,8 @@ function comprobacionNegativa(obj,idviaje,idSesion){
           },
     success: function(cantidadViajerosEnElViaje){
       let h = countMyself(1);
-      if(h = cantidadViajerosEnElViaje -1){
+      console.log(h);
+      if(h == cantidadViajerosEnElViaje -1){
         countMyself(0);
         columna[0].classList.add('hidden')
         var columnaFin = document.querySelector('.finalizado');

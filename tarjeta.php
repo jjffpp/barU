@@ -55,9 +55,9 @@
                 }
                 else{
 
-                if($asientosDisponibles > 0 && (isset($_SESSION["idUsuario"])))
+                if( (isset($_SESSION["idUsuario"])))
                 {
-                  if(!usuarioEstaSumadoAlViaje($idviaje,$_SESSION["idUsuario"]) && !usuarioEstaEsperandoConfirmacion($idviaje,$_SESSION["idUsuario"])){
+                  if($asientosDisponibles > 0 && !usuarioEstaSumadoAlViaje($idviaje,$_SESSION["idUsuario"]) && !usuarioEstaEsperandoConfirmacion($idviaje,$_SESSION["idUsuario"])){
                       $salida .= "<button id='".$idviaje."' type='button' class='btn btn-success buttonGreen btn-md sumarse' name='button'>Sumarse</button>";
                   }
                   if(usuarioEstaEsperandoConfirmacion($idviaje,$_SESSION["idUsuario"])){
@@ -88,6 +88,10 @@
                 }
 
               }
+              // if($asientosDisponibles==0 && isset($_SESSION["idUsuario"]) && haTerminadoElViaje($idviaje) && usuarioEstaSumadoAlViaje($idviaje,$_SESSION["idUsuario"]) && !(haPuntuadoATodos($idviaje,$_SESSION['idUsuario'])==1))
+              // {
+              //     $salida .= "<button id='".$idviaje."' onClick='puntuarViaje(this.id)' type='button' class='btn-md buttonBlue' name='button'>Viaje Concluido - Puntuar</button>";
+              // }
               $salida .= "</div>
             </div>
           </li>
