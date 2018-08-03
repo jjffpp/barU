@@ -47,7 +47,7 @@ echo "<body>";
           $resultadoVehiculo = $conn->consultarABD($consultaVehiculo);
           $rowVehiculo = mysqli_fetch_assoc($resultadoVehiculo) ;
           echo "<table class='perfil' style=\"border: none;width:100%; font-size: 1.3em;\">";
-          echo "<tr  style=\"border: none; width:70%;background-color: #75797C; opacity: 0.9;margin: 8px 0;color: white;\">";
+          echo "<tr  style=\"border: none; background-color: #101010!important; width:70%;background-color: #75797C; opacity: 0.9;margin: 8px 0;color: white;\">";
             echo "<th style=\"border: none;padding: 10px 10px;text-align: center;\">Viaje</th>";
             echo "<th style=\"border: none;padding: 10px 10px;text-align: center;\">Chofer</th>";
             echo "<th style=\"border: none;padding: 10px 10px;text-align: center;\">Vehiculo</th>";
