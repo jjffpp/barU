@@ -25,7 +25,7 @@
   function busqueda($origen,$destino,$fecha,$fechaFin){
     $db = coneccion();
 
-    $sql = "SELECT v.idviajes,v.fechaYHora,v.tipo, v.duracion,v.costo, origen.nombre AS nombre_origen,destino.nombre AS nombre_destino,vehiculo.capacidad
+    $sql = "SELECT v.idviajes,v.fechaYHora,v.tipo, v.duracion,v.costo, vehiculo.patente AS patente, origen.nombre AS nombre_origen,destino.nombre AS nombre_destino,vehiculo.capacidad
                   ,vehiculo.modelo,vehiculo.descripcion,v.estado_viaje
             FROM viajes as v INNER JOIN localidades as origen on v.localidad_origen = origen.idlocalidades
             INNER JOIN localidades as destino on v.localidad_destino=destino.idlocalidades
@@ -76,7 +76,7 @@
 
 
     $sql = "SELECT v.idviajes,v.fechaYHora,v.tipo, v.duracion,v.costo, origen.nombre AS nombre_origen,destino.nombre AS nombre_destino,vehiculo.capacidad
-                  ,vehiculo.modelo,vehiculo.descripcion,v.estado_viaje
+                  ,vehiculo.modelo,vehiculo.descripcion,v.estado_viaje,vehiculo.patente
             FROM viajes as v INNER JOIN localidades as origen on v.localidad_origen = origen.idlocalidades
             INNER JOIN localidades as destino on v.localidad_destino=destino.idlocalidades
             INNER JOIN vehiculo ON vehiculo.idvehiculo = v.idvehiculo
@@ -115,7 +115,7 @@
     $db = coneccion();
 
     $sql = "SELECT v.idviajes,l.nombre AS nombre_origen,ld.nombre AS nombre_destino,us.nombre AS nombre_user,v.fechaYHora,v.duracion,v.estado_viaje,v.tipo,
-                   vv.modelo,vv.descripcion,vv.capacidad,v.costo
+                   vv.modelo,vv.descripcion,vv.capacidad,v.costo, vv.patente
             FROM usuarios as u INNER JOIN usuarios_has_viajes as uhv ON uhv.usuarios_idUsuario = u.idUsuario
             INNER JOIN viajes as v ON v.idviajes = uhv.viajes_idviajes
             INNER JOIN vehiculo as vv ON v.idvehiculo=vv.idvehiculo

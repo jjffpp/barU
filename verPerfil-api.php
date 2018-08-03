@@ -58,7 +58,7 @@ echo "<body>";
           echo "</table>";
           echo "<br>";
           $consulta1 = "SELECT vehiculo.capacidad as capacidad, vehiculo.modelo as modelo,
-                        vehiculo.descripcion as descrip
+                        vehiculo.descripcion as descrip, vehiculo.patente as patente
                         FROM vehiculo INNER JOIN usuarios ON vehiculo.owner = usuarios.idUsuario
                         WHERE usuarios.idUsuario = '$id'";
           $resultado1 = $conn->consultarABD($consulta1);
@@ -69,6 +69,7 @@ echo "<body>";
               echo "<th style=\"border: none;padding: 14px 20px;text-align: center;\">Vehiculo</th>";
               echo "<th style=\"border: none;padding: 14px 20px;text-align: center;\">Año</th>";
               echo "<th style=\"border: none;padding: 14px 20px;text-align: center;\">Capacidad</th>";
+              echo "<th style=\"border: none;padding: 14px 20px;text-align: center;\">Patente</th>";
             echo "</tr>";
 
               while($row1 = mysqli_fetch_assoc($resultado1)) {
@@ -76,6 +77,7 @@ echo "<body>";
                   echo "<td style=\"border-bottom: 1px solid black;\"><b>".$row1["descrip"]."</b></td>";
                   echo "<td style=\"border-bottom: 1px solid black;\">".$row1["modelo"]."</td>";
                   echo "<td style=\"border-bottom: 1px solid black;\">".$row1["capacidad"]."</td>";
+                  echo "<td style=\"border-bottom: 1px solid black;\">".$row1["patente"]."</td>";
                 echo "</tr>";
               }
             echo "</table>";

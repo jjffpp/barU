@@ -22,6 +22,8 @@
        <hr>
        <label for:"descripcion"><b>Modelo (ej: chevrolet corsa)<b><br></label>
        <input type="text" id="descripcion" name="descripcion"/><br/>
+       <label for:"patente"><b>Patente (ej: ABC 123 ó AB 123 CD)<b> <br></label>
+       <input type="text" id="patente" name="patente"/><br/>
        <label for:"capacidad"><b>Capacidad<b><br></label>
        <input min="1" type="number" id="capacidad" name="capacidad"/><br/>
        <label for:"modelo" ><b>Año <b><br></label>

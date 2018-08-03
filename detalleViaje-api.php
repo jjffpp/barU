@@ -40,7 +40,7 @@ echo "<body>";
           $resultadoDestino = $conn->consultarABD($consultaDestino);
           $rowDestino = mysqli_fetch_assoc($resultadoDestino) ;
 
-          $consultaVehiculo= "SELECT vehiculo.descripcion as descrip FROM viajes
+          $consultaVehiculo= "SELECT vehiculo.descripcion as descrip, vehiculo.patente as patente FROM viajes
                       INNER JOIN vehiculo on vehiculo.idvehiculo = viajes.idvehiculo
                       INNER JOIN usuarios on vehiculo.owner = usuarios.idusuario
                       WHERE idviajes = '$id'";
@@ -61,6 +61,7 @@ echo "<body>";
               echo "<li><b>Fecha de Partida: </b>".$rowViajes["fechaYHora"]."</li>";
               echo "<li><b>Duracion: </b>".$rowViajes["duracion"]." hora/s </li>";
               echo "<li style='color: white'>-</li>";
+              echo "<li style=\"color: white;\">-</li>";
             echo "</ul>";
             echo "</td>";
             echo "<td>";
@@ -70,12 +71,14 @@ echo "<body>";
               echo "<li><b>Email: </b>".$rowViajes["email"]."</li>";
               echo "<li><b>Direccion: </b>".$rowViajes["direccion"]."</li>";
                 echo "<li style='color: white'>-</li>";
+                echo "<li style=\"color: white;\">-</li>";
             echo "</ul>";
             echo "</td>";
             echo "<td>";
             echo "<ul style=\"border: none; width:100%; list-style:none\">";
               echo "<li><b>Modelo: </b>".$rowVehiculo["descrip"]."</li>";
               echo "<li><b>Año: </b>".$rowViajes["modelo"]."</li>";
+              echo "<li><b>Patente: </b>".$rowVehiculo["patente"]."</li>";
               echo "<li style=\"color: white;\">-</li>";
               echo "<li style=\"color: white;\">-</li>";
               echo "<li style=\"color: white;\">-</li>";

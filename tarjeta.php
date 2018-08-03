@@ -7,7 +7,7 @@
   include_once "haTerminadoElViaje.php";
   function tarjeta($idviaje,$fechaYHora,$tipo,$duracion,$costo
                             ,$origen,$destino,$capacidad,$modelo
-                            ,$descripcion_vehiculo,$estado_viaje,$disponible){
+                            ,$descripcion_vehiculo,$estado_viaje,$patente,$disponible){
     /*
     Funcion que se encarga de imprimir cada Card
     */
@@ -46,7 +46,8 @@
 
                 <u><h4 class='card-subtitle mb-2'>Tipo:</u> " .$tipo. "</h6>
 
-                <u><h4 class='card-subtitle mb-2'>Model del Vehiculo:</u> " .$descripcion_vehiculo. "</h6>
+                <u><h4 class='card-subtitle mb-2'>Modelo del Vehiculo:</u> " .$descripcion_vehiculo. "</h6>
+                <u><h4 class='card-subtitle mb-2'>Patente del Vehiculo:</u> " .$patente. "</h6>
                 <u><h4 class='card-subtitle mb-2'>Asientos Disponibles:</u>". $asientosDisponibles."</h6>";
 
                 if(isset($_SESSION["idUsuario"]) && elViajeEstaEnProgreso($idviaje)){
@@ -114,7 +115,7 @@
       echo tarjeta($fila['idviajes'],$fila['fechaYHora'],$fila['tipo']
                   ,$fila['duracion'],$fila['costo'],$fila['nombre_origen']
                   ,$fila['nombre_destino'],$fila['capacidad']
-                  ,$fila['modelo'],$fila['descripcion'],$fila['estado_viaje'],$disponible);
+                  ,$fila['modelo'],$fila['descripcion'],$fila['estado_viaje'],$fila['patente'],$disponible);
     }
     echo "</ul>";
     echo "</article>";
