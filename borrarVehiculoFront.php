@@ -54,7 +54,12 @@
                   echo "<td style=\"border-bottom: 1px solid black;\">".$row1["patente"]."</td>";
                   echo "<td style=\"border-bottom: 1px solid black;\">";
                   $idVehiculo = $row1["id"];
-                    echo "<button type=\"button\" onclick=\"borrar('".$idVehiculo."')\" style=\"border: none;background-color:white;outline: none;\" ><img src=\"basura.png\" width=\"35\" height=\"35\" /></button>";
+                  $consulta2 = "SELECT * FROM viajes INNER JOIN vehiculo on viajes.idvehiculo = vehiculo.idvehiculo
+                                WHERE vehiculo.idvehiculo = '$idVehiculo'";
+                  $resultado2 = $conn->consultarABD($consulta2);
+                  if ($resultado2->num_rows == 0){
+                      echo "<button type=\"button\" onclick=\"borrar('".$idVehiculo."')\" style=\"border: none;background-color:white;outline: none;\" ><img src=\"basura.png\" width=\"35\" height=\"35\" /></button>";
+                  }
                   echo "</td>";
                 echo "</tr>";
               }
