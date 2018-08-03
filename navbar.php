@@ -42,6 +42,7 @@ if(isset($_SESSION["idUsuario"])){
               <ul class='dropdown-menu' role='menu'>
                 <li><a href='verPerfil.php'>Ver Perfil</a></li>
                 <li><a href='cambiarContrasenaFormulario.php'>Cambiar Contraseña</a></li>
+                <li><a href='#' onclick='comprobarCondicionesBorrarVehiculo()'>Eliminar Vehiculo</a></li>
                 <li><a href='cerrar-sesion.php'>Cerrar Sesion</a></li>
               </ul>
             </li>
