@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 02-08-2018 a las 10:05:48
+-- Tiempo de generación: 03-08-2018 a las 01:50:16
 -- Versión del servidor: 5.7.21
 -- Versión de PHP: 5.6.35
 
@@ -66,13 +66,6 @@ CREATE TABLE IF NOT EXISTS `usariospendientes_has_viajes` (
   KEY `viajes_idViajes` (`viajes_idviajes`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Volcado de datos para la tabla `usariospendientes_has_viajes`
---
-
-INSERT INTO `usariospendientes_has_viajes` (`usuarios_idUsuario`, `viajes_idviajes`) VALUES
-(7, 21);
-
 -- --------------------------------------------------------
 
 --
@@ -89,19 +82,23 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `fechaNac` date DEFAULT NULL,
   `direccion` varchar(45) DEFAULT NULL,
   `descripcion` varchar(45) DEFAULT NULL,
+  `puntuacion` int(11) NOT NULL,
   `estado` int(11) DEFAULT NULL,
   PRIMARY KEY (`idUsuario`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`idUsuario`, `email`, `password`, `nombre`, `apellido`, `fechaNac`, `direccion`, `descripcion`, `estado`) VALUES
-(1, 'andy@mpg.com', 'andy123', 'andres', 'gismondi', '2000-05-01', 'la plata centro', 'andres el 3 piernas gismondi', 0),
-(2, 'juan@mpg.com', 'juan123', 'Juan', 'Pose', '2000-05-02', 'la plata estadio unico', 'juan la mariposita', 1),
-(3, 'eze@mpg.com', 'eze123', 'Ezequiel', 'masciarelli', '2013-05-01', 'bernal', 'la rubia sexy', 0),
-(7, 'blas@mpg.com', 'blas123', 'blas', 'butera', '2000-02-02', 'chivilcoy', 'el ojitos lindos', 1);
+INSERT INTO `usuarios` (`idUsuario`, `email`, `password`, `nombre`, `apellido`, `fechaNac`, `direccion`, `descripcion`, `puntuacion`, `estado`) VALUES
+(1, 'andy@mpg.com', 'andy123', 'andres', 'gismondi', '2000-05-01', 'la plata centro', 'Scrum Mister', 16, 0),
+(2, 'juan@mpg.com', 'juan123', 'Juan', 'Pose', '2000-05-02', 'la plata estadio unico', 'Programer Master', 55, 1),
+(3, 'eze@mpg.com', 'eze123', 'Ezequiel', 'masciarelli', '2013-05-01', 'bernal', 'Codding boy', 26, 0),
+(7, 'blas@mpg.com', 'blas123', 'blas', 'butera', '2000-02-02', 'chivilcoy', 'Professional Scrum Master', 13, 1),
+(8, 'andres@andres.com', 'andy123', 'andres', 'Grabatela', '1984-12-31', 'andres1234', 'Durmiending all day', 14, 0),
+(9, 'cami@cami.com', 'cami123', 'camila', 'felli', '1991-01-01', 'cami123', 'cami', 19, 0),
+(10, 'jorge@mpg.com', 'jorge123', 'jorge', 'gutiso', '1995-08-04', 'la plata', 'Latino pasion', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -118,12 +115,18 @@ CREATE TABLE IF NOT EXISTS `usuarios_has_viajes` (
   KEY `fk_usuarios_has_viajes_usuarios1_idx` (`usuarios_idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `usuarios_has_viajes`
+-- Estructura de tabla para la tabla `usuario_puntua_usuario`
 --
 
-INSERT INTO `usuarios_has_viajes` (`usuarios_idUsuario`, `viajes_idviajes`) VALUES
-(3, 21);
+DROP TABLE IF EXISTS `usuario_puntua_usuario`;
+CREATE TABLE IF NOT EXISTS `usuario_puntua_usuario` (
+  `idUsuario_puntuado` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL,
+  `idViaje` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -138,20 +141,10 @@ CREATE TABLE IF NOT EXISTS `vehiculo` (
   `modelo` int(11) DEFAULT NULL,
   `descripcion` varchar(45) DEFAULT NULL,
   `owner` int(11) DEFAULT NULL,
+  `patente` varchar(45) NOT NULL,
   PRIMARY KEY (`idvehiculo`),
   KEY `fk_vehiculo_usuarios_idx` (`owner`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `vehiculo`
---
-
-INSERT INTO `vehiculo` (`idvehiculo`, `capacidad`, `modelo`, `descripcion`, `owner`) VALUES
-(1, 5, 2010, 'Fiat Palio', 3),
-(4, 5, 2000, 'Ford Ranger', 3),
-(5, 5, 2004, 'ford ranger', 3),
-(6, 2, 2018, 'Ferrari', 3),
-(7, 5, 2010, 'Corsa', 2);
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -174,25 +167,11 @@ CREATE TABLE IF NOT EXISTS `viajes` (
   KEY `fk_viajes_localidades1_idx` (`localidad_origen`),
   KEY `fk_viajes_localidades2_idx` (`localidad_destino`),
   KEY `fk_viajes_vehiculo1_idx` (`idvehiculo`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
-
---
--- Volcado de datos para la tabla `viajes`
---
-
-INSERT INTO `viajes` (`idviajes`, `fechaYHora`, `tipo`, `duracion`, `costo`, `localidad_origen`, `localidad_destino`, `idvehiculo`, `estado_viaje`) VALUES
-(21, '2018-08-24 23:44:00', 'ocacional', 444, 234, 4, 1, 1, 0);
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
 
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `usariospendientes_has_viajes`
---
-ALTER TABLE `usariospendientes_has_viajes`
-  ADD CONSTRAINT `usariospendientes_has_viajes_ibfk_1` FOREIGN KEY (`usuarios_idUsuario`) REFERENCES `usuarios` (`idUsuario`),
-  ADD CONSTRAINT `usariospendientes_has_viajes_ibfk_2` FOREIGN KEY (`viajes_idviajes`) REFERENCES `viajes` (`idviajes`);
 
 --
 -- Filtros para la tabla `usuarios_has_viajes`
